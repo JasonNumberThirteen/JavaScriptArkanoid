@@ -10,6 +10,7 @@ class Game
 	#context;
 	#width;
 	#height;
+	#paddle;
 
 	constructor()
 	{
@@ -19,6 +20,7 @@ class Game
 		this.#context = canvas.getContext("2d");
 		this.#width = cbcr.width;
 		this.#height = cbcr.height;
+		this.#paddle = new Paddle(32, 4, this.#width, this.#height);
 
 		window.requestAnimationFrame(this.loop.bind(this));
 	}
@@ -33,6 +35,7 @@ class Game
 	{
 		this.#context.clearRect(0, 0, this.#width, this.#height);
 		this.#drawBG();
+		this.#paddle.draw(this.#context);
 	}
 
 	#drawBG()
