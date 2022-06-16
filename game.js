@@ -1,8 +1,21 @@
+let GameInstance;
+
 function initGame()
 {
-	const canvas = document.getElementById("gameWindow");
-	const context = canvas.getContext("2d");
+	GameInstance = new Game();
+}
 
-	context.fillStyle = "#cccccc";
-	context.fillRect(0, 0, 256, 144);
+class Game
+{
+	#context;
+
+	constructor()
+	{
+		const canvas = document.getElementById("gameWindow");
+
+		this.#context = canvas.getContext("2d");
+		this.#context.fillStyle = "#cccccc";
+
+		this.#context.fillRect(0, 0, 256, 144);
+	}
 }
