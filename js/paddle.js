@@ -23,13 +23,6 @@ class Paddle
 		document.addEventListener("keyup", this.#onKeyUp.bind(this), false);
 	}
 	
-	draw(context)
-	{
-		context.fillStyle = "#222222";
-
-		context.fillRect(this.#x, this.#y, this.#width, this.#height);
-	}
-
 	update()
 	{
 		if(this.#movingLeft && this.#x > 0)
@@ -40,6 +33,13 @@ class Paddle
 		{
 			this.#x += this.#movementSpeed;
 		}
+	}
+
+	draw(context)
+	{
+		context.fillStyle = "#222222";
+
+		context.fillRect(this.#x, this.#y, this.#width, this.#height);
 	}
 
 	#onKeyDown(e)
