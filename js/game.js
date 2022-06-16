@@ -11,6 +11,7 @@ class Game
 	#width;
 	#height;
 	#paddle;
+	#ball;
 
 	constructor()
 	{
@@ -21,6 +22,7 @@ class Game
 		this.#width = cbcr.width;
 		this.#height = cbcr.height;
 		this.#paddle = new Paddle(32, 4, this.#width, this.#height);
+		this.#ball = new Ball(4, this.#width, this.#height);
 
 		window.requestAnimationFrame(this.loop.bind(this));
 	}
@@ -42,6 +44,7 @@ class Game
 		this.#context.clearRect(0, 0, this.#width, this.#height);
 		this.#drawBG();
 		this.#paddle.draw(this.#context);
+		this.#ball.draw(this.#context);
 	}
 
 	#drawBG()
