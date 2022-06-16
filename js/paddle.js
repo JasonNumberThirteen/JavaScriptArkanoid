@@ -4,6 +4,7 @@ class Paddle
 	#y;
 	#width;
 	#height;
+	#gameWidth;
 	#movementSpeed = 3;
 	#movingLeft = false;
 	#movingRight = false;
@@ -16,6 +17,7 @@ class Paddle
 		this.#y = gameHeight - height - offsetFromBottom;
 		this.#width = width;
 		this.#height = height;
+		this.#gameWidth = gameWidth;
 
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 		document.addEventListener("keyup", this.#onKeyUp.bind(this), false);
@@ -30,11 +32,11 @@ class Paddle
 
 	update()
 	{
-		if(this.#movingLeft)
+		if(this.#movingLeft && this.#x > 0)
 		{
 			this.#x -= this.#movementSpeed;
 		}
-		else if(this.#movingRight)
+		else if(this.#movingRight && this.#x < this.#gameWidth - this.#width)
 		{
 			this.#x += this.#movementSpeed;
 		}
