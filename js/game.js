@@ -27,8 +27,14 @@ class Game
 
 	loop(timeStamp)
 	{
+		this.#update();
 		this.#draw();
 		window.requestAnimationFrame(this.loop.bind(this));
+	}
+
+	#update()
+	{
+		this.#paddle.update();
 	}
 
 	#draw()
