@@ -36,20 +36,18 @@ class Ball
 
 	draw(context)
 	{
-		const doubledPI = Math.PI << 1;
-		
-		context.fillStyle = GAME_BALL_FILL_STYLE;
-
-		context.beginPath();
-		context.arc(this.#x, this.#y, this.#radius, 0, doubledPI);
-		context.closePath();
+		this.#drawArc(context, GAME_BALL_FILL_STYLE);
 		context.fill();
+		this.#drawArc(context, GAME_BALL_STROKE_FILL_STYLE);
+		context.stroke();
+	}
 
-		context.fillStyle = GAME_BALL_STROKE_FILL_STYLE;
+	#drawArc(context, fillStyle)
+	{
+		context.fillStyle = fillStyle;
 
 		context.beginPath();
-		context.arc(this.#x, this.#y, this.#radius, 0, doubledPI);
+		context.arc(this.#x, this.#y, this.#radius, 0, Math.PI << 1);
 		context.closePath();
-		context.stroke();
 	}
 }
