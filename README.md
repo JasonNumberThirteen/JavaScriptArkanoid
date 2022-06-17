@@ -6,10 +6,10 @@
 * [Used technologies](#used-technologies)
 
 ## General information
-- This is a simple clone of "Arkanoid" game originally made by Taito in 1987. It was written in pure JavaScript with a little help of HTML5 and CSS code. It uses HTML canvas for drawing graphics and JavaScript code for mechanics.
+- This is a simple clone of "Arkanoid" game originally made by Taito in 1986. It was written in pure JavaScript with a little help of HTML5 and CSS code. It uses HTML canvas for drawing graphics and JavaScript code for mechanics.
 
 ## Used technologies
 - "Visual Studio Code" IDE for writing code
 - HTML5 for game window display using the "canvas" element
-- CSS for adjustment of the game window position
+- CSS for adjustment of the game window display
 - JavaScript for game mechanics
