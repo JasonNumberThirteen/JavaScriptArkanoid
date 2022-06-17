@@ -3,6 +3,8 @@ class Ball
 	#x;
 	#y;
 	#radius;
+	#movementDirectionX = 1;
+	#movementDirectionY = -1;
 	#movementSpeed = 1;
 	
 	constructor(radius, gameWidth, gameHeight)
@@ -14,8 +16,8 @@ class Ball
 
 	update()
 	{
-		this.#x += this.#movementSpeed;
-		this.#y -= this.#movementSpeed;
+		this.#x += this.#movementSpeed*this.#movementDirectionX;
+		this.#y += this.#movementSpeed*this.#movementDirectionY;
 	}
 
 	draw(context)
