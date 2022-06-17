@@ -3,6 +3,8 @@ class Ball
 	#x;
 	#y;
 	#radius;
+	#gameWidth;
+	#gameHeight;
 	#movementDirectionX = 1;
 	#movementDirectionY = -1;
 	#movementSpeed = 1;
@@ -12,12 +14,24 @@ class Ball
 		this.#x = gameWidth >> 1;
 		this.#y = gameHeight >> 1;
 		this.#radius = radius;
+		this.#gameWidth = gameWidth;
+		this.#gameHeight = gameHeight;
 	}
 
 	update()
 	{
 		this.#x += this.#movementSpeed*this.#movementDirectionX;
 		this.#y += this.#movementSpeed*this.#movementDirectionY;
+
+		if(this.#x < this.#radius || this.#x > this.#gameWidth - this.#radius)
+		{
+			this.#movementDirectionX = -this.#movementDirectionX;
+		}
+
+		if(this.#y < this.#radius || this.#y > this.#gameHeight - this.#radius)
+		{
+			this.#movementDirectionY = -this.#movementDirectionY;
+		}
 	}
 
 	draw(context)
