@@ -7,13 +7,13 @@ class Paddle
 	#movingLeft = false;
 	#movingRight = false;
 
-	constructor(width, height, gameSize)
+	constructor(size, gameSize)
 	{
-		const x = (gameSize.x - width) >> 1;
-		const y = gameSize.y - height - GAME_PADDLE_OFFSET_FROM_BOTTOM;
+		const x = (gameSize.x - size.x) >> 1;
+		const y = gameSize.y - size.y - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 
 		this.#position = new Point(x, y);
-		this.#size = new Point(width, height);
+		this.#size = size;
 		this.#gameWidth = gameSize.x;
 
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
