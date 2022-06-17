@@ -41,29 +41,23 @@ class Paddle
 
 	#onKeyDown(e)
 	{
-		const key = e.key;
-
-		if(key === "a" || key === "ArrowLeft")
-		{
-			this.#movingLeft = true;
-		}
-		else if(key === "d" || key === "ArrowRight")
-		{
-			this.#movingRight = true;
-		}
+		this.#setMovingStates(e.key, true);
 	}
 
 	#onKeyUp(e)
 	{
-		const key = e.key;
+		this.#setMovingStates(e.key, false);
+	}
 
+	#setMovingStates(key, value)
+	{
 		if(key === "a" || key === "ArrowLeft")
 		{
-			this.#movingLeft = false;
+			this.#movingLeft = value;
 		}
 		else if(key === "d" || key === "ArrowRight")
 		{
-			this.#movingRight = false;
+			this.#movingRight = value;
 		}
 	}
 }
