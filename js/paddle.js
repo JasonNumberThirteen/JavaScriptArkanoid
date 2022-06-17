@@ -11,10 +11,8 @@ class Paddle
 
 	constructor(width, height, gameWidth, gameHeight)
 	{
-		const offsetFromBottom = 8;
-		
 		this.#x = (gameWidth - width) >> 1;
-		this.#y = gameHeight - height - offsetFromBottom;
+		this.#y = gameHeight - height - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 		this.#width = width;
 		this.#height = height;
 		this.#gameWidth = gameWidth;
