@@ -5,7 +5,7 @@ class Paddle
 	#width;
 	#height;
 	#gameWidth;
-	#movementSpeed = 3;
+	#movementSpeed = GAME_PADDLE_MOVEMENT_SPEED;
 	#movingLeft = false;
 	#movingRight = false;
 
@@ -37,7 +37,7 @@ class Paddle
 
 	draw(context)
 	{
-		context.fillStyle = "#222222";
+		context.fillStyle = GAME_PADDLE_FILL_STYLE;
 
 		context.fillRect(this.#x, this.#y, this.#width, this.#height);
 	}

@@ -5,9 +5,9 @@ class Ball
 	#radius;
 	#gameWidth;
 	#gameHeight;
-	#movementDirectionX = 1;
-	#movementDirectionY = -1;
-	#movementSpeed = 1;
+	#movementDirectionX = GAME_BALL_INITIAL_MOVEMENT_DIRECTION_X;
+	#movementDirectionY = GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y;
+	#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
 	
 	constructor(radius, gameWidth, gameHeight)
 	{
@@ -38,14 +38,14 @@ class Ball
 	{
 		const doubledPI = Math.PI << 1;
 		
-		context.fillStyle = "#42f2f2";
+		context.fillStyle = GAME_BALL_FILL_STYLE;
 
 		context.beginPath();
 		context.arc(this.#x, this.#y, this.#radius, 0, doubledPI);
 		context.closePath();
 		context.fill();
 
-		context.fillStyle = "#000";
+		context.fillStyle = GAME_BALL_STROKE_FILL_STYLE;
 
 		context.beginPath();
 		context.arc(this.#x, this.#y, this.#radius, 0, doubledPI);

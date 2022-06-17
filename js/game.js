@@ -21,8 +21,8 @@ class Game
 		this.#context = canvas.getContext("2d");
 		this.#width = cbcr.width;
 		this.#height = cbcr.height;
-		this.#paddle = new Paddle(32, 4, this.#width, this.#height);
-		this.#ball = new Ball(4, this.#width, this.#height);
+		this.#paddle = new Paddle(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT, this.#width, this.#height);
+		this.#ball = new Ball(GAME_BALL_RADIUS, this.#width, this.#height);
 
 		window.requestAnimationFrame(this.#loop.bind(this));
 	}
@@ -50,7 +50,7 @@ class Game
 
 	#drawBG()
 	{
-		this.#context.fillStyle = "#cccccc";
+		this.#context.fillStyle = GAME_BG_FILL_STYLE;
 
 		this.#context.fillRect(0, 0, this.#width, this.#height);
 	}
