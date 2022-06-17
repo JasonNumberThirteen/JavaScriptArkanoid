@@ -19,7 +19,7 @@ class Game
 
 		this.#context = canvas.getContext("2d");
 		this.#size = new Point(cbcr.width, cbcr.height);
-		this.#paddle = new Paddle(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT, this.#size.x, this.#size.y);
+		this.#paddle = new Paddle(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT, this.#size);
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 
 		window.requestAnimationFrame(this.#loop.bind(this));
