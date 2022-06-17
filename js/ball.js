@@ -6,14 +6,14 @@ class Ball
 	#movementDirection;
 	#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
 	
-	constructor(radius, gameWidth, gameHeight)
+	constructor(radius, gameSize)
 	{
-		const x = gameWidth >> 1;
-		const y = gameHeight - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
+		const x = gameSize.x >> 1;
+		const y = gameSize.y - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
 
 		this.#position = new Point(x, y);
 		this.#radius = radius;
-		this.#gameSize = new Point(gameWidth, gameHeight);
+		this.#gameSize = gameSize;
 		this.#movementDirection = new Point(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_X, GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 	}
 
