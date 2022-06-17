@@ -24,14 +24,14 @@ class Game
 		this.#paddle = new Paddle(32, 4, this.#width, this.#height);
 		this.#ball = new Ball(4, this.#width, this.#height);
 
-		window.requestAnimationFrame(this.loop.bind(this));
+		window.requestAnimationFrame(this.#loop.bind(this));
 	}
 
-	loop(timeStamp)
+	#loop(timeStamp)
 	{
 		this.#update();
 		this.#draw();
-		window.requestAnimationFrame(this.loop.bind(this));
+		window.requestAnimationFrame(this.#loop.bind(this));
 	}
 
 	#update()
