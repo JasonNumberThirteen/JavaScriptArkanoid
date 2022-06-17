@@ -12,7 +12,7 @@ class Ball
 	constructor(radius, gameWidth, gameHeight)
 	{
 		this.#x = gameWidth >> 1;
-		this.#y = gameHeight - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - 16;
+		this.#y = gameHeight - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
 		this.#radius = radius;
 		this.#gameWidth = gameWidth;
 		this.#gameHeight = gameHeight;
