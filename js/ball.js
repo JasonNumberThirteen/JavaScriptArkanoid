@@ -1,36 +1,35 @@
 class Ball
 {
-	#x;
-	#y;
+	#position;
 	#radius;
-	#gameWidth;
-	#gameHeight;
-	#movementDirectionX = GAME_BALL_INITIAL_MOVEMENT_DIRECTION_X;
-	#movementDirectionY = GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y;
+	#gameSize;
+	#movementDirection;
 	#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
 	
 	constructor(radius, gameWidth, gameHeight)
 	{
-		this.#x = gameWidth >> 1;
-		this.#y = gameHeight - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
+		const x = gameWidth >> 1;
+		const y = gameHeight - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
+
+		this.#position = new Point(x, y);
 		this.#radius = radius;
-		this.#gameWidth = gameWidth;
-		this.#gameHeight = gameHeight;
+		this.#gameSize = new Point(gameWidth, gameHeight);
+		this.#movementDirection = new Point(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_X, GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 	}
 
 	update()
 	{
-		this.#x += this.#movementSpeed*this.#movementDirectionX;
-		this.#y += this.#movementSpeed*this.#movementDirectionY;
+		this.#position.x += this.#movementSpeed*this.#movementDirection.x;
+		this.#position.y += this.#movementSpeed*this.#movementDirection.y;
 
-		if(this.#x < this.#radius || this.#x > this.#gameWidth - this.#radius)
+		if(this.#position.x < this.#radius || this.#position.x > this.#gameSize.x - this.#radius)
 		{
-			this.#movementDirectionX = -this.#movementDirectionX;
+			this.#movementDirection.x = -this.#movementDirection.x;
 		}
 
-		if(this.#y < this.#radius || this.#y > this.#gameHeight - this.#radius)
+		if(this.#position.y < this.#radius || this.#position.y > this.#gameSize.y - this.#radius)
 		{
-			this.#movementDirectionY = -this.#movementDirectionY;
+			this.#movementDirection.y = -this.#movementDirection.y;
 		}
 	}
 
@@ -47,7 +46,7 @@ class Ball
 		context.fillStyle = fillStyle;
 
 		context.beginPath();
-		context.arc(this.#x, this.#y, this.#radius, 0, Math.PI << 1);
+		context.arc(this.#position.x, this.#position.y, this.#radius, 0, Math.PI << 1);
 		context.closePath();
 	}
 }
