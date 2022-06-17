@@ -1,9 +1,7 @@
 class Paddle
 {
-	#x;
-	#y;
-	#width;
-	#height;
+	#position;
+	#size;
 	#gameWidth;
 	#movementSpeed = GAME_PADDLE_MOVEMENT_SPEED;
 	#movingLeft = false;
@@ -11,10 +9,11 @@ class Paddle
 
 	constructor(width, height, gameSize)
 	{
-		this.#x = (gameSize.x - width) >> 1;
-		this.#y = gameSize.y - height - GAME_PADDLE_OFFSET_FROM_BOTTOM;
-		this.#width = width;
-		this.#height = height;
+		const x = (gameSize.x - width) >> 1;
+		const y = gameSize.y - height - GAME_PADDLE_OFFSET_FROM_BOTTOM;
+
+		this.#position = new Point(x, y);
+		this.#size = new Point(width, height);
 		this.#gameWidth = gameSize.x;
 
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
@@ -23,13 +22,13 @@ class Paddle
 	
 	update()
 	{
-		if(this.#movingLeft && this.#x > 0)
+		if(this.#movingLeft && this.#position.x > 0)
 		{
-			this.#x -= this.#movementSpeed;
+			this.#position.x -= this.#movementSpeed;
 		}
-		else if(this.#movingRight && this.#x < this.#gameWidth - this.#width)
+		else if(this.#movingRight && this.#position.x < this.#gameWidth - this.#size.x)
 		{
-			this.#x += this.#movementSpeed;
+			this.#position.x += this.#movementSpeed;
 		}
 	}
 
@@ -37,7 +36,7 @@ class Paddle
 	{
 		context.fillStyle = GAME_PADDLE_FILL_STYLE;
 
-		context.fillRect(this.#x, this.#y, this.#width, this.#height);
+		context.fillRect(this.#position.x, this.#position.y, this.#size.x, this.#size.y);
 	}
 
 	#onKeyDown(e)
