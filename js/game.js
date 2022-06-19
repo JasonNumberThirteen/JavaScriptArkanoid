@@ -63,8 +63,12 @@ class Game
 	{
 		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
 		this.#drawBG();
-		this.#paddle.draw(this.#context);
-		this.#ball.draw(this.#context);
+
+		if(this.#running)
+		{
+			this.#paddle.draw(this.#context);
+			this.#ball.draw(this.#context);
+		}
 	}
 
 	#drawBG()
