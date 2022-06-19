@@ -35,7 +35,7 @@ class Game
 
 	#loop(timeStamp)
 	{
-		this.#update();
+		this.#update(timeStamp);
 		this.#draw();
 
 		if(this.#running)
@@ -44,10 +44,10 @@ class Game
 		}
 	}
 
-	#update()
+	#update(timeStamp)
 	{
 		this.#paddle.update();
-		this.#ball.update();
+		this.#ball.update(timeStamp);
 	}
 
 	#draw()
