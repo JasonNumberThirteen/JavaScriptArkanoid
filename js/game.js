@@ -104,7 +104,7 @@ class Game
 	{
 		const key = e.key;
 
-		if(!this.#running && key === "r")
+		if(!this.#running && key === GAME_REFRESH_KEY)
 		{
 			document.location.reload();
 		}
