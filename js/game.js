@@ -23,7 +23,7 @@ class Game
 		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 
-		window.requestAnimationFrame(this.#loop.bind(this));
+		this.#requestAnimationFrame();
 	}
 
 	onBallFall()
@@ -40,8 +40,13 @@ class Game
 
 		if(this.#running)
 		{
-			window.requestAnimationFrame(this.#loop.bind(this));
+			this.#requestAnimationFrame();
 		}
+	}
+
+	#requestAnimationFrame()
+	{
+		window.requestAnimationFrame(this.#loop.bind(this));
 	}
 
 	#update(timeStamp)
