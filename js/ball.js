@@ -31,6 +31,7 @@ class Ball
 		else if(this.#position.y > this.#gameSize.y + this.#radius)
 		{
 			this.#setInitialState();
+			GameInstance.onBallFall();
 		}
 	}
 

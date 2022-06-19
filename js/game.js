@@ -25,6 +25,11 @@ class Game
 		window.requestAnimationFrame(this.#loop.bind(this));
 	}
 
+	onBallFall()
+	{
+		this.#paddle.loseLife();
+	}
+
 	#loop(timeStamp)
 	{
 		this.#update();

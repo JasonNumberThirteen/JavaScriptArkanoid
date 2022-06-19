@@ -6,6 +6,7 @@ class Paddle
 	#movementSpeed = GAME_PADDLE_MOVEMENT_SPEED;
 	#movingLeft = false;
 	#movingRight = false;
+	#lives = GAME_PADDLE_LIVES;
 
 	constructor(size, gameSize)
 	{
@@ -37,6 +38,13 @@ class Paddle
 		context.fillStyle = GAME_PADDLE_FILL_STYLE;
 
 		context.fillRect(this.#position.x, this.#position.y, this.#size.x, this.#size.y);
+	}
+
+	loseLife()
+	{
+		--this.#lives;
+
+		console.log(this.#lives);
 	}
 
 	#onKeyDown(e)
