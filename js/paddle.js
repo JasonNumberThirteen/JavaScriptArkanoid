@@ -43,8 +43,6 @@ class Paddle
 	loseLife()
 	{
 		--this.#lives;
-
-		console.log(this.#lives);
 	}
 
 	lostAllLives()
