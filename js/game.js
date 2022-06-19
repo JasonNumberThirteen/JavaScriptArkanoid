@@ -28,6 +28,7 @@ class Game
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 
 		this.#requestAnimationFrame();
+		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
 
 	onBallFall()
@@ -88,5 +89,15 @@ class Game
 		this.#context.textAlign = "center";
 
 		this.#context.fillText(GAME_GAME_OVER_TEXT, this.#size.x >> 1, this.#size.y >> 1);
+	}
+
+	#onKeyDown(e)
+	{
+		const key = e.key;
+
+		if(!this.#running && key === "r")
+		{
+			document.location.reload();
+		}
 	}
 }
