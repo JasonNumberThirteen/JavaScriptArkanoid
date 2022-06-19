@@ -19,3 +19,7 @@ const GAME_BALL_STROKE_FILL_STYLE = "#000";
 
 const GAME_GAME_OVER_TEXT = "GAME OVER";
 const GAME_GAME_OVER_FILL_STYLE = "#f00";
+
+const GAME_REFRESH_KEY = 'r';
+const GAME_REFRESH_TIP_TEXT = "Press 'R' to restart the game";
+const GAME_REFRESH_TIP_FILL_STYLE = "#000";

@@ -94,10 +94,10 @@ class Game
 
 	#drawRefreshTipText()
 	{
-		this.#context.fillStyle = "#000";
+		this.#context.fillStyle = GAME_REFRESH_TIP_FILL_STYLE;
 		this.#context.textAlign = "center";
 
-		this.#context.fillText("Press 'R' to restart the game", this.#size.x >> 1, this.#size.y - 16);
+		this.#context.fillText(GAME_REFRESH_TIP_TEXT, this.#size.x >> 1, this.#size.y - 16);
 	}
 
 	#onKeyDown(e)
