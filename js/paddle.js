@@ -62,11 +62,11 @@ class Paddle
 
 	#setMovingStates(key, value)
 	{
-		if(key === "a" || key === "ArrowLeft")
+		if(key === GAME_PADDLE_LEFT_MOVEMENT_A || key === GAME_PADDLE_LEFT_MOVEMENT_B)
 		{
 			this.#movingLeft = value;
 		}
-		else if(key === "d" || key === "ArrowRight")
+		else if(key === GAME_PADDLE_RIGHT_MOVEMENT_A || key === GAME_PADDLE_RIGHT_MOVEMENT_B)
 		{
 			this.#movingRight = value;
 		}
