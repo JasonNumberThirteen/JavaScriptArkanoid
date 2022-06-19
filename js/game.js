@@ -16,10 +16,14 @@ class Game
 	constructor()
 	{
 		const canvas = document.getElementById("gameWindow");
-		const cbcr = canvas.getBoundingClientRect();
+		const width = GAME_WIDTH;
+		const height = GAME_HEIGHT;
 
 		this.#context = canvas.getContext("2d");
-		this.#size = new Point(cbcr.width, cbcr.height);
+		this.#context.canvas.width = width;
+		this.#context.canvas.height = height;
+		
+		this.#size = new Point(width, height);
 		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 

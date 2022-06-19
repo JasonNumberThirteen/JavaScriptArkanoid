@@ -1,3 +1,5 @@
+const GAME_WIDTH = 256;
+const GAME_HEIGHT = 144;
 const GAME_BG_FILL_STYLE = "#cccccc";
 
 const GAME_PADDLE_WIDTH = 32;
