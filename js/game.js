@@ -8,6 +8,7 @@ function initGame()
 class Game
 {
 	#context;
+	#running = true;
 	#size;
 	#paddle;
 	#ball;
@@ -28,13 +29,19 @@ class Game
 	onBallFall()
 	{
 		this.#paddle.loseLife();
+
+		this.#running = !this.#paddle.lostAllLives();
 	}
 
 	#loop(timeStamp)
 	{
 		this.#update();
 		this.#draw();
-		window.requestAnimationFrame(this.#loop.bind(this));
+
+		if(this.#running)
+		{
+			window.requestAnimationFrame(this.#loop.bind(this));
+		}
 	}
 
 	#update()

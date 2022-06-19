@@ -47,6 +47,11 @@ class Paddle
 		console.log(this.#lives);
 	}
 
+	lostAllLives()
+	{
+		return this.#lives <= 0;
+	}
+
 	#onKeyDown(e)
 	{
 		this.#setMovingStates(e.key, true);
