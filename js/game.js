@@ -69,6 +69,10 @@ class Game
 			this.#paddle.draw(this.#context);
 			this.#ball.draw(this.#context);
 		}
+		else
+		{
+			this.#drawGameOverText();
+		}
 	}
 
 	#drawBG()
@@ -76,5 +80,13 @@ class Game
 		this.#context.fillStyle = GAME_BG_FILL_STYLE;
 
 		this.#context.fillRect(0, 0, this.#size.x, this.#size.y);
+	}
+
+	#drawGameOverText()
+	{
+		this.#context.fillStyle = "#f00";
+		this.#context.textAlign = "center";
+
+		this.#context.fillText("GAME OVER", this.#size.x >> 1, this.#size.y >> 1);
 	}
 }
