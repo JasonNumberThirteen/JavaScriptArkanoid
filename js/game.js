@@ -73,6 +73,7 @@ class Game
 		else
 		{
 			this.#drawGameOverText();
+			this.#drawRefreshTipText();
 		}
 	}
 
@@ -89,6 +90,14 @@ class Game
 		this.#context.textAlign = "center";
 
 		this.#context.fillText(GAME_GAME_OVER_TEXT, this.#size.x >> 1, this.#size.y >> 1);
+	}
+
+	#drawRefreshTipText()
+	{
+		this.#context.fillStyle = "#000";
+		this.#context.textAlign = "center";
+
+		this.#context.fillText("Press 'R' to restart the game", this.#size.x >> 1, this.#size.y - 16);
 	}
 
 	#onKeyDown(e)
