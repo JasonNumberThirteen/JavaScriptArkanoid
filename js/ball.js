@@ -47,9 +47,10 @@ class Ball
 	{
 		const x = this.#gameSize.x >> 1;
 		const y = this.#gameSize.y - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
+		const directionX = (Math.random() > 0.5) ? -1 : 1;
 
 		this.#position = new Point(x, y);
-		this.#movementDirection = new Point(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_X, GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
+		this.#movementDirection = new Point(directionX, GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 	}
 
 	#drawArc(context, fillStyle)
