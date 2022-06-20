@@ -13,11 +13,11 @@ class Brick
 	{
 		context.fillStyle = "#46f";
 
-		context.fillRect(this.#position.x, this.#position.y, 16, 4);
+		context.fillRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 
 		context.fillStyle = "#000";
 
-		context.strokeRect(this.#position.x, this.#position.y, 16, 4);
+		context.strokeRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 	}
 
 	isAlive()
