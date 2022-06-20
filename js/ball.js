@@ -52,7 +52,7 @@ class Ball
 		return this.#position;
 	}
 
-	deflectFromObject()
+	deflect()
 	{
 		this.#movementDirection.y = -this.#movementDirection.y;
 	}

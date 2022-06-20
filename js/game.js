@@ -85,7 +85,7 @@ class Game
 		this.#bricks.forEach(e => {
 			if(this.#rectangularObjectCollidesWithBall(e, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)))
 			{
-				this.#ball.deflectFromObject();
+				this.#ball.deflect();
 				e.takeDamage();
 
 				if(!e.isAlive())
@@ -102,7 +102,7 @@ class Game
 	{
 		if(this.#rectangularObjectCollidesWithBall(this.#paddle, new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT)))
 		{
-			this.#ball.deflectFromObject();
+			this.#ball.deflect();
 		}
 	}
 
