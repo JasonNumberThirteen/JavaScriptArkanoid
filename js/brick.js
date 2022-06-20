@@ -1,14 +1,16 @@
 class Brick
 {
 	#position;
-	#health;
 	#fillStyle;
+	#health;
+	#points;
 
-	constructor(position, health, fillStyle)
+	constructor(position, fillStyle, health, points)
 	{
 		this.#position = position;
-		this.#health = health;
 		this.#fillStyle = fillStyle;
+		this.#health = health;
+		this.#points = points;
 	}
 
 	draw(context)
