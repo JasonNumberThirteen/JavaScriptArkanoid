@@ -12,9 +12,7 @@ class Game
 	#size;
 	#paddle;
 	#ball;
-	#bricks = [
-		new Brick(new Point(16, 8), 1)
-	];
+	#bricks = [];
 
 	constructor()
 	{
@@ -30,6 +28,7 @@ class Game
 		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 
+		this.#createBricks();
 		this.#requestAnimationFrame();
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
@@ -39,6 +38,20 @@ class Game
 		this.#paddle.loseLife();
 
 		this.#running = !this.#paddle.lostAllLives();
+	}
+
+	#createBricks()
+	{
+		for (let y = 1; y <= 5; ++y)
+		{
+			for (let x = 1; x <= 14; ++x)
+			{
+				const position = new Point(16*x, 6*y);
+				const brick = new Brick(position, 1);
+				
+				this.#bricks.push(brick);
+			}
+		}
 	}
 
 	#loop(timeStamp)
