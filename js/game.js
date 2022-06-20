@@ -48,7 +48,7 @@ class Game
 			{
 				const values = GAME_BRICKS[y - 1];
 				const position = new Point(16*x, 6*y);
-				const brick = new Brick(position, 1, values.fillStyle);
+				const brick = new Brick(position, values.health, values.fillStyle);
 				
 				this.#bricks.push(brick);
 			}
