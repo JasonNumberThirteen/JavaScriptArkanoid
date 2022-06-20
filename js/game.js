@@ -63,6 +63,11 @@ class Game
 
 	#checkCollisions()
 	{
+		this.#checkCollisionBetweenPaddleAndBall();
+	}
+
+	#checkCollisionBetweenPaddleAndBall()
+	{
 		const paddlePosition = this.#paddle.getPosition();
 		const ballPosition = this.#ball.getPosition();
 		const paddleCollisionBox = new Point(paddlePosition.x + GAME_PADDLE_WIDTH, paddlePosition.y + GAME_PADDLE_HEIGHT);
