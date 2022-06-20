@@ -82,11 +82,14 @@ class Game
 	{
 		this.#checkCollisionBetweenPaddleAndBall();
 		this.#bricks.forEach(e => {
-			if(this.#rectangularObjectCollidesWithBall(e, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)) && e.isAlive())
+			if(this.#rectangularObjectCollidesWithBall(e, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)))
 			{
 				this.#ball.deflectFromObject();
+				e.takeDamage();
 			}
 		});
+
+		this.#bricks = this.#bricks.filter(e => e.isAlive());
 	}
 
 	#checkCollisionBetweenPaddleAndBall()

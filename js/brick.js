@@ -22,6 +22,11 @@ class Brick
 		context.strokeRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 	}
 
+	takeDamage()
+	{
+		--this.#health;
+	}
+
 	isAlive()
 	{
 		return this.#health > 0;
