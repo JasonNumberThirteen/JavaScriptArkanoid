@@ -58,6 +58,23 @@ class Game
 	{
 		this.#paddle.update();
 		this.#ball.update(timeStamp);
+		this.#checkCollisions();
+	}
+
+	#checkCollisions()
+	{
+		const paddlePosition = this.#paddle.getPosition();
+		const ballPosition = this.#ball.getPosition();
+		const paddleCollisionBox = new Point(paddlePosition.x + GAME_PADDLE_WIDTH, paddlePosition.y + GAME_PADDLE_HEIGHT);
+		const xn = Math.max(paddlePosition.x, Math.min(ballPosition.x, paddleCollisionBox.x));
+		const yn = Math.max(paddlePosition.y, Math.min(ballPosition.y, paddleCollisionBox.y));
+		const dx = xn - ballPosition.x;
+		const dy = yn - ballPosition.y;
+
+		if(dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS)
+		{
+			this.#ball.deflectFromPaddle();
+		}
 	}
 
 	#draw()

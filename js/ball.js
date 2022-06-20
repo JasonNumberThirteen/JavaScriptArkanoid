@@ -47,6 +47,16 @@ class Ball
 		context.stroke();
 	}
 
+	getPosition()
+	{
+		return this.#position;
+	}
+
+	deflectFromPaddle()
+	{
+		this.#movementDirection.y = -this.#movementDirection.y;
+	}
+
 	#setInitialState(timeStamp)
 	{
 		const x = this.#gameSize.x >> 1;

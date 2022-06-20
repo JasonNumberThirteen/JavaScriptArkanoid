@@ -40,6 +40,11 @@ class Paddle
 		context.fillRect(this.#position.x, this.#position.y, this.#size.x, this.#size.y);
 	}
 
+	getPosition()
+	{
+		return this.#position;
+	}
+
 	loseLife()
 	{
 		--this.#lives;
