@@ -31,9 +31,9 @@ const GAME_REFRESH_TIP_FILL_STYLE = "#000";
 const GAME_BRICK_WIDTH = 16;
 const GAME_BRICK_HEIGHT = 4;
 const GAME_BRICKS = [
-	{fillStyle: "#f57542", health: 5},
-	{fillStyle: "#f5d142", health: 4},
-	{fillStyle: "#d4f542", health: 3},
-	{fillStyle: "#42f548", health: 2},
-	{fillStyle: "#46f", health: 1}
+	{fillStyle: "#f57542", health: 5, points: 250},
+	{fillStyle: "#f5d142", health: 4, points: 150},
+	{fillStyle: "#d4f542", health: 3, points: 75},
+	{fillStyle: "#42f548", health: 2, points: 25},
+	{fillStyle: "#46f", health: 1, points: 10}
 ];
