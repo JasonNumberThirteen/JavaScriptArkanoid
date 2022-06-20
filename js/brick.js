@@ -2,16 +2,18 @@ class Brick
 {
 	#position;
 	#health;
+	#fillStyle;
 
-	constructor(position, health)
+	constructor(position, health, fillStyle)
 	{
 		this.#position = position;
 		this.#health = health;
+		this.#fillStyle = fillStyle;
 	}
 
 	draw(context)
 	{
-		context.fillStyle = "#46f";
+		context.fillStyle = this.#fillStyle;
 
 		context.fillRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 
