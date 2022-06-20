@@ -42,12 +42,13 @@ class Game
 
 	#createBricks()
 	{
-		for (let y = 1; y <= 5; ++y)
+		for (let y = 1; y <= GAME_BRICKS.length; ++y)
 		{
 			for (let x = 1; x <= 14; ++x)
 			{
+				const values = GAME_BRICKS[y - 1];
 				const position = new Point(16*x, 6*y);
-				const brick = new Brick(position, 1);
+				const brick = new Brick(position, 1, values.fillStyle);
 				
 				this.#bricks.push(brick);
 			}
