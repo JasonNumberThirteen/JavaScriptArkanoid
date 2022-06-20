@@ -13,6 +13,7 @@ class Game
 	#paddle;
 	#ball;
 	#bricks = [];
+	#score = 0;
 
 	constructor()
 	{
@@ -48,7 +49,7 @@ class Game
 			{
 				const values = GAME_BRICKS[y - 1];
 				const position = new Point(16*x, 6*y);
-				const brick = new Brick(position, values.health, values.fillStyle);
+				const brick = new Brick(position, values.fillStyle, values.health, values.points);
 				
 				this.#bricks.push(brick);
 			}
@@ -86,6 +87,11 @@ class Game
 			{
 				this.#ball.deflectFromObject();
 				e.takeDamage();
+
+				if(!e.isAlive())
+				{
+					this.#score += e.getPoints();
+				}
 			}
 		});
 

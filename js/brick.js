@@ -38,4 +38,9 @@ class Brick
 	{
 		return this.#position;
 	}
+
+	getPoints()
+	{
+		return this.#points;
+	}
 }
