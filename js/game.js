@@ -85,18 +85,23 @@ class Game
 
 	#checkCollisionBetweenPaddleAndBall()
 	{
-		const paddlePosition = this.#paddle.getPosition();
-		const ballPosition = this.#ball.getPosition();
-		const paddleCollisionBox = new Point(paddlePosition.x + GAME_PADDLE_WIDTH, paddlePosition.y + GAME_PADDLE_HEIGHT);
-		const xn = Math.max(paddlePosition.x, Math.min(ballPosition.x, paddleCollisionBox.x));
-		const yn = Math.max(paddlePosition.y, Math.min(ballPosition.y, paddleCollisionBox.y));
-		const dx = xn - ballPosition.x;
-		const dy = yn - ballPosition.y;
-
-		if(dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS)
+		if(this.#rectangularObjectCollidesWithBall(this.#paddle, new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT)))
 		{
 			this.#ball.deflectFromPaddle();
 		}
+	}
+
+	#rectangularObjectCollidesWithBall(ro, size)
+	{
+		const rectangularObjectPosition = ro.getPosition();
+		const ballPosition = this.#ball.getPosition();
+		const rectangularObjectCollisionBox = new Point(rectangularObjectPosition.x + size.x, rectangularObjectPosition.y + size.y);
+		const xn = Math.max(rectangularObjectPosition.x, Math.min(ballPosition.x, rectangularObjectCollisionBox.x));
+		const yn = Math.max(rectangularObjectPosition.y, Math.min(ballPosition.y, rectangularObjectCollisionBox.y));
+		const dx = xn - ballPosition.x;
+		const dy = yn - ballPosition.y;
+
+		return dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
 	}
 
 	#draw()
