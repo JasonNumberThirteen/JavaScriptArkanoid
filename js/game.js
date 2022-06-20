@@ -12,6 +12,9 @@ class Game
 	#size;
 	#paddle;
 	#ball;
+	#bricks = [
+		new Brick(new Point(16, 8), 1)
+	];
 
 	constructor()
 	{
@@ -86,6 +89,7 @@ class Game
 	{
 		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
 		this.#drawBG();
+		this.#bricks.forEach(e => e.draw(this.#context));
 
 		if(this.#running)
 		{
