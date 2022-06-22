@@ -162,15 +162,22 @@ class Game
 
 	#drawCounters()
 	{
-		this.#context.textAlign = "left";
 		this.#context.fillStyle = GAME_HUD_TEXTS_FILL_STYLE;
+		this.#context.textAlign = "left";
 
 		this.#context.fillText(GAME_SCORE_TEXT, GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+
+		this.#context.fillStyle = GAME_HUD_COUNTERS_FILL_STYLE;
+
 		this.#context.fillText(this.#score, GAME_HUD_TEXTS_OFFSET_X + GAME_HUD_COUNTERS_OFFSET, GAME_HUD_TEXTS_Y + GAME_HUD_COUNTERS_OFFSET);
 
+		this.#context.fillStyle = GAME_HUD_TEXTS_FILL_STYLE;
 		this.#context.textAlign = "right";
 
 		this.#context.fillText(GAME_LIVES_TEXT, this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+
+		this.#context.fillStyle = GAME_HUD_COUNTERS_FILL_STYLE;
+
 		this.#context.fillText(this.#paddle.getLives(), this.#size.x - GAME_HUD_TEXTS_OFFSET_X - GAME_HUD_COUNTERS_OFFSET, GAME_HUD_TEXTS_Y + GAME_HUD_COUNTERS_OFFSET);
 	}
 
