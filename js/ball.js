@@ -56,7 +56,7 @@ class Ball
 	{
 		this.deflect();
 
-		this.#movementSpeed += 0.1;
+		this.#movementSpeed += GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
 	}
 
 	deflect()
