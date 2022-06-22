@@ -10,6 +10,7 @@ class Game
 	#context;
 	#running = true;
 	#size;
+	#fieldSize;
 	#paddle;
 	#ball;
 	#bricks = [];
@@ -27,6 +28,7 @@ class Game
 		this.#context.font = "8px Times New Roman";
 		
 		this.#size = new Point(width, height);
+		this.#fieldSize = new Point(width, height - GAME_HUD_HEIGHT);
 		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 
@@ -47,7 +49,7 @@ class Game
 			for (let x = 1; x <= 14; ++x)
 			{
 				const values = GAME_BRICKS[y - 1];
-				const position = new Point(16*x, 6*y);
+				const position = new Point(16*x, GAME_HUD_HEIGHT + 6*y);
 				const brick = new Brick(position, values.fillStyle, values.health, values.points);
 				
 				this.#bricks.push(brick);
@@ -149,9 +151,13 @@ class Game
 
 	#drawBG()
 	{
+		this.#context.fillStyle = "#000";
+
+		this.#context.fillRect(0, 0, this.#size.x, GAME_HUD_HEIGHT);
+		
 		this.#context.fillStyle = GAME_BG_FILL_STYLE;
 
-		this.#context.fillRect(0, 0, this.#size.x, this.#size.y);
+		this.#context.fillRect(0, GAME_HUD_HEIGHT, this.#fieldSize.x, this.#fieldSize.y);
 	}
 
 	#drawCounters()

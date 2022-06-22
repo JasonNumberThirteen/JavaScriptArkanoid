@@ -27,7 +27,7 @@ class Ball
 				this.#movementDirection.x = -this.#movementDirection.x;
 			}
 	
-			if(this.#position.y < this.#radius)
+			if(this.#position.y < this.#radius + GAME_HUD_HEIGHT)
 			{
 				this.#movementDirection.y = -this.#movementDirection.y;
 			}
