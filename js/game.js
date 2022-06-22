@@ -133,7 +133,15 @@ class Game
 		}
 		else
 		{
-			this.#drawGameOverText();
+			if(this.#bricks.length == 0)
+			{
+				this.#drawYouWinText();
+			}
+			else
+			{
+				this.#drawGameOverText();
+			}
+			
 			this.#drawRefreshTipText();
 		}
 	}
@@ -151,6 +159,14 @@ class Game
 		this.#context.textAlign = "center";
 
 		this.#context.fillText(GAME_GAME_OVER_TEXT, this.#size.x >> 1, this.#size.y >> 1);
+	}
+
+	#drawYouWinText()
+	{
+		this.#context.fillStyle = "#4a8";
+		this.#context.textAlign = "center";
+
+		this.#context.fillText("YOU WIN!!!", this.#size.x >> 1, this.#size.y >> 1);
 	}
 
 	#drawRefreshTipText()
