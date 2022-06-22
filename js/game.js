@@ -96,6 +96,7 @@ class Game
 		});
 
 		this.#bricks = this.#bricks.filter(e => e.isAlive());
+		this.#running = this.#bricks.length > 0;
 	}
 
 	#checkCollisionBetweenPaddleAndBall()
