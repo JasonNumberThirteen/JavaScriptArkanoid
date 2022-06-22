@@ -191,7 +191,7 @@ class Game
 		this.#context.fillStyle = GAME_GAME_OVER_FILL_STYLE;
 		this.#context.textAlign = "center";
 
-		this.#context.fillText(GAME_GAME_OVER_TEXT, this.#size.x >> 1, this.#size.y >> 1);
+		this.#context.fillText(GAME_GAME_OVER_TEXT, this.#size.x >> 1, (this.#size.y + GAME_HUD_HEIGHT) >> 1);
 	}
 
 	#drawYouWinText()
@@ -199,7 +199,7 @@ class Game
 		this.#context.fillStyle = GAME_YOU_WIN_TEXT_FILL_STYLE;
 		this.#context.textAlign = "center";
 
-		this.#context.fillText(GAME_YOU_WIN_TEXT, this.#size.x >> 1, this.#size.y >> 1);
+		this.#context.fillText(GAME_YOU_WIN_TEXT, this.#size.x >> 1, (this.#size.y + GAME_HUD_HEIGHT) >> 1);
 	}
 
 	#drawRefreshTipText()
