@@ -142,6 +142,8 @@ class Game
 			
 			this.#drawRefreshTipText();
 		}
+
+		this.#drawCounters();
 	}
 
 	#drawBG()
@@ -149,6 +151,20 @@ class Game
 		this.#context.fillStyle = GAME_BG_FILL_STYLE;
 
 		this.#context.fillRect(0, 0, this.#size.x, this.#size.y);
+	}
+
+	#drawCounters()
+	{
+		this.#context.textAlign = "left";
+		this.#context.fillStyle = "#f22";
+
+		this.#context.fillText("SCORE", 8, 12);
+		this.#context.fillText(this.#score, 16, 20);
+
+		this.#context.textAlign = "right";
+
+		this.#context.fillText("LIVES", this.#size.x - 16, 12);
+		this.#context.fillText(this.#paddle.getLives(), this.#size.x - 24, 20);
 	}
 
 	#drawGameOverText()

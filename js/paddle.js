@@ -45,6 +45,11 @@ class Paddle
 		return this.#position;
 	}
 
+	getLives()
+	{
+		return this.#lives;
+	}
+
 	loseLife()
 	{
 		--this.#lives;
