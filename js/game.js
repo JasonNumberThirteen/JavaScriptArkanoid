@@ -163,8 +163,8 @@ class Game
 
 		this.#context.textAlign = "right";
 
-		this.#context.fillText("LIVES", this.#size.x - 16, 12);
-		this.#context.fillText(this.#paddle.getLives(), this.#size.x - 24, 20);
+		this.#context.fillText("LIVES", this.#size.x - 8, 12);
+		this.#context.fillText(this.#paddle.getLives(), this.#size.x - 16, 20);
 	}
 
 	#drawGameOverText()
