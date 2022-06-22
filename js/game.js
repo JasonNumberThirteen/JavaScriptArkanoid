@@ -37,8 +37,6 @@ class Game
 	onBallFall()
 	{
 		this.#paddle.loseLife();
-
-		this.#running = !this.#paddle.lostAllLives();
 	}
 
 	#createBricks()
@@ -96,7 +94,7 @@ class Game
 		});
 
 		this.#bricks = this.#bricks.filter(e => e.isAlive());
-		this.#running = this.#bricks.length > 0;
+		this.#running = this.#bricks.length > 0 && !this.#paddle.lostAllLives();
 	}
 
 	#checkCollisionBetweenPaddleAndBall()
