@@ -25,7 +25,7 @@ class Game
 		this.#context = canvas.getContext("2d");
 		this.#context.canvas.width = width;
 		this.#context.canvas.height = height;
-		this.#context.font = "8px Times New Roman";
+		this.#context.font = 8*GAME_WINDOW_SCALE + "px Times New Roman";
 		
 		this.#size = new Point(width, height);
 		this.#fieldSize = new Point(width, height - GAME_HUD_HEIGHT);
@@ -49,7 +49,8 @@ class Game
 			for (let x = 1; x <= 14; ++x)
 			{
 				const values = GAME_BRICKS[y - 1];
-				const position = new Point(16*x, GAME_HUD_HEIGHT + 6*y);
+				const brickY = 6*GAME_WINDOW_SCALE;
+				const position = new Point(GAME_BRICK_WIDTH*x, GAME_HUD_HEIGHT + brickY*y);
 				const brick = new Brick(position, values.fillStyle, values.health, values.points);
 				
 				this.#bricks.push(brick);
