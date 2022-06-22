@@ -40,9 +40,14 @@ class Ball
 
 	draw(context)
 	{
-		this.#drawArc(context, GAME_BALL_FILL_STYLE);
+		context.fillStyle = GAME_BALL_FILL_STYLE;
+		
+		this.#drawArc(context);
 		context.fill();
-		this.#drawArc(context, GAME_BALL_STROKE_FILL_STYLE);
+
+		context.strokeStyle = GAME_BALL_STROKE_FILL_STYLE;
+
+		this.#drawArc(context);
 		context.stroke();
 	}
 
@@ -125,10 +130,8 @@ class Ball
 		}
 	}
 
-	#drawArc(context, fillStyle)
+	#drawArc(context)
 	{
-		context.fillStyle = fillStyle;
-
 		context.beginPath();
 		context.arc(this.#position.x, this.#position.y, this.#radius, 0, Math.PI << 1);
 		context.closePath();
