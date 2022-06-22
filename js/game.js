@@ -162,23 +162,28 @@ class Game
 
 	#drawCounters()
 	{
+		const scoreTextPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		const scoreCounterPosition = new Point(scoreTextPosition.x + GAME_HUD_COUNTERS_OFFSET, scoreTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
+		const livesTextPosition = new Point(this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		const livesCounterPosition = new Point(livesTextPosition.x - GAME_HUD_COUNTERS_OFFSET, livesTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
+
 		this.#context.fillStyle = GAME_HUD_TEXTS_FILL_STYLE;
 		this.#context.textAlign = "left";
 
-		this.#context.fillText(GAME_SCORE_TEXT, GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		this.#context.fillText(GAME_SCORE_TEXT, scoreTextPosition.x, scoreTextPosition.y);
 
 		this.#context.fillStyle = GAME_HUD_COUNTERS_FILL_STYLE;
 
-		this.#context.fillText(this.#score, GAME_HUD_TEXTS_OFFSET_X + GAME_HUD_COUNTERS_OFFSET, GAME_HUD_TEXTS_Y + GAME_HUD_COUNTERS_OFFSET);
+		this.#context.fillText(this.#score, scoreCounterPosition.x, scoreCounterPosition.y);
 
 		this.#context.fillStyle = GAME_HUD_TEXTS_FILL_STYLE;
 		this.#context.textAlign = "right";
 
-		this.#context.fillText(GAME_LIVES_TEXT, this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		this.#context.fillText(GAME_LIVES_TEXT, livesTextPosition.x, livesTextPosition.y);
 
 		this.#context.fillStyle = GAME_HUD_COUNTERS_FILL_STYLE;
 
-		this.#context.fillText(this.#paddle.getLives(), this.#size.x - GAME_HUD_TEXTS_OFFSET_X - GAME_HUD_COUNTERS_OFFSET, GAME_HUD_TEXTS_Y + GAME_HUD_COUNTERS_OFFSET);
+		this.#context.fillText(this.#paddle.getLives(), livesCounterPosition.x, livesCounterPosition.y);
 	}
 
 	#drawGameOverText()
