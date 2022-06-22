@@ -17,21 +17,20 @@ class Ball
 
 	update(timeStamp)
 	{
-		if(timeStamp > this.#waitTime)
+		if(this.#canMove(timeStamp))
 		{
-			this.#position.x += this.#movementSpeed*this.#movementDirection.x;
-			this.#position.y += this.#movementSpeed*this.#movementDirection.y;
+			this.#move();
 	
-			if(this.#position.x < this.#radius || this.#position.x > this.#gameSize.x - this.#radius)
+			if(this.#touchesLeftOrRightEdge())
 			{
 				this.#movementDirection.x = -this.#movementDirection.x;
 			}
 	
-			if(this.#position.y < this.#radius + GAME_HUD_HEIGHT)
+			if(this.#touchesTopEdge())
 			{
 				this.#movementDirection.y = -this.#movementDirection.y;
 			}
-			else if(this.#position.y > this.#gameSize.y + this.#radius)
+			else if(this.#hasFallen())
 			{
 				this.#setInitialState(timeStamp);
 				GameInstance.onBallFall();
@@ -55,13 +54,7 @@ class Ball
 	deflectFromPaddle()
 	{
 		this.deflect();
-
-		this.#movementSpeed += GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
-
-		if(this.#movementSpeed > GAME_BALL_MAX_MOVEMENT_SPEED)
-		{
-			this.#movementSpeed = GAME_BALL_MAX_MOVEMENT_SPEED;
-		}
+		this.#accelerate();
 	}
 
 	deflect()
@@ -73,13 +66,63 @@ class Ball
 	{
 		const x = this.#gameSize.x >> 1;
 		const y = this.#gameSize.y - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
-		const directionX = (Math.random() > 0.5) ? -1 : 1;
 		const waitTimeOffset = timeStamp || 0;
 
 		this.#position = new Point(x, y);
-		this.#movementDirection = new Point(directionX, GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
+		this.#movementDirection = new Point(this.#randomInitialDirectionX(), GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
 		this.#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
+	}
+
+	#randomInitialDirectionX()
+	{
+		return (Math.random() > 0.5) ? -1 : 1;
+	}
+
+	#canMove(timeStamp)
+	{
+		return timeStamp > this.#waitTime;
+	}
+
+	#move()
+	{
+		this.#position.x += this.#movementSpeed*this.#movementDirection.x;
+		this.#position.y += this.#movementSpeed*this.#movementDirection.y;
+	}
+
+	#touchesLeftOrRightEdge()
+	{
+		return this.#touchesLeftEdge() || this.#touchesRightEdge();
+	}
+
+	#touchesLeftEdge()
+	{
+		return this.#position.x < this.#radius;
+	}
+
+	#touchesRightEdge()
+	{
+		return this.#position.x > this.#gameSize.x - this.#radius;
+	}
+
+	#touchesTopEdge()
+	{
+		return this.#position.y < this.#radius + GAME_HUD_HEIGHT;
+	}
+
+	#hasFallen()
+	{
+		return this.#position.y > this.#gameSize.y + this.#radius;
+	}
+
+	#accelerate()
+	{
+		this.#movementSpeed += GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
+
+		if(this.#movementSpeed > GAME_BALL_MAX_MOVEMENT_SPEED)
+		{
+			this.#movementSpeed = GAME_BALL_MAX_MOVEMENT_SPEED;
+		}
 	}
 
 	#drawArc(context, fillStyle)
