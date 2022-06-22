@@ -24,6 +24,7 @@ class Game
 		this.#context = canvas.getContext("2d");
 		this.#context.canvas.width = width;
 		this.#context.canvas.height = height;
+		this.#context.font = "8px Times New Roman";
 		
 		this.#size = new Point(width, height);
 		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
