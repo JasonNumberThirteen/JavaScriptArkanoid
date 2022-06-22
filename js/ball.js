@@ -4,7 +4,7 @@ class Ball
 	#radius;
 	#gameSize;
 	#movementDirection;
-	#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
+	#movementSpeed;
 	#waitTime;
 	
 	constructor(radius, gameSize)
@@ -74,6 +74,7 @@ class Ball
 		this.#position = new Point(x, y);
 		this.#movementDirection = new Point(directionX, GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
+		this.#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
 	}
 
 	#drawArc(context, fillStyle)
