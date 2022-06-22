@@ -57,6 +57,11 @@ class Ball
 		this.deflect();
 
 		this.#movementSpeed += GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
+
+		if(this.#movementSpeed > GAME_BALL_MAX_MOVEMENT_SPEED)
+		{
+			this.#movementSpeed = GAME_BALL_MAX_MOVEMENT_SPEED;
+		}
 	}
 
 	deflect()
