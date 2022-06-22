@@ -20,7 +20,6 @@ class Brick
 		context.fillRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 
 		context.strokeStyle = GAME_BRICK_STROKE_FILL_STYLE;
-		context.lineWidth = GAME_WINDOW_SCALE;
 
 		context.strokeRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 	}
