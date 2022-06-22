@@ -52,6 +52,13 @@ class Ball
 		return this.#position;
 	}
 
+	deflectFromPaddle()
+	{
+		this.deflect();
+
+		this.#movementSpeed += 0.1;
+	}
+
 	deflect()
 	{
 		this.#movementDirection.y = -this.#movementDirection.y;

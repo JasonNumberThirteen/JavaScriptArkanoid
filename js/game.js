@@ -102,7 +102,7 @@ class Game
 	{
 		if(this.#rectangularObjectCollidesWithBall(this.#paddle, new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT)))
 		{
-			this.#ball.deflect();
+			this.#ball.deflectFromPaddle();
 		}
 	}
 
