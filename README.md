@@ -4,6 +4,8 @@
 ## Table of Contents
 * [General information](#general-information)
 * [Used technologies](#used-technologies)
+* [Features](#features)
+* [Usage](#usage)
 * [Credits](#credits)
 
 ## General information
