@@ -90,7 +90,6 @@ class Game
 		this.#bricks.forEach(e => this.#checkCollisionBetweenBrickAndBall(e));
 
 		this.#bricks = this.#bricks.filter(e => e.isAlive());
-		//this.#running = this.#isStillRunning();
 	}
 
 	#checkCollisionBetweenBrickAndBall(brick)
