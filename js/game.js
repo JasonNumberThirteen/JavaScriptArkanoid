@@ -187,23 +187,18 @@ class Game
 		const livesTextPosition = new Point(this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 		const livesCounterPosition = new Point(livesTextPosition.x - GAME_HUD_COUNTERS_OFFSET, livesTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
 
-		this.#context.fillStyle = GAME_HUD_TEXTS_FILL_STYLE;
-		this.#context.textAlign = "left";
+		this.#drawText(GAME_SCORE_TEXT, scoreTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "left");
+		this.#drawText(this.#score, scoreCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "left");
+		this.#drawText(GAME_LIVES_TEXT, livesTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "right");
+		this.#drawText(this.#paddle.getLives(), livesCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "right");
+	}
 
-		this.#context.fillText(GAME_SCORE_TEXT, scoreTextPosition.x, scoreTextPosition.y);
+	#drawText(text, position, fillStyle, textAlign)
+	{
+		this.#context.fillStyle = fillStyle;
+		this.#context.textAlign = textAlign;
 
-		this.#context.fillStyle = GAME_HUD_COUNTERS_FILL_STYLE;
-
-		this.#context.fillText(this.#score, scoreCounterPosition.x, scoreCounterPosition.y);
-
-		this.#context.fillStyle = GAME_HUD_TEXTS_FILL_STYLE;
-		this.#context.textAlign = "right";
-
-		this.#context.fillText(GAME_LIVES_TEXT, livesTextPosition.x, livesTextPosition.y);
-
-		this.#context.fillStyle = GAME_HUD_COUNTERS_FILL_STYLE;
-
-		this.#context.fillText(this.#paddle.getLives(), livesCounterPosition.x, livesCounterPosition.y);
+		this.#context.fillText(text, position.x, position.y);
 	}
 
 	#drawGameEndText()
