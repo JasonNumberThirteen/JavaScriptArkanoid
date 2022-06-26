@@ -99,7 +99,7 @@ class Game
 		this.#drawBG(0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
 		this.#drawBG(GAME_HUD_HEIGHT, this.#size.y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#board.draw();
-		this.#ui.draw(this.#context);
+		this.#ui.draw();
 	}
 
 	#drawBG(y, height, fillStyle)
