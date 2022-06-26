@@ -193,14 +193,6 @@ class Game
 		this.#drawText(this.#paddle.getLives(), livesCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "right");
 	}
 
-	#drawText(text, position, fillStyle, textAlign)
-	{
-		this.#context.fillStyle = fillStyle;
-		this.#context.textAlign = textAlign;
-
-		this.#context.fillText(text, position.x, position.y);
-	}
-
 	#drawGameEndText()
 	{
 		const wonTheGame = this.#wonTheGame();
@@ -218,10 +210,17 @@ class Game
 
 	#drawCenteredText(text, y, fillStyle)
 	{
-		this.#context.fillStyle = fillStyle;
-		this.#context.textAlign = "center";
+		const position = new Point(this.#size.x >> 1, y);
+		
+		this.#drawText(text, position, fillStyle, "center");
+	}
 
-		this.#context.fillText(text, this.#size.x >> 1, y);
+	#drawText(text, position, fillStyle, textAlign)
+	{
+		this.#context.fillStyle = fillStyle;
+		this.#context.textAlign = textAlign;
+
+		this.#context.fillText(text, position.x, position.y);
 	}
 
 	#onKeyDown(e)
