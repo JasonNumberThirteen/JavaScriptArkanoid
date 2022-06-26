@@ -210,20 +210,23 @@ class Game
 	{
 		const wonTheGame = this.#wonTheGame();
 		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
+		const endTextY = (this.#size.y + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
 		
-		this.#context.fillStyle = endTextFillStyle;
-		this.#context.textAlign = "center";
-
-		this.#context.fillText(endText, this.#size.x >> 1, (this.#size.y + GAME_HUD_HEIGHT) >> 1);
+		this.#drawText(endText, endTextY, endTextFillStyle);
 	}
 
 	#drawRefreshTipText()
 	{
-		this.#context.fillStyle = GAME_REFRESH_TIP_FILL_STYLE;
+		this.#drawText(GAME_REFRESH_TIP_TEXT, this.#size.y - 16, GAME_REFRESH_TIP_FILL_STYLE);
+	}
+
+	#drawText(text, y, fillStyle)
+	{
+		this.#context.fillStyle = fillStyle;
 		this.#context.textAlign = "center";
 
-		this.#context.fillText(GAME_REFRESH_TIP_TEXT, this.#size.x >> 1, this.#size.y - 16);
+		this.#context.fillText(text, this.#size.x >> 1, y);
 	}
 
 	#onKeyDown(e)
