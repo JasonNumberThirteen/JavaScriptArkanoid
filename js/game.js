@@ -10,7 +10,6 @@ class Game
 	#context;
 	#running = true;
 	#size;
-	#fieldSize;
 	#paddle;
 	#ball;
 	#bricks = [];
@@ -27,9 +26,7 @@ class Game
 		this.#context.canvas.height = height;
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
-		
 		this.#size = new Point(width, height);
-		this.#fieldSize = new Point(width, height - GAME_HUD_HEIGHT);
 		
 		this.#createObjects();
 		this.#requestAnimationFrame();
@@ -188,7 +185,7 @@ class Game
 		
 		this.#context.fillStyle = GAME_BG_FILL_STYLE;
 
-		this.#context.fillRect(0, GAME_HUD_HEIGHT, this.#fieldSize.x, this.#fieldSize.y);
+		this.#context.fillRect(0, GAME_HUD_HEIGHT, this.#size.x, this.#size.y - GAME_HUD_HEIGHT);
 	}
 
 	#drawCounters()
