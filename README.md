@@ -25,7 +25,8 @@
 - Adjustable plenty of values in single script
 
 ## Usage
-- Press left / right arrow key or A / D key to move the paddle.
+- Press left / right arrow keys or A / D keys to move the paddle.
+- Press R to restart the game when is over.
 
 ## Credits
 - This project was made by [Jason](https://jasonxiii.pl "Jason. Gry, muzyka, kursy, artykuły, programy i filmy!")
