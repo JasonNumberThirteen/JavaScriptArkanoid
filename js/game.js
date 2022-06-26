@@ -54,7 +54,7 @@ class Game
 				const values = GAME_BRICKS[y - 1];
 				const brickY = 6*GAME_WINDOW_SCALE;
 				const position = new Point(GAME_BRICK_WIDTH*x, GAME_HUD_HEIGHT + brickY*y);
-				const brick = new Brick(position, values.fillStyle, values.health, values.points);
+				const brick = new Brick(position, values);
 				
 				this.#bricks.push(brick);
 			}
