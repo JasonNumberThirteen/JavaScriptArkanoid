@@ -13,6 +13,7 @@ class Game
 	#ball;
 	#bricks = [];
 	#score = 0;
+	#ui;
 
 	constructor()
 	{
@@ -26,6 +27,7 @@ class Game
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
 		this.#size = new Point(width, height);
+		this.#ui = new UI(this, this.#context);
 		
 		this.#createObjects();
 		this.#requestAnimationFrame();
@@ -71,7 +73,7 @@ class Game
 		this.#update(timeStamp);
 		this.#draw();
 
-		if(this.#isStillRunning())
+		if(this.isStillRunning())
 		{
 			this.#requestAnimationFrame();
 		}
@@ -111,12 +113,27 @@ class Game
 		}
 	}
 
-	#isStillRunning()
+	isStillRunning()
 	{
-		return !(this.#wonTheGame() || this.#lostTheGame());
+		return !(this.wonTheGame() || this.#lostTheGame());
 	}
 
-	#wonTheGame()
+	getScore()
+	{
+		return this.#score;
+	}
+
+	getSize()
+	{
+		return this.#size;
+	}
+
+	getPaddleLives()
+	{
+		return this.#paddle.getLives();
+	}
+
+	wonTheGame()
 	{
 		return this.#destroyedAllBricks();
 	}
@@ -159,18 +176,13 @@ class Game
 		this.#drawBG(GAME_HUD_HEIGHT, this.#size.y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#bricks.forEach(e => e.draw(this.#context));
 
-		if(this.#isStillRunning())
+		if(this.isStillRunning())
 		{
 			this.#paddle.draw(this.#context);
 			this.#ball.draw(this.#context);
 		}
-		else
-		{
-			this.#drawGameEndText();
-			this.#drawRefreshTipText();
-		}
 
-		this.#drawHUD();
+		this.#ui.draw(this.#context);
 	}
 
 	#drawBG(y, height, fillStyle)
@@ -180,63 +192,9 @@ class Game
 		this.#context.fillRect(0, y, this.#size.x, height);
 	}
 
-	#drawHUD()
-	{
-		this.#drawScoreCounter();
-		this.#drawLivesCounter();
-	}
-
-	#drawScoreCounter()
-	{
-		const scoreTextPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
-		const scoreCounterPosition = new Point(scoreTextPosition.x + GAME_HUD_COUNTERS_OFFSET, scoreTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
-		
-		this.#drawText(GAME_SCORE_TEXT, scoreTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "left");
-		this.#drawText(this.#score, scoreCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "left");
-	}
-
-	#drawLivesCounter()
-	{
-		const livesTextPosition = new Point(this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
-		const livesCounterPosition = new Point(livesTextPosition.x - GAME_HUD_COUNTERS_OFFSET, livesTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
-		
-		this.#drawText(GAME_LIVES_TEXT, livesTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "right");
-		this.#drawText(this.#paddle.getLives(), livesCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "right");
-	}
-
-	#drawGameEndText()
-	{
-		const wonTheGame = this.#wonTheGame();
-		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
-		const endTextY = (this.#size.y + GAME_HUD_HEIGHT) >> 1;
-		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
-		
-		this.#drawCenteredText(endText, endTextY, endTextFillStyle);
-	}
-
-	#drawRefreshTipText()
-	{
-		this.#drawCenteredText(GAME_REFRESH_TIP_TEXT, this.#size.y - 16, GAME_REFRESH_TIP_FILL_STYLE);
-	}
-
-	#drawCenteredText(text, y, fillStyle)
-	{
-		const position = new Point(this.#size.x >> 1, y);
-		
-		this.#drawText(text, position, fillStyle, "center");
-	}
-
-	#drawText(text, position, fillStyle, textAlign)
-	{
-		this.#context.fillStyle = fillStyle;
-		this.#context.textAlign = textAlign;
-
-		this.#context.fillText(text, position.x, position.y);
-	}
-
 	#onKeyDown(e)
 	{
-		if(!this.#isStillRunning() && e.key === GAME_REFRESH_KEY)
+		if(!this.isStillRunning() && e.key === GAME_REFRESH_KEY)
 		{
 			document.location.reload();
 		}
