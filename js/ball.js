@@ -28,7 +28,7 @@ class Ball
 	
 			if(this.#touchesTopEdge())
 			{
-				this.#movementDirection.y = -this.#movementDirection.y;
+				this.deflect();
 			}
 			else if(this.#hasFallen())
 			{
