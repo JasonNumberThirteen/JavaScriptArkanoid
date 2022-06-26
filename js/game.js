@@ -213,15 +213,15 @@ class Game
 		const endTextY = (this.#size.y + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
 		
-		this.#drawText(endText, endTextY, endTextFillStyle);
+		this.#drawCenteredText(endText, endTextY, endTextFillStyle);
 	}
 
 	#drawRefreshTipText()
 	{
-		this.#drawText(GAME_REFRESH_TIP_TEXT, this.#size.y - 16, GAME_REFRESH_TIP_FILL_STYLE);
+		this.#drawCenteredText(GAME_REFRESH_TIP_TEXT, this.#size.y - 16, GAME_REFRESH_TIP_FILL_STYLE);
 	}
 
-	#drawText(text, y, fillStyle)
+	#drawCenteredText(text, y, fillStyle)
 	{
 		this.#context.fillStyle = fillStyle;
 		this.#context.textAlign = "center";
