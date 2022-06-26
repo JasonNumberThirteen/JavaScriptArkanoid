@@ -28,20 +28,22 @@ class UI
 
 	#drawScoreCounter()
 	{
-		const scoreTextPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
-		const scoreCounterPosition = new Point(scoreTextPosition.x + GAME_HUD_COUNTERS_OFFSET, scoreTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
+		const textPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		const counterPosition = new Point(textPosition.x + GAME_HUD_COUNTERS_OFFSET, textPosition.y + GAME_HUD_COUNTERS_OFFSET);
+		const align = "left";
 		
-		this.#drawText(GAME_SCORE_TEXT, scoreTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "left");
-		this.#drawText(this.#game.getScore(), scoreCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "left");
+		this.#drawText(GAME_SCORE_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
+		this.#drawText(this.#game.getScore(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 
 	#drawLivesCounter()
 	{
-		const livesTextPosition = new Point(this.#game.getSize().x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
-		const livesCounterPosition = new Point(livesTextPosition.x - GAME_HUD_COUNTERS_OFFSET, livesTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
+		const textPosition = new Point(this.#game.getSize().x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		const counterPosition = new Point(textPosition.x - GAME_HUD_COUNTERS_OFFSET, textPosition.y + GAME_HUD_COUNTERS_OFFSET);
+		const align = "right";
 		
-		this.#drawText(GAME_LIVES_TEXT, livesTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "right");
-		this.#drawText(this.#game.getPaddleLives(), livesCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "right");
+		this.#drawText(GAME_LIVES_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
+		this.#drawText(this.#game.getPaddleLives(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 
 	#drawGameEndText()
