@@ -182,13 +182,24 @@ class Game
 
 	#drawHUD()
 	{
+		this.#drawScoreCounter();
+		this.#drawLivesCounter();
+	}
+
+	#drawScoreCounter()
+	{
 		const scoreTextPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 		const scoreCounterPosition = new Point(scoreTextPosition.x + GAME_HUD_COUNTERS_OFFSET, scoreTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
-		const livesTextPosition = new Point(this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
-		const livesCounterPosition = new Point(livesTextPosition.x - GAME_HUD_COUNTERS_OFFSET, livesTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
-
+		
 		this.#drawText(GAME_SCORE_TEXT, scoreTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "left");
 		this.#drawText(this.#score, scoreCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "left");
+	}
+
+	#drawLivesCounter()
+	{
+		const livesTextPosition = new Point(this.#size.x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		const livesCounterPosition = new Point(livesTextPosition.x - GAME_HUD_COUNTERS_OFFSET, livesTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
+		
 		this.#drawText(GAME_LIVES_TEXT, livesTextPosition, GAME_HUD_TEXTS_FILL_STYLE, "right");
 		this.#drawText(this.#paddle.getLives(), livesCounterPosition, GAME_HUD_COUNTERS_FILL_STYLE, "right");
 	}
