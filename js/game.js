@@ -96,17 +96,8 @@ class Game
 	#draw()
 	{
 		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
-		this.#drawBG(0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
-		this.#drawBG(GAME_HUD_HEIGHT, this.#size.y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#board.draw();
 		this.#ui.draw();
-	}
-
-	#drawBG(y, height, fillStyle)
-	{
-		this.#context.fillStyle = fillStyle;
-
-		this.#context.fillRect(0, y, this.#size.x, height);
 	}
 
 	#onKeyDown(e)

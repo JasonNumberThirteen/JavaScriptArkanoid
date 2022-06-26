@@ -23,6 +23,8 @@ class Board
 
 	draw()
 	{
+		this.#drawBG(0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
+		this.#drawBG(GAME_HUD_HEIGHT, this.#game.getSize().y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#bricks.forEach(e => e.draw(this.#context));
 
 		if(this.#game.isStillRunning())
@@ -114,5 +116,12 @@ class Board
 		const dy = yn - ballPosition.y;
 
 		return dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
+	}
+
+	#drawBG(y, height, fillStyle)
+	{
+		this.#context.fillStyle = fillStyle;
+
+		this.#context.fillRect(0, y, this.#game.getSize().x, height);
 	}
 }
