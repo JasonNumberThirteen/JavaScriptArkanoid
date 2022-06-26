@@ -162,15 +162,7 @@ class Game
 		}
 		else
 		{
-			if(this.#destroyedAllBricks())
-			{
-				this.#drawYouWinText();
-			}
-			else
-			{
-				this.#drawGameOverText();
-			}
-			
+			this.#drawGameEndText();
 			this.#drawRefreshTipText();
 		}
 
@@ -214,20 +206,16 @@ class Game
 		this.#context.fillText(this.#paddle.getLives(), livesCounterPosition.x, livesCounterPosition.y);
 	}
 
-	#drawGameOverText()
+	#drawGameEndText()
 	{
-		this.#context.fillStyle = GAME_GAME_OVER_FILL_STYLE;
+		const wonTheGame = this.#wonTheGame();
+		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
+		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
+		
+		this.#context.fillStyle = endTextFillStyle;
 		this.#context.textAlign = "center";
 
-		this.#context.fillText(GAME_GAME_OVER_TEXT, this.#size.x >> 1, (this.#size.y + GAME_HUD_HEIGHT) >> 1);
-	}
-
-	#drawYouWinText()
-	{
-		this.#context.fillStyle = GAME_YOU_WIN_TEXT_FILL_STYLE;
-		this.#context.textAlign = "center";
-
-		this.#context.fillText(GAME_YOU_WIN_TEXT, this.#size.x >> 1, (this.#size.y + GAME_HUD_HEIGHT) >> 1);
+		this.#context.fillText(endText, this.#size.x >> 1, (this.#size.y + GAME_HUD_HEIGHT) >> 1);
 	}
 
 	#drawRefreshTipText()
