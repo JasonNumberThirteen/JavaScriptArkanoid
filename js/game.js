@@ -228,9 +228,7 @@ class Game
 
 	#onKeyDown(e)
 	{
-		const key = e.key;
-
-		if(!this.#isStillRunning() && key === GAME_REFRESH_KEY)
+		if(!this.#isStillRunning() && e.key === GAME_REFRESH_KEY)
 		{
 			document.location.reload();
 		}
