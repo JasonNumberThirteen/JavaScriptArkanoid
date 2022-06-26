@@ -8,8 +8,9 @@ class Paddle
 	#movingRight = false;
 	#lives = GAME_PADDLE_LIVES;
 
-	constructor(size, gameSize)
+	constructor(gameSize)
 	{
+		const size = new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT);
 		const x = (gameSize.x - size.x) >> 1;
 		const y = gameSize.y - size.y - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 

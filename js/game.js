@@ -43,7 +43,7 @@ class Game
 
 	#createObjects()
 	{
-		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
+		this.#paddle = new Paddle(this.#size);
 		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
 
 		this.#createBricks();
