@@ -40,15 +40,8 @@ class Ball
 
 	draw(context)
 	{
-		context.fillStyle = GAME_BALL_FILL_STYLE;
-		
-		this.#createArc(context);
-		context.fill();
-
-		context.strokeStyle = GAME_BALL_STROKE_FILL_STYLE;
-
-		this.#createArc(context);
-		context.stroke();
+		this.#drawArc(context);
+		this.#drawStroke(context);
 	}
 
 	getPosition()
@@ -128,6 +121,22 @@ class Ball
 		{
 			this.#movementSpeed = GAME_BALL_MAX_MOVEMENT_SPEED;
 		}
+	}
+
+	#drawArc(context)
+	{
+		context.fillStyle = GAME_BALL_FILL_STYLE;
+		
+		this.#createArc(context);
+		context.fill();
+	}
+
+	#drawStroke(context)
+	{
+		context.strokeStyle = GAME_BALL_STROKE_FILL_STYLE;
+
+		this.#createArc(context);
+		context.stroke();
 	}
 
 	#createArc(context)
