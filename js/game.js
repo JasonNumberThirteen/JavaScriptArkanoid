@@ -170,7 +170,7 @@ class Game
 			this.#drawRefreshTipText();
 		}
 
-		this.#drawCounters();
+		this.#drawHUD();
 	}
 
 	#drawBG(y, height, fillStyle)
@@ -180,7 +180,7 @@ class Game
 		this.#context.fillRect(0, y, this.#size.x, height);
 	}
 
-	#drawCounters()
+	#drawHUD()
 	{
 		const scoreTextPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 		const scoreCounterPosition = new Point(scoreTextPosition.x + GAME_HUD_COUNTERS_OFFSET, scoreTextPosition.y + GAME_HUD_COUNTERS_OFFSET);
