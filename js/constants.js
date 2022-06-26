@@ -49,9 +49,13 @@ const GAME_REFRESH_KEY = 'r';
 const GAME_REFRESH_TIP_TEXT = "Press 'R' to restart the game";
 const GAME_REFRESH_TIP_FILL_STYLE = "#000";
 
-const GAME_BRICK_STROKE_FILL_STYLE = "#000";
 const GAME_BRICK_WIDTH = 16*GAME_WINDOW_SCALE;
 const GAME_BRICK_HEIGHT = 4*GAME_WINDOW_SCALE;
+const GAME_BRICK_GAP_X = 2*GAME_WINDOW_SCALE;
+const GAME_BRICK_GAP_Y = 2*GAME_WINDOW_SCALE;
+const GAME_BRICK_STROKE_FILL_STYLE = "#000";
+
+const GAME_BRICKS_IN_ROW = 14;
 const GAME_BRICKS = [
 	{fillStyle: "#f57542", health: 5, points: 250},
 	{fillStyle: "#f5d142", health: 4, points: 150},

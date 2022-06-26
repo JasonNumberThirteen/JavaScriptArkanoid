@@ -49,11 +49,12 @@ class Game
 	{
 		for (let y = 1; y <= GAME_BRICKS.length; ++y)
 		{
-			for (let x = 1; x <= 14; ++x)
+			for (let x = 1; x <= GAME_BRICKS_IN_ROW; ++x)
 			{
 				const values = GAME_BRICKS[y - 1];
-				const brickY = 6*GAME_WINDOW_SCALE;
-				const position = new Point(GAME_BRICK_WIDTH*x, GAME_HUD_HEIGHT + brickY*y);
+				const brickX = GAME_BRICK_WIDTH + GAME_BRICK_GAP_X;
+				const brickY = GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y;
+				const position = new Point(brickX*x, GAME_HUD_HEIGHT + brickY*y);
 				const brick = new Brick(position, values);
 				
 				this.#bricks.push(brick);
