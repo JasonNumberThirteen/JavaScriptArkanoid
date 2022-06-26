@@ -15,13 +15,8 @@ class Brick
 
 	draw(context)
 	{
-		context.fillStyle = this.#fillStyle;
-
-		context.fillRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
-
-		context.strokeStyle = GAME_BRICK_STROKE_FILL_STYLE;
-
-		context.strokeRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
+		this.#drawRectangle(context);
+		this.#drawStroke(context);
 	}
 
 	takeDamage()
@@ -42,5 +37,19 @@ class Brick
 	getPoints()
 	{
 		return this.#points;
+	}
+
+	#drawRectangle(context)
+	{
+		context.fillStyle = this.#fillStyle;
+
+		context.fillRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
+	}
+
+	#drawStroke(context)
+	{
+		context.strokeStyle = GAME_BRICK_STROKE_FILL_STYLE;
+
+		context.strokeRect(this.#position.x, this.#position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 	}
 }
