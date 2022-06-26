@@ -47,14 +47,16 @@ class Game
 
 	#createBricks()
 	{
-		for (let y = 1; y <= GAME_BRICKS.length; ++y)
+		for (let y = 0; y <= GAME_BRICKS.length - 1; ++y)
 		{
 			for (let x = 1; x <= GAME_BRICKS_IN_ROW; ++x)
 			{
-				const values = GAME_BRICKS[y - 1];
+				const values = GAME_BRICKS[y];
 				const brickX = GAME_BRICK_WIDTH + GAME_BRICK_GAP_X;
 				const brickY = GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y;
-				const position = new Point(brickX*x, GAME_HUD_HEIGHT + brickY*y);
+				const offsetX = 15*GAME_WINDOW_SCALE;
+				const offsetY = GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y;
+				const position = new Point(brickX*x - offsetX, brickY*y + offsetY);
 				const brick = new Brick(position, values);
 				
 				this.#bricks.push(brick);
