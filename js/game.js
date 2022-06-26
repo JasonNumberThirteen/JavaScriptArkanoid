@@ -30,10 +30,8 @@ class Game
 		
 		this.#size = new Point(width, height);
 		this.#fieldSize = new Point(width, height - GAME_HUD_HEIGHT);
-		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
-		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
-
-		this.#createBricks();
+		
+		this.#createObjects();
 		this.#requestAnimationFrame();
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
@@ -41,6 +39,14 @@ class Game
 	onBallFall()
 	{
 		this.#paddle.loseLife();
+	}
+
+	#createObjects()
+	{
+		this.#paddle = new Paddle(new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#size);
+		this.#ball = new Ball(GAME_BALL_RADIUS, this.#size);
+
+		this.#createBricks();
 	}
 
 	#createBricks()
@@ -85,21 +91,44 @@ class Game
 	#checkCollisions()
 	{
 		this.#checkCollisionBetweenPaddleAndBall();
-		this.#bricks.forEach(e => {
-			if(this.#rectangularObjectCollidesWithBall(e, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)))
-			{
-				this.#ball.deflect();
-				e.takeDamage();
-
-				if(!e.isAlive())
-				{
-					this.#score += e.getPoints();
-				}
-			}
-		});
+		this.#bricks.forEach(e => this.#checkCollisionBetweenBrickAndBall(e));
 
 		this.#bricks = this.#bricks.filter(e => e.isAlive());
-		this.#running = this.#bricks.length > 0 && !this.#paddle.lostAllLives();
+		this.#running = this.#isStillRunning();
+	}
+
+	#checkCollisionBetweenBrickAndBall(brick)
+	{
+		if(this.#rectangularObjectCollidesWithBall(brick, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)))
+		{
+			this.#ball.deflect();
+			brick.takeDamage();
+
+			if(!brick.isAlive())
+			{
+				this.#score += brick.getPoints();
+			}
+		}
+	}
+
+	#isStillRunning()
+	{
+		return !(this.#wonTheGame() || this.#lostTheGame());
+	}
+
+	#wonTheGame()
+	{
+		return this.#destroyedAllBricks();
+	}
+
+	#lostTheGame()
+	{
+		return this.#paddle.lostAllLives();
+	}
+
+	#destroyedAllBricks()
+	{
+		return this.#bricks.length === 0;
 	}
 
 	#checkCollisionBetweenPaddleAndBall()
@@ -136,7 +165,7 @@ class Game
 		}
 		else
 		{
-			if(this.#bricks.length == 0)
+			if(this.#destroyedAllBricks())
 			{
 				this.#drawYouWinText();
 			}
