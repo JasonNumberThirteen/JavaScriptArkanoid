@@ -8,7 +8,6 @@ function initGame()
 class Game
 {
 	#context;
-	#running = true;
 	#size;
 	#paddle;
 	#ball;
@@ -67,7 +66,7 @@ class Game
 		this.#update(timeStamp);
 		this.#draw();
 
-		if(this.#running)
+		if(this.#isStillRunning())
 		{
 			this.#requestAnimationFrame();
 		}
@@ -91,7 +90,7 @@ class Game
 		this.#bricks.forEach(e => this.#checkCollisionBetweenBrickAndBall(e));
 
 		this.#bricks = this.#bricks.filter(e => e.isAlive());
-		this.#running = this.#isStillRunning();
+		//this.#running = this.#isStillRunning();
 	}
 
 	#checkCollisionBetweenBrickAndBall(brick)
@@ -155,7 +154,7 @@ class Game
 		this.#drawBG();
 		this.#bricks.forEach(e => e.draw(this.#context));
 
-		if(this.#running)
+		if(this.#isStillRunning())
 		{
 			this.#paddle.draw(this.#context);
 			this.#ball.draw(this.#context);
@@ -230,7 +229,7 @@ class Game
 	{
 		const key = e.key;
 
-		if(!this.#running && key === GAME_REFRESH_KEY)
+		if(!this.#isStillRunning() && key === GAME_REFRESH_KEY)
 		{
 			document.location.reload();
 		}
