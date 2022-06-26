@@ -155,7 +155,8 @@ class Game
 	#draw()
 	{
 		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
-		this.#drawBG();
+		this.#drawBG(0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
+		this.#drawBG(GAME_HUD_HEIGHT, this.#size.y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#bricks.forEach(e => e.draw(this.#context));
 
 		if(this.#isStillRunning())
@@ -172,15 +173,11 @@ class Game
 		this.#drawCounters();
 	}
 
-	#drawBG()
+	#drawBG(y, height, fillStyle)
 	{
-		this.#context.fillStyle = GAME_HUD_FILL_STYLE;
+		this.#context.fillStyle = fillStyle;
 
-		this.#context.fillRect(0, 0, this.#size.x, GAME_HUD_HEIGHT);
-		
-		this.#context.fillStyle = GAME_BG_FILL_STYLE;
-
-		this.#context.fillRect(0, GAME_HUD_HEIGHT, this.#size.x, this.#size.y - GAME_HUD_HEIGHT);
+		this.#context.fillRect(0, y, this.#size.x, height);
 	}
 
 	#drawCounters()
