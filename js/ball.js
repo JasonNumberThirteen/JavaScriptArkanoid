@@ -42,12 +42,12 @@ class Ball
 	{
 		context.fillStyle = GAME_BALL_FILL_STYLE;
 		
-		this.#drawArc(context);
+		this.#createArc(context);
 		context.fill();
 
 		context.strokeStyle = GAME_BALL_STROKE_FILL_STYLE;
 
-		this.#drawArc(context);
+		this.#createArc(context);
 		context.stroke();
 	}
 
@@ -130,7 +130,7 @@ class Ball
 		}
 	}
 
-	#drawArc(context)
+	#createArc(context)
 	{
 		context.beginPath();
 		context.arc(this.#position.x, this.#position.y, this.#radius, 0, Math.PI << 1);
