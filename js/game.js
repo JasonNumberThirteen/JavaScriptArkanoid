@@ -25,7 +25,7 @@ class Game
 		this.#context = canvas.getContext("2d");
 		this.#context.canvas.width = width;
 		this.#context.canvas.height = height;
-		this.#context.font = 8*GAME_WINDOW_SCALE + "px Times New Roman";
+		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
 		
 		this.#size = new Point(width, height);
