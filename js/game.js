@@ -8,11 +8,8 @@ class Game
 
 	constructor()
 	{
-		const canvas = document.getElementById("gameWindow");
+		this.#setCanvasSize();
 
-		this.#context = canvas.getContext("2d");
-		this.#context.canvas.width = GAME_WIDTH;
-		this.#context.canvas.height = GAME_HEIGHT;
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
 		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
@@ -57,7 +54,7 @@ class Game
 	{
 		this.#board.getPaddle().loseLife();
 	}
-
+	
 	#lostTheGame()
 	{
 		return this.#board.getPaddle().lostAllLives();
@@ -97,5 +94,14 @@ class Game
 		{
 			document.location.reload();
 		}
+	}
+
+	#setCanvasSize()
+	{
+		const canvas = document.getElementById("gameWindow");
+
+		this.#context = canvas.getContext("2d");
+		this.#context.canvas.width = GAME_WIDTH;
+		this.#context.canvas.height = GAME_HEIGHT;
 	}
 }
