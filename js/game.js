@@ -95,7 +95,7 @@ class Game
 
 	#onKeyDown(e)
 	{
-		if(!this.isRunning() && e.key === GAME_REFRESH_KEY)
+		if(!this.isRunning() && e.key.toLowerCase() === GAME_REFRESH_KEY)
 		{
 			document.location.reload();
 		}
