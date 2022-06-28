@@ -18,10 +18,10 @@ class Paddle
 		this.#position = new Point(x, y);
 		this.#size = size;
 		this.#gameWidth = gameSize.x;
-		this.#input = new PlayerInput();
+		this.#input = new PlayerInput(this);
 
-		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
-		document.addEventListener("keyup", this.#onKeyUp.bind(this), false);
+		document.addEventListener("keydown", this.#input.onKeyDown.bind(this.#input), false);
+		document.addEventListener("keyup", this.#input.onKeyUp.bind(this.#input), false);
 	}
 	
 	update()
@@ -43,6 +43,16 @@ class Paddle
 		context.fillRect(this.#position.x, this.#position.y, this.#size.x, this.#size.y);
 	}
 
+	setMovingLeftState(value)
+	{
+		this.#movingLeft = value;
+	}
+
+	setMovingRightState(value)
+	{
+		this.#movingRight = value;
+	}
+
 	getPosition()
 	{
 		return this.#position;
@@ -61,34 +71,5 @@ class Paddle
 	lostAllLives()
 	{
 		return this.#lives <= 0;
-	}
-
-	#onKeyDown(e)
-	{
-		this.#setMovingStates(e.key, true);
-	}
-
-	#onKeyUp(e)
-	{
-		this.#setMovingStates(e.key, false);
-	}
-
-	#setMovingStates(key, value)
-	{
-		GAME_PADDLE_LEFT_MOVEMENT_INPUT.forEach(e =>
-		{
-			if(key === e)
-			{
-				this.#movingLeft = value;
-			}
-		});
-
-		GAME_PADDLE_RIGHT_MOVEMENT_INPUT.forEach(e =>
-		{
-			if(key === e)
-			{
-				this.#movingRight = value;
-			}
-		});
 	}
 }
