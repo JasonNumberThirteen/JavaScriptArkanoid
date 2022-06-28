@@ -73,13 +73,20 @@ class Paddle
 
 	#setMovingStates(key, value)
 	{
-		if(key === GAME_PADDLE_LEFT_MOVEMENT_A || key === GAME_PADDLE_LEFT_MOVEMENT_B)
+		GAME_PADDLE_LEFT_MOVEMENT_INPUT.forEach(e =>
 		{
-			this.#movingLeft = value;
-		}
-		else if(key === GAME_PADDLE_RIGHT_MOVEMENT_A || key === GAME_PADDLE_RIGHT_MOVEMENT_B)
+			if(key === e)
+			{
+				this.#movingLeft = value;
+			}
+		});
+
+		GAME_PADDLE_RIGHT_MOVEMENT_INPUT.forEach(e =>
 		{
-			this.#movingRight = value;
-		}
+			if(key === e)
+			{
+				this.#movingRight = value;
+			}
+		});
 	}
 }
