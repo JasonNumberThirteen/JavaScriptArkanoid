@@ -5,8 +5,7 @@ class Paddle
 	#gameWidth;
 	#input;
 	#movementSpeed = GAME_PADDLE_MOVEMENT_SPEED;
-	#movingLeft = false;
-	#movingRight = false;
+	#movementDirection = new Point(0, 0);
 	#lives = GAME_PADDLE_LIVES;
 
 	constructor(gameSize)
@@ -25,13 +24,18 @@ class Paddle
 	
 	update()
 	{
-		if(this.#movingLeft && this.#position.x > 0)
+		if(this.#position.x >= 0 && this.#position.x <= this.#gameWidth - this.#size.x)
 		{
-			this.#position.x -= this.#movementSpeed;
-		}
-		else if(this.#movingRight && this.#position.x < this.#gameWidth - this.#size.x)
-		{
-			this.#position.x += this.#movementSpeed;
+			this.#position.x += this.#movementSpeed*this.#movementDirection.x;
+
+			if(this.#position.x < 0)
+			{
+				this.#position.x = 0;
+			}
+			else if(this.#position.x >= this.#gameWidth - this.#size.x)
+			{
+				this.#position.x = this.#gameWidth - this.#size.x;
+			}
 		}
 	}
 
@@ -44,12 +48,12 @@ class Paddle
 
 	setMovingLeftState(value)
 	{
-		this.#movingLeft = value;
+		this.#movementDirection.x = (value) ? -1 : 0;
 	}
 
 	setMovingRightState(value)
 	{
-		this.#movingRight = value;
+		this.#movementDirection.x = (value) ? 1 : 0;
 	}
 
 	getPosition()
