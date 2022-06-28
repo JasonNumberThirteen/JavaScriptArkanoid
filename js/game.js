@@ -9,15 +9,13 @@ class Game
 	constructor()
 	{
 		const canvas = document.getElementById("gameWindow");
-		const width = GAME_WIDTH;
-		const height = GAME_HEIGHT;
 
 		this.#context = canvas.getContext("2d");
-		this.#context.canvas.width = width;
-		this.#context.canvas.height = height;
+		this.#context.canvas.width = GAME_WIDTH;
+		this.#context.canvas.height = GAME_HEIGHT;
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
-		this.#size = new Point(width, height);
+		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
 		this.#board = new Board(this, this.#context);
 		this.#ui = new UI(this, this.#context);
 		
