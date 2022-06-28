@@ -20,8 +20,7 @@ class Paddle
 		this.#gameWidth = gameSize.x;
 		this.#input = new PlayerInput(this);
 
-		document.addEventListener("keydown", this.#input.onKeyDown.bind(this.#input), false);
-		document.addEventListener("keyup", this.#input.onKeyUp.bind(this.#input), false);
+		this.#addEventListeners();
 	}
 	
 	update()
@@ -71,5 +70,11 @@ class Paddle
 	lostAllLives()
 	{
 		return this.#lives <= 0;
+	}
+
+	#addEventListeners()
+	{
+		document.addEventListener("keydown", this.#input.onKeyDown.bind(this.#input), false);
+		document.addEventListener("keyup", this.#input.onKeyUp.bind(this.#input), false);
 	}
 }
