@@ -8,12 +8,12 @@ class Game
 
 	constructor()
 	{
+		this.#init();
 		this.#setCanvasSize();
 
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
 
-		this.#init();
 		this.#requestAnimationFrame();
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
@@ -93,21 +93,19 @@ class Game
 			document.location.reload();
 		}
 	}
-
-	#setCanvasSize()
-	{
-		const canvas = document.getElementById("gameWindow");
-
-		this.#context = canvas.getContext("2d");
-		this.#context.canvas.width = GAME_WIDTH;
-		this.#context.canvas.height = GAME_HEIGHT;
-	}
-
+	
 	#init()
 	{
+		this.#context = document.getElementById("gameWindow").getContext("2d");
 		this.#score = 0;
 		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
 		this.#board = new Board(this, this.#context);
 		this.#ui = new UI(this, this.#context);
+	}
+
+	#setCanvasSize()
+	{
+		this.#context.canvas.width = GAME_WIDTH;
+		this.#context.canvas.height = GAME_HEIGHT;
 	}
 }
