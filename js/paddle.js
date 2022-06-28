@@ -3,6 +3,7 @@ class Paddle
 	#position;
 	#size;
 	#gameWidth;
+	#input;
 	#movementSpeed = GAME_PADDLE_MOVEMENT_SPEED;
 	#movingLeft = false;
 	#movingRight = false;
@@ -17,6 +18,7 @@ class Paddle
 		this.#position = new Point(x, y);
 		this.#size = size;
 		this.#gameWidth = gameSize.x;
+		this.#input = new PlayerInput();
 
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 		document.addEventListener("keyup", this.#onKeyUp.bind(this), false);
