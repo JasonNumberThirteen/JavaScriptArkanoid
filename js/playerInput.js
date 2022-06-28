@@ -10,6 +10,7 @@ class PlayerInput
 	onKeyDown(e)
 	{
 		this.#setPaddleMovingStates(e.key, true);
+		this.#restartGame(e.key);
 	}
 
 	onKeyUp(e)
@@ -34,5 +35,13 @@ class PlayerInput
 				this.#paddle.setMovingRightState(value);
 			}
 		});
+	}
+
+	#restartGame(key)
+	{
+		if(!GameInstance.isRunning() && key.toLowerCase() === GAME_REFRESH_KEY)
+		{
+			document.location.reload();
+		}
 	}
 }

@@ -12,7 +12,6 @@ class Game
 		this.#setCanvasSize();
 		this.#setContextValues();
 		this.#requestAnimationFrame();
-		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
 
 	addScore(points)
@@ -81,14 +80,6 @@ class Game
 		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
 		this.#board.draw();
 		this.#ui.draw();
-	}
-
-	#onKeyDown(e)
-	{
-		if(!this.isRunning() && e.key.toLowerCase() === GAME_REFRESH_KEY)
-		{
-			document.location.reload();
-		}
 	}
 
 	#init()
