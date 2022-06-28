@@ -27,7 +27,7 @@ class Board
 		this.#drawBG(GAME_HUD_HEIGHT, this.#game.getSize().y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#bricks.forEach(e => e.draw(this.#context));
 
-		if(this.#game.isStillRunning())
+		if(this.#game.isRunning())
 		{
 			this.#paddle.draw(this.#context);
 			this.#ball.draw(this.#context);

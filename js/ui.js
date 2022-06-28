@@ -13,7 +13,7 @@ class UI
 	{
 		this.#drawHUD();
 		
-		if(!this.#game.isStillRunning())
+		if(!this.#game.isRunning())
 		{
 			this.#drawGameEndText();
 			this.#drawRefreshTipText();

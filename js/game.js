@@ -42,7 +42,7 @@ class Game
 		this.#update(timeStamp);
 		this.#draw();
 
-		if(this.isStillRunning())
+		if(this.isRunning())
 		{
 			this.#requestAnimationFrame();
 		}
@@ -63,7 +63,7 @@ class Game
 		this.#score += points;
 	}
 
-	isStillRunning()
+	isRunning()
 	{
 		return !(this.wonTheGame() || this.#lostTheGame());
 	}
@@ -102,7 +102,7 @@ class Game
 
 	#onKeyDown(e)
 	{
-		if(!this.isStillRunning() && e.key === GAME_REFRESH_KEY)
+		if(!this.isRunning() && e.key === GAME_REFRESH_KEY)
 		{
 			document.location.reload();
 		}
