@@ -28,7 +28,7 @@ class Ball
 	
 			if(this.#touchesTopEdge())
 			{
-				this.deflect();
+				this.deflectInYAxis();
 			}
 			else if(this.#hasFallen())
 			{
@@ -51,11 +51,11 @@ class Ball
 
 	deflectFromPaddle()
 	{
-		this.deflect();
+		this.deflectInYAxis();
 		this.#accelerate();
 	}
 
-	deflect()
+	deflectInYAxis()
 	{
 		this.#movementDirection.y = -this.#movementDirection.y;
 	}

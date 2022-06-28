@@ -87,7 +87,7 @@ class Board
 	{
 		if(this.#rectangularObjectCollidesWithBall(brick, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)))
 		{
-			this.#ball.deflect();
+			this.#ball.deflectInYAxis();
 			brick.takeDamage();
 
 			if(!brick.isAlive())
