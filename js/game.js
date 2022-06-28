@@ -10,10 +10,7 @@ class Game
 	{
 		this.#init();
 		this.#setCanvasSize();
-
-		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
-		this.#context.lineWidth = GAME_WINDOW_SCALE;
-
+		this.#setContextValues();
 		this.#requestAnimationFrame();
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
@@ -93,7 +90,7 @@ class Game
 			document.location.reload();
 		}
 	}
-	
+
 	#init()
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
@@ -107,5 +104,11 @@ class Game
 	{
 		this.#context.canvas.width = GAME_WIDTH;
 		this.#context.canvas.height = GAME_HEIGHT;
+	}
+
+	#setContextValues()
+	{
+		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
+		this.#context.lineWidth = GAME_WINDOW_SCALE;
 	}
 }
