@@ -24,19 +24,9 @@ class Paddle
 	
 	update()
 	{
-		if(this.#position.x >= 0 && this.#position.x <= this.#gameWidth - this.#size.x)
-		{
-			this.#position.x += this.#movementSpeed*this.#movementDirection.x;
-
-			if(this.#position.x < 0)
-			{
-				this.#position.x = 0;
-			}
-			else if(this.#position.x >= this.#gameWidth - this.#size.x)
-			{
-				this.#position.x = this.#gameWidth - this.#size.x;
-			}
-		}
+		const x = this.#movementSpeed*this.#movementDirection.x;
+		
+		this.#position.x = clamp(0, this.#position.x + x, this.#gameWidth - this.#size.x);
 	}
 
 	draw(context)

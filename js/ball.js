@@ -120,12 +120,9 @@ class Ball
 
 	#accelerate()
 	{
-		this.#movementSpeed += GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
+		const increasedSpeed = this.#movementSpeed + GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
 
-		if(this.#movementSpeed > GAME_BALL_MAX_MOVEMENT_SPEED)
-		{
-			this.#movementSpeed = GAME_BALL_MAX_MOVEMENT_SPEED;
-		}
+		this.#movementSpeed = clamp(GAME_BALL_MOVEMENT_SPEED, increasedSpeed, GAME_BALL_MAX_MOVEMENT_SPEED);
 	}
 
 	#drawArc(context)
