@@ -1,10 +1,3 @@
-let GameInstance;
-
-function initGame()
-{
-	GameInstance = new Game();
-}
-
 class Game
 {
 	#context;
