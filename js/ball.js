@@ -23,7 +23,7 @@ class Ball
 	
 			if(this.#touchesLeftOrRightEdge())
 			{
-				this.#movementDirection.x = -this.#movementDirection.x;
+				this.deflectInXAxis();
 			}
 	
 			if(this.#touchesTopEdge())
@@ -53,6 +53,11 @@ class Ball
 	{
 		this.deflectInYAxis();
 		this.#accelerate();
+	}
+
+	deflectInXAxis()
+	{
+		this.#movementDirection.x = -this.#movementDirection.x;
 	}
 
 	deflectInYAxis()
