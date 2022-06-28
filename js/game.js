@@ -25,40 +25,9 @@ class Game
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
 
-	onBallFall()
-	{
-		this.#board.getPaddle().loseLife();
-	}
-
-	#loop(timeStamp)
-	{
-		this.#update(timeStamp);
-		this.#draw();
-
-		if(this.isRunning())
-		{
-			this.#requestAnimationFrame();
-		}
-	}
-
-	#requestAnimationFrame()
-	{
-		window.requestAnimationFrame(this.#loop.bind(this));
-	}
-
-	#update(timeStamp)
-	{
-		this.#board.update(timeStamp);
-	}
-
 	addScore(points)
 	{
 		this.#score += points;
-	}
-
-	isRunning()
-	{
-		return !(this.wonTheGame() || this.#lostTheGame());
 	}
 
 	getScore()
@@ -76,14 +45,45 @@ class Game
 		return this.#board.getPaddle().getLives();
 	}
 
+	isRunning()
+	{
+		return !(this.wonTheGame() || this.#lostTheGame());
+	}
+	
 	wonTheGame()
 	{
 		return this.#board.destroyedAllBricks();
 	}
 
+	onBallFall()
+	{
+		this.#board.getPaddle().loseLife();
+	}
+
 	#lostTheGame()
 	{
 		return this.#board.getPaddle().lostAllLives();
+	}
+
+	#requestAnimationFrame()
+	{
+		window.requestAnimationFrame(this.#loop.bind(this));
+	}
+
+	#loop(timeStamp)
+	{
+		this.#update(timeStamp);
+		this.#draw();
+
+		if(this.isRunning())
+		{
+			this.#requestAnimationFrame();
+		}
+	}
+
+	#update(timeStamp)
+	{
+		this.#board.update(timeStamp);
 	}
 
 	#draw()
