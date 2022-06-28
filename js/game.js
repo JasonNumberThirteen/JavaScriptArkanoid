@@ -1,8 +1,8 @@
 class Game
 {
 	#context;
+	#score;
 	#size;
-	#score = 0;
 	#board;
 	#ui;
 
@@ -12,10 +12,8 @@ class Game
 
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
-		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
-		this.#board = new Board(this, this.#context);
-		this.#ui = new UI(this, this.#context);
-		
+
+		this.#init();
 		this.#requestAnimationFrame();
 		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
 	}
@@ -54,7 +52,7 @@ class Game
 	{
 		this.#board.getPaddle().loseLife();
 	}
-	
+
 	#lostTheGame()
 	{
 		return this.#board.getPaddle().lostAllLives();
@@ -103,5 +101,13 @@ class Game
 		this.#context = canvas.getContext("2d");
 		this.#context.canvas.width = GAME_WIDTH;
 		this.#context.canvas.height = GAME_HEIGHT;
+	}
+
+	#init()
+	{
+		this.#score = 0;
+		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
+		this.#board = new Board(this, this.#context);
+		this.#ui = new UI(this, this.#context);
 	}
 }
