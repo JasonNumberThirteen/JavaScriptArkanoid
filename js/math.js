@@ -1,0 +1,1 @@
+const clamp = (min, n, max) => Math.min(Math.max(n, min), max);
