@@ -8,9 +8,9 @@ class Brick
 	constructor(position, values)
 	{
 		this.#position = position;
-		this.#fillStyle = values.fillStyle;
-		this.#health = values.health;
-		this.#points = values.points;
+		this.#fillStyle = values.fillStyle || "#000";
+		this.#health = values.health || 1;
+		this.#points = values.points || 0;
 	}
 
 	draw(context)
