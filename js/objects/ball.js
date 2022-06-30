@@ -20,11 +20,6 @@ class Ball extends MovableObject
 		{
 			this.move();
 	
-			if(this.#touchesLeftOrRightEdge())
-			{
-				this.deflectInXAxis();
-			}
-	
 			if(this.#touchesTopEdge())
 			{
 				this.deflectInYAxis();
@@ -35,6 +30,26 @@ class Ball extends MovableObject
 				GameInstance.onBallFall();
 			}
 		}
+	}
+
+	isTouchingLeftEdge()
+	{
+		return this.getPosition().x < this.#radius;
+	}
+
+	isTouchingRightEdge()
+	{
+		return this.getPosition().x > this.#gameSize.x - this.#radius;
+	}
+
+	onLeftEdgeTouch()
+	{
+		this.deflectInXAxis();
+	}
+
+	onRightEdgeTouch()
+	{
+		this.deflectInXAxis();
 	}
 
 	draw(context)
@@ -80,21 +95,6 @@ class Ball extends MovableObject
 	#canMove(timeStamp)
 	{
 		return timeStamp > this.#waitTime;
-	}
-
-	#touchesLeftOrRightEdge()
-	{
-		return this.#touchesLeftEdge() || this.#touchesRightEdge();
-	}
-
-	#touchesLeftEdge()
-	{
-		return this.getPosition().x < this.#radius;
-	}
-
-	#touchesRightEdge()
-	{
-		return this.getPosition().x > this.#gameSize.x - this.#radius;
 	}
 
 	#touchesTopEdge()
