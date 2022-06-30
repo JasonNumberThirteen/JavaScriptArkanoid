@@ -1,6 +1,5 @@
 class Paddle extends MovableObject
 {
-	#input;
 	#lives = GAME_PADDLE_LIVES;
 
 	constructor(gameSize)
@@ -11,7 +10,7 @@ class Paddle extends MovableObject
 
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
 
-		this.#input = new PlayerInput(this);
+		const input = new PlayerInput(this);
 	}
 	
 	update()
