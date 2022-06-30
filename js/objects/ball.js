@@ -1,14 +1,13 @@
-class Ball
+class Ball extends MovableObject
 {
-	#position;
 	#radius;
 	#gameSize;
-	#movementDirection;
-	#movementSpeed;
 	#waitTime;
 	
 	constructor(radius, gameSize)
 	{
+		super();
+		
 		this.#radius = radius;
 		this.#gameSize = gameSize;
 		
@@ -19,7 +18,7 @@ class Ball
 	{
 		if(this.#canMove(timeStamp))
 		{
-			this.#move();
+			this.move();
 	
 			if(this.#touchesLeftOrRightEdge())
 			{
@@ -44,11 +43,6 @@ class Ball
 		this.#drawStroke(context);
 	}
 
-	getPosition()
-	{
-		return this.#position;
-	}
-
 	deflectFromPaddle()
 	{
 		this.deflectInYAxis();
@@ -57,12 +51,18 @@ class Ball
 
 	deflectInXAxis()
 	{
-		this.#movementDirection.x = -this.#movementDirection.x;
+		const oldDirection = this.getMovementDirection();
+		const newDirection = new Point(-oldDirection.x, oldDirection.y);
+		
+		this.setMovementDirection(newDirection);
 	}
 
 	deflectInYAxis()
 	{
-		this.#movementDirection.y = -this.#movementDirection.y;
+		const oldDirection = this.getMovementDirection();
+		const newDirection = new Point(oldDirection.x, -oldDirection.y);
+		
+		this.setMovementDirection(newDirection);
 	}
 
 	#setInitialState(timeStamp)
@@ -71,10 +71,11 @@ class Ball
 		const y = this.#gameSize.y - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
 		const waitTimeOffset = timeStamp || 0;
 
-		this.#position = new Point(x, y);
-		this.#movementDirection = new Point(this.#randomInitialDirectionX(), GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
+		this.setPosition(new Point(x, y));
+		this.setMovementDirection(new Point(this.#randomInitialDirectionX(), GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y));
+		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
+
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
-		this.#movementSpeed = GAME_BALL_MOVEMENT_SPEED;
 	}
 
 	#randomInitialDirectionX()
@@ -87,12 +88,6 @@ class Ball
 		return timeStamp > this.#waitTime;
 	}
 
-	#move()
-	{
-		this.#position.x += this.#movementSpeed*this.#movementDirection.x;
-		this.#position.y += this.#movementSpeed*this.#movementDirection.y;
-	}
-
 	#touchesLeftOrRightEdge()
 	{
 		return this.#touchesLeftEdge() || this.#touchesRightEdge();
@@ -100,29 +95,30 @@ class Ball
 
 	#touchesLeftEdge()
 	{
-		return this.#position.x < this.#radius;
+		return this.getPosition().x < this.#radius;
 	}
 
 	#touchesRightEdge()
 	{
-		return this.#position.x > this.#gameSize.x - this.#radius;
+		return this.getPosition().x > this.#gameSize.x - this.#radius;
 	}
 
 	#touchesTopEdge()
 	{
-		return this.#position.y < this.#radius + GAME_HUD_HEIGHT;
+		return this.getPosition().y < this.#radius + GAME_HUD_HEIGHT;
 	}
 
 	#hasFallen()
 	{
-		return this.#position.y > this.#gameSize.y + this.#radius;
+		return this.getPosition().y > this.#gameSize.y + this.#radius;
 	}
 
 	#accelerate()
 	{
-		const increasedSpeed = this.#movementSpeed + GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
+		const increasedSpeed = this.getMovementSpeed() + GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
+		const clampedSpeed = clamp(GAME_BALL_MOVEMENT_SPEED, increasedSpeed, GAME_BALL_MAX_MOVEMENT_SPEED);
 
-		this.#movementSpeed = clamp(GAME_BALL_MOVEMENT_SPEED, increasedSpeed, GAME_BALL_MAX_MOVEMENT_SPEED);
+		this.setMovementSpeed(clampedSpeed);
 	}
 
 	#drawArc(context)
@@ -143,8 +139,10 @@ class Ball
 
 	#createArc(context)
 	{
+		const position = this.getPosition();
+		
 		context.beginPath();
-		context.arc(this.#position.x, this.#position.y, this.#radius, 0, Math.PI << 1);
+		context.arc(position.x, position.y, this.#radius, 0, Math.PI << 1);
 		context.closePath();
 	}
 }
