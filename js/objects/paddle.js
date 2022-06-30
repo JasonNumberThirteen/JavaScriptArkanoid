@@ -28,7 +28,7 @@ class Paddle extends MovableObject
 
 	isTouchingRightEdge()
 	{
-		return this.getPosition().x > GAME_WIDTH - this.#size.x;
+		return this.getPosition().x > this.#rightEdgeX();
 	}
 
 	onLeftEdgeTouch()
@@ -38,7 +38,7 @@ class Paddle extends MovableObject
 
 	onRightEdgeTouch()
 	{
-		this.getPosition().x = GAME_WIDTH - this.#size.x;
+		this.getPosition().x = this.#rightEdgeX();
 	}
 
 	draw(context)
@@ -73,5 +73,10 @@ class Paddle extends MovableObject
 	lostAllLives()
 	{
 		return this.#lives <= 0;
+	}
+
+	#rightEdgeX()
+	{
+		return GAME_WIDTH - this.#size.x;
 	}
 }
