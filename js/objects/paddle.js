@@ -1,6 +1,5 @@
 class Paddle extends MovableObject
 {
-	#size;
 	#input;
 	#lives = GAME_PADDLE_LIVES;
 
@@ -12,7 +11,6 @@ class Paddle extends MovableObject
 
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
 
-		this.#size = size;
 		this.#input = new PlayerInput(this);
 	}
 	
@@ -47,7 +45,7 @@ class Paddle extends MovableObject
 		
 		context.fillStyle = GAME_PADDLE_FILL_STYLE;
 
-		context.fillRect(position.x, position.y, this.#size.x, this.#size.y);
+		context.fillRect(position.x, position.y, GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT);
 	}
 
 	setMovingLeftState(value)
@@ -77,6 +75,6 @@ class Paddle extends MovableObject
 
 	#rightEdgeX()
 	{
-		return GAME_WIDTH - this.#size.x;
+		return GAME_WIDTH - GAME_PADDLE_WIDTH;
 	}
 }
