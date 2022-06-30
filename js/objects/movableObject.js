@@ -56,4 +56,14 @@ class MovableObject extends GameObject
 	{
 		return this.#direction;
 	}
+
+	getMovementDirectionX()
+	{
+		return this.#direction.x;
+	}
+
+	getMovementDirectionY()
+	{
+		return this.#direction.y;
+	}
 }
