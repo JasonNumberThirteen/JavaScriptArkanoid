@@ -1,11 +1,8 @@
-class Paddle
+class Paddle extends MovableObject
 {
-	#position;
 	#size;
 	#gameWidth;
 	#input;
-	#movementSpeed = GAME_PADDLE_MOVEMENT_SPEED;
-	#movementDirection = new Point(0, 0);
 	#lives = GAME_PADDLE_LIVES;
 
 	constructor(gameSize)
@@ -14,7 +11,8 @@ class Paddle
 		const x = (gameSize.x - size.x) >> 1;
 		const y = gameSize.y - size.y - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 
-		this.#position = new Point(x, y);
+		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
+
 		this.#size = size;
 		this.#gameWidth = gameSize.x;
 		this.#input = new PlayerInput(this);
@@ -24,31 +22,32 @@ class Paddle
 	
 	update()
 	{
-		const x = this.#movementSpeed*this.#movementDirection.x;
-		
-		this.#position.x = clamp(0, this.#position.x + x, this.#gameWidth - this.#size.x);
+		this.move();
 	}
 
 	draw(context)
 	{
+		const position = this.getPosition();
+		
 		context.fillStyle = GAME_PADDLE_FILL_STYLE;
 
-		context.fillRect(this.#position.x, this.#position.y, this.#size.x, this.#size.y);
+		context.fillRect(position.x, position.y, this.#size.x, this.#size.y);
 	}
 
 	setMovingLeftState(value)
 	{
-		this.#movementDirection.x = (value) ? -1 : 0;
+		const oldDirection = this.getMovementDirection();
+		const newDirection = new Point((value) ? -1 : 0, oldDirection.y);
+		
+		this.setMovementDirection(newDirection);
 	}
 
 	setMovingRightState(value)
 	{
-		this.#movementDirection.x = (value) ? 1 : 0;
-	}
-
-	getPosition()
-	{
-		return this.#position;
+		const oldDirection = this.getMovementDirection();
+		const newDirection = new Point((value) ? 1 : 0, oldDirection.y);
+		
+		this.setMovementDirection(newDirection);
 	}
 
 	getLives()
