@@ -51,18 +51,12 @@ class Ball extends MovableObject
 
 	deflectInXAxis()
 	{
-		const oldDirection = this.getMovementDirection();
-		const newDirection = new Point(-oldDirection.x, oldDirection.y);
-		
-		this.setMovementDirection(newDirection);
+		this.setMovementDirectionX(-this.getMovementDirectionX());
 	}
 
 	deflectInYAxis()
 	{
-		const oldDirection = this.getMovementDirection();
-		const newDirection = new Point(oldDirection.x, -oldDirection.y);
-		
-		this.setMovementDirection(newDirection);
+		this.setMovementDirectionY(-this.getMovementDirectionY());
 	}
 
 	#setInitialState(timeStamp)
