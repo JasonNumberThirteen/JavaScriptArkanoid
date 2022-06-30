@@ -9,7 +9,7 @@ class GameObject
 
 	setPosition(position)
 	{
-		this.#position = position;
+		this.#position = position || new Point(0, 0);
 	}
 
 	getPosition()
