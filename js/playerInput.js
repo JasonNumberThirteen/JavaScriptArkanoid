@@ -5,15 +5,23 @@ class PlayerInput
 	constructor(paddle)
 	{
 		this.#paddle = paddle;
+
+		this.#addEventListeners();
 	}
 
-	onKeyDown(e)
+	#addEventListeners()
+	{
+		document.addEventListener("keydown", this.#onKeyDown.bind(this), false);
+		document.addEventListener("keyup", this.#onKeyUp.bind(this), false);
+	}
+
+	#onKeyDown(e)
 	{
 		this.#setPaddleMovingStates(e.key, true);
 		this.#restartGame(e.key);
 	}
 
-	onKeyUp(e)
+	#onKeyUp(e)
 	{
 		this.#setPaddleMovingStates(e.key, false);
 	}
