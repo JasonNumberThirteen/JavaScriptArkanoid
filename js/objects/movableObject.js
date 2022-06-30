@@ -10,6 +10,16 @@ class MovableObject extends GameObject
 		this.setMovementDirection(direction);
 	}
 
+	isTouchingLeftEdge()
+	{
+		return false;
+	}
+
+	isTouchingRightEdge()
+	{
+		return false;
+	}
+
 	move()
 	{
 		const oldPosition = this.getPosition();
