@@ -21,12 +21,12 @@ class MovableObject extends GameObject
 
 	setMovementSpeed(speed)
 	{
-		this.#speed = speed;
+		this.#speed = speed || 0;
 	}
 
 	setMovementDirection(direction)
 	{
-		this.#direction = direction;
+		this.#direction = direction || new Point(0, 0);
 	}
 
 	getMovementSpeed()
