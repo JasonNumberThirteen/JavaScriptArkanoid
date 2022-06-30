@@ -23,6 +23,26 @@ class Paddle extends MovableObject
 		this.move();
 	}
 
+	isTouchingLeftEdge()
+	{
+		return this.getPosition().x < 0;
+	}
+
+	isTouchingRightEdge()
+	{
+		return this.getPosition().x > GAME_WIDTH - this.#size.x;
+	}
+
+	onLeftEdgeTouch()
+	{
+		this.getPosition().x = 0;
+	}
+
+	onRightEdgeTouch()
+	{
+		this.getPosition().x = this.#gameWidth - this.#size.x;
+	}
+
 	draw(context)
 	{
 		const position = this.getPosition();
