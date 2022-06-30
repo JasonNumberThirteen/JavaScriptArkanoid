@@ -36,18 +36,12 @@ class Paddle extends MovableObject
 
 	setMovingLeftState(value)
 	{
-		const oldDirection = this.getMovementDirection();
-		const newDirection = new Point((value) ? -1 : 0, oldDirection.y);
-		
-		this.setMovementDirection(newDirection);
+		this.setMovementDirectionX((value) ? -1 : 0);
 	}
 
 	setMovingRightState(value)
 	{
-		const oldDirection = this.getMovementDirection();
-		const newDirection = new Point((value) ? 1 : 0, oldDirection.y);
-		
-		this.setMovementDirection(newDirection);
+		this.setMovementDirectionX((value) ? 1 : 0);
 	}
 
 	getLives()
