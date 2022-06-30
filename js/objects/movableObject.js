@@ -3,8 +3,9 @@ class MovableObject extends GameObject
 	#speed;
 	#direction;
 
-	constructor(speed, direction)
+	constructor(position, speed, direction)
 	{
+		super(position);
 		this.setMovementSpeed(speed);
 		this.setMovementDirection(direction);
 	}
