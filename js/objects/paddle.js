@@ -1,7 +1,6 @@
 class Paddle extends MovableObject
 {
 	#size;
-	#gameWidth;
 	#input;
 	#lives = GAME_PADDLE_LIVES;
 
@@ -14,7 +13,6 @@ class Paddle extends MovableObject
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
 
 		this.#size = size;
-		this.#gameWidth = gameSize.x;
 		this.#input = new PlayerInput(this);
 	}
 	
@@ -40,7 +38,7 @@ class Paddle extends MovableObject
 
 	onRightEdgeTouch()
 	{
-		this.getPosition().x = this.#gameWidth - this.#size.x;
+		this.getPosition().x = GAME_WIDTH - this.#size.x;
 	}
 
 	draw(context)
