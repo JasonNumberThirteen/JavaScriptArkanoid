@@ -20,6 +20,16 @@ class MovableObject extends GameObject
 		return false;
 	}
 
+	onLeftEdgeTouch()
+	{
+
+	}
+
+	onRightEdgeTouch()
+	{
+		
+	}
+
 	move()
 	{
 		const oldPosition = this.getPosition();
@@ -28,6 +38,15 @@ class MovableObject extends GameObject
 		const newPosition = new Point(x, y);
 		
 		this.setPosition(newPosition);
+
+		if(this.isTouchingLeftEdge())
+		{
+			this.onLeftEdgeTouch();
+		}
+		else if(this.isTouchingRightEdge())
+		{
+			this.onRightEdgeTouch();
+		}
 	}
 
 	setMovementSpeed(speed)
