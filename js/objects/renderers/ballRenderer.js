@@ -9,8 +9,11 @@ class BallRenderer
 	
 	draw(context)
 	{
-		this.#drawArc(context);
-		this.#drawStroke(context);
+		if(GameInstance.isRunning())
+		{
+			this.#drawArc(context);
+			this.#drawStroke(context);
+		}
 	}
 
 	#drawArc(context)
