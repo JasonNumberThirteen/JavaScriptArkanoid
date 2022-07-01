@@ -1,5 +1,6 @@
 class Paddle extends MovableObject
 {
+	#renderer;
 	#lives = GAME_PADDLE_LIVES;
 
 	constructor(gameSize)
@@ -9,6 +10,8 @@ class Paddle extends MovableObject
 		const y = gameSize.y - size.y - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
+
+		this.#renderer = new PaddleRenderer(this);
 
 		const input = new PlayerInput(this);
 	}
@@ -40,11 +43,7 @@ class Paddle extends MovableObject
 
 	draw(context)
 	{
-		const position = this.getPosition();
-		
-		context.fillStyle = GAME_PADDLE_FILL_STYLE;
-
-		context.fillRect(position.x, position.y, GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT);
+		this.#renderer.draw(context);
 	}
 
 	setMovingLeftState(value)
