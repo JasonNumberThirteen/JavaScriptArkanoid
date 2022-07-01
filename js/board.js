@@ -1,16 +1,14 @@
 class Board
 {
 	#game;
-	#context;
 	#paddle;
 	#ball;
 	#bricks;
 	#destroyedAnyBrick = false;
 
-	constructor(game, context)
+	constructor(game)
 	{
 		this.#game = game;
-		this.#context = context;
 
 		this.#createObjects();
 	}
@@ -23,22 +21,19 @@ class Board
 		this.#filterAliveBricks();
 	}
 
-	draw()
-	{
-		this.#drawBG(0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
-		this.#drawBG(GAME_HUD_HEIGHT, this.#game.getSize().y - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
-		this.#bricks.forEach(e => e.draw(this.#context));
-
-		if(this.#game.isRunning())
-		{
-			this.#paddle.draw(this.#context);
-			this.#ball.draw(this.#context);
-		}
-	}
-
 	getPaddle()
 	{
 		return this.#paddle;
+	}
+
+	getBall()
+	{
+		return this.#ball;
+	}
+
+	getBricks()
+	{
+		return this.#bricks;
 	}
 
 	destroyedAllBricks()
@@ -128,12 +123,5 @@ class Board
 
 			this.#destroyedAnyBrick = false;
 		}
-	}
-
-	#drawBG(y, height, fillStyle)
-	{
-		this.#context.fillStyle = fillStyle;
-
-		this.#context.fillRect(0, y, this.#game.getSize().x, height);
 	}
 }

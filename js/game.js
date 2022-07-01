@@ -1,6 +1,7 @@
 class Game
 {
 	#context;
+	#renderer;
 	#score;
 	#size;
 	#board;
@@ -9,6 +10,7 @@ class Game
 	constructor()
 	{
 		this.#init();
+		this.#initRenderer();
 		this.#setCanvasSize();
 		this.#setContextValues();
 		this.#requestAnimationFrame();
@@ -78,7 +80,7 @@ class Game
 	#draw()
 	{
 		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
-		this.#board.draw();
+		this.#renderer.draw(this.#context);
 		this.#ui.draw();
 	}
 
@@ -87,8 +89,17 @@ class Game
 		this.#context = document.getElementById("gameWindow").getContext("2d");
 		this.#score = 0;
 		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
-		this.#board = new Board(this, this.#context);
+		this.#board = new Board(this);
 		this.#ui = new UI(this, this.#context);
+	}
+
+	#initRenderer()
+	{
+		const renderers = [this.#board.getPaddle(), this.#board.getBall()];
+
+		this.#board.getBricks().forEach(e => renderers.push(e));
+
+		this.#renderer = new Renderer(renderers);
 	}
 
 	#setCanvasSize()
