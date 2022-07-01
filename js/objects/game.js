@@ -1,9 +1,9 @@
 class Game
 {
 	#context;
-	#renderer;
 	#board;
 	#gameManager;
+	#renderer;
 	#ui;
 
 	constructor()
