@@ -1,6 +1,7 @@
 class Ball extends MovableObject
 {
 	#renderer;
+	#collider;
 	#trigger;
 	#waitTime;
 	
@@ -9,6 +10,7 @@ class Ball extends MovableObject
 		super();
 		
 		this.#renderer = new BallRenderer(this);
+		this.#collider = new BallCollider(this);
 		this.#trigger = new BallTrigger(this);
 		
 		this.setInitialState();
@@ -19,36 +21,13 @@ class Ball extends MovableObject
 		if(this.#canMove(timeStamp))
 		{
 			this.move();
-	
-			if(this.#touchesTopEdge())
-			{
-				this.deflectInYAxis();
-			}
-			else if(this.#hasFallen())
+			this.#collider.checkCollision();
+			
+			if(this.#hasFallen())
 			{
 				this.#trigger.onBallFall(timeStamp);
 			}
 		}
-	}
-
-	isTouchingLeftEdge()
-	{
-		return this.getPosition().x < GAME_BALL_RADIUS;
-	}
-
-	isTouchingRightEdge()
-	{
-		return this.getPosition().x > GAME_WIDTH - GAME_BALL_RADIUS;
-	}
-
-	onLeftEdgeTouch()
-	{
-		this.deflectInXAxis();
-	}
-
-	onRightEdgeTouch()
-	{
-		this.deflectInXAxis();
 	}
 
 	draw(context)
@@ -93,11 +72,6 @@ class Ball extends MovableObject
 	#canMove(timeStamp)
 	{
 		return timeStamp > this.#waitTime;
-	}
-
-	#touchesTopEdge()
-	{
-		return this.getPosition().y < GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
 	}
 
 	#hasFallen()
