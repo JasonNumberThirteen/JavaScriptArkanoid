@@ -38,7 +38,7 @@ class UI
 
 	#drawLivesCounter()
 	{
-		const textPosition = new Point(this.#game.getSize().x - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+		const textPosition = new Point(GAME_WIDTH - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 		const counterPosition = new Point(textPosition.x - GAME_HUD_COUNTERS_OFFSET, textPosition.y + GAME_HUD_COUNTERS_OFFSET);
 		const align = "right";
 		
@@ -50,7 +50,7 @@ class UI
 	{
 		const wonTheGame = this.#game.getGameManager().wonTheGame();
 		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
-		const endTextY = (this.#game.getSize().y + GAME_HUD_HEIGHT) >> 1;
+		const endTextY = (GAME_HEIGHT + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
 		
 		this.#drawCenteredText(endText, endTextY, endTextFillStyle);
@@ -58,12 +58,12 @@ class UI
 
 	#drawRefreshTipText()
 	{
-		this.#drawCenteredText(GAME_REFRESH_TIP_TEXT, this.#game.getSize().y - 16, GAME_REFRESH_TIP_FILL_STYLE);
+		this.#drawCenteredText(GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - 16, GAME_REFRESH_TIP_FILL_STYLE);
 	}
 
 	#drawCenteredText(text, y, fillStyle)
 	{
-		const position = new Point(this.#game.getSize().x >> 1, y);
+		const position = new Point(GAME_WIDTH >> 1, y);
 		
 		this.#drawText(text, position, fillStyle, "center");
 	}

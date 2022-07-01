@@ -2,7 +2,6 @@ class Game
 {
 	#context;
 	#renderer;
-	#size;
 	#board;
 	#gameManager;
 	#ui;
@@ -18,11 +17,6 @@ class Game
 	getGameManager()
 	{
 		return this.#gameManager;
-	}
-
-	getSize()
-	{
-		return this.#size;
 	}
 
 	isRunning()
@@ -53,7 +47,7 @@ class Game
 
 	#draw()
 	{
-		this.#context.clearRect(0, 0, this.#size.x, this.#size.y);
+		this.#context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		this.#renderer.draw(this.#context);
 		this.#ui.draw();
 	}
@@ -61,7 +55,6 @@ class Game
 	#init()
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
-		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
 		this.#board = new Board(this);
 		this.#gameManager = new GameManager(this.#board);
 		this.#renderer = new Renderer(this.#board);
