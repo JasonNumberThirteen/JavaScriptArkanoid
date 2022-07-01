@@ -1,16 +1,16 @@
 class Ball extends MovableObject
 {
 	#renderer;
-	#radius;
+	//#radius;
 	#gameSize;
 	#waitTime;
 	
-	constructor(radius, gameSize)
+	constructor(gameSize)
 	{
 		super();
 		
 		this.#renderer = new BallRenderer(this);
-		this.#radius = radius;
+		//this.#radius = radius;
 		this.#gameSize = gameSize;
 		
 		this.#setInitialState();
@@ -36,12 +36,12 @@ class Ball extends MovableObject
 
 	isTouchingLeftEdge()
 	{
-		return this.getPosition().x < this.#radius;
+		return this.getPosition().x < GAME_BALL_RADIUS;
 	}
 
 	isTouchingRightEdge()
 	{
-		return this.getPosition().x > this.#gameSize.x - this.#radius;
+		return this.getPosition().x > this.#gameSize.x - GAME_BALL_RADIUS;
 	}
 
 	onLeftEdgeTouch()
@@ -100,12 +100,12 @@ class Ball extends MovableObject
 
 	#touchesTopEdge()
 	{
-		return this.getPosition().y < this.#radius + GAME_HUD_HEIGHT;
+		return this.getPosition().y < GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
 	}
 
 	#hasFallen()
 	{
-		return this.getPosition().y > this.#gameSize.y + this.#radius;
+		return this.getPosition().y > this.#gameSize.y + GAME_BALL_RADIUS;
 	}
 
 	#accelerate()
