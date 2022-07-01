@@ -10,7 +10,6 @@ class Game
 	constructor()
 	{
 		this.#init();
-		this.#initRenderer();
 		this.#setCanvasSize();
 		this.#setContextValues();
 		this.#requestAnimationFrame();
@@ -90,16 +89,8 @@ class Game
 		this.#score = 0;
 		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
 		this.#board = new Board(this);
+		this.#renderer = new Renderer(this.#board);
 		this.#ui = new UI(this, this.#context);
-	}
-
-	#initRenderer()
-	{
-		const renderers = [this.#board.getPaddle(), this.#board.getBall()];
-
-		this.#board.getBricks().forEach(e => renderers.push(e));
-
-		this.#renderer = new Renderer(renderers);
 	}
 
 	#setCanvasSize()
