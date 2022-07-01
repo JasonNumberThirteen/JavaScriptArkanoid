@@ -1,5 +1,6 @@
 class Brick extends GameObject
 {
+	#renderer;
 	#fillStyle;
 	#health;
 	#points;
@@ -8,6 +9,7 @@ class Brick extends GameObject
 	{
 		super(position);
 
+		this.#renderer = new BrickRenderer(this);
 		this.#fillStyle = values.fillStyle || "#000";
 		this.#health = values.health || 1;
 		this.#points = values.points || 0;
@@ -15,8 +17,7 @@ class Brick extends GameObject
 
 	draw(context)
 	{
-		this.#drawRectangle(context);
-		this.#drawStroke(context);
+		this.#renderer.draw(context);
 	}
 
 	takeDamage()
@@ -29,26 +30,13 @@ class Brick extends GameObject
 		return this.#health > 0;
 	}
 
+	getFillStyle()
+	{
+		return this.#fillStyle;
+	}
+
 	getPoints()
 	{
 		return this.#points;
-	}
-
-	#drawRectangle(context)
-	{
-		const position = this.getPosition();
-		
-		context.fillStyle = this.#fillStyle;
-
-		context.fillRect(position.x, position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
-	}
-
-	#drawStroke(context)
-	{
-		const position = this.getPosition();
-		
-		context.strokeStyle = GAME_BRICK_STROKE_FILL_STYLE;
-
-		context.strokeRect(position.x, position.y, GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT);
 	}
 }
