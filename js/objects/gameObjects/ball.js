@@ -1,6 +1,7 @@
 class Ball extends MovableObject
 {
 	#renderer;
+	#trigger;
 	#waitTime;
 	
 	constructor()
@@ -8,8 +9,9 @@ class Ball extends MovableObject
 		super();
 		
 		this.#renderer = new BallRenderer(this);
+		this.#trigger = new BallTrigger(this);
 		
-		this.#setInitialState();
+		this.setInitialState();
 	}
 
 	update(timeStamp)
@@ -24,8 +26,7 @@ class Ball extends MovableObject
 			}
 			else if(this.#hasFallen())
 			{
-				this.#setInitialState(timeStamp);
-				GameInstance.getGameManager().onBallFall();
+				this.#trigger.onBallFall(timeStamp);
 			}
 		}
 	}
@@ -71,7 +72,7 @@ class Ball extends MovableObject
 		this.setMovementDirectionY(-this.getMovementDirectionY());
 	}
 
-	#setInitialState(timeStamp)
+	setInitialState(timeStamp)
 	{
 		const x = GAME_WIDTH >> 1;
 		const y = GAME_HEIGHT - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
