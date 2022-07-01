@@ -2,9 +2,9 @@ class Game
 {
 	#context;
 	#renderer;
-	#score;
 	#size;
 	#board;
+	#gameManager;
 	#ui;
 
 	constructor()
@@ -15,14 +15,9 @@ class Game
 		this.#requestAnimationFrame();
 	}
 
-	addScore(points)
+	getGameManager()
 	{
-		this.#score += points;
-	}
-
-	getScore()
-	{
-		return this.#score;
+		return this.#gameManager;
 	}
 
 	getSize()
@@ -30,31 +25,11 @@ class Game
 		return this.#size;
 	}
 
-	getPaddleLives()
-	{
-		return this.#board.getPaddle().getLives();
-	}
-
 	isRunning()
 	{
-		return !(this.wonTheGame() || this.#lostTheGame());
+		return !(this.#gameManager.wonTheGame() || this.#gameManager.lostTheGame());
 	}
 	
-	wonTheGame()
-	{
-		return this.#board.destroyedAllBricks();
-	}
-
-	onBallFall()
-	{
-		this.#board.getPaddle().loseLife();
-	}
-
-	#lostTheGame()
-	{
-		return this.#board.getPaddle().lostAllLives();
-	}
-
 	#requestAnimationFrame()
 	{
 		window.requestAnimationFrame(this.#loop.bind(this));
@@ -86,9 +61,9 @@ class Game
 	#init()
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
-		this.#score = 0;
 		this.#size = new Point(GAME_WIDTH, GAME_HEIGHT);
 		this.#board = new Board(this);
+		this.#gameManager = new GameManager(this.#board);
 		this.#renderer = new Renderer(this.#board);
 		this.#ui = new UI(this, this.#context);
 	}

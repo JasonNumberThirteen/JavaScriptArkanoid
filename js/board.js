@@ -87,7 +87,7 @@ class Board
 
 			if(!brick.isAlive())
 			{
-				this.#game.addScore(brick.getPoints());
+				this.#game.getGameManager().addScore(brick.getPoints());
 
 				this.#destroyedAnyBrick = true;
 			}

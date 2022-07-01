@@ -33,7 +33,7 @@ class UI
 		const align = "left";
 		
 		this.#drawText(GAME_SCORE_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
-		this.#drawText(this.#game.getScore(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
+		this.#drawText(this.#game.getGameManager().getScore(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 
 	#drawLivesCounter()
@@ -43,12 +43,12 @@ class UI
 		const align = "right";
 		
 		this.#drawText(GAME_LIVES_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
-		this.#drawText(this.#game.getPaddleLives(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
+		this.#drawText(this.#game.getGameManager().getPaddleLives(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 
 	#drawGameEndText()
 	{
-		const wonTheGame = this.#game.wonTheGame();
+		const wonTheGame = this.#game.getGameManager().wonTheGame();
 		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
 		const endTextY = (this.#game.getSize().y + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;

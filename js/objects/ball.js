@@ -27,7 +27,7 @@ class Ball extends MovableObject
 			else if(this.#hasFallen())
 			{
 				this.#setInitialState(timeStamp);
-				GameInstance.onBallFall();
+				GameInstance.getGameManager().onBallFall();
 			}
 		}
 	}
