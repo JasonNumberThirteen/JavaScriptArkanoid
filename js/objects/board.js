@@ -36,11 +36,6 @@ class Board
 		return this.#bricks;
 	}
 
-	destroyedAllBricks()
-	{
-		return this.#bricks.length === 0;
-	}
-
 	#createObjects()
 	{
 		this.#paddle = new Paddle();

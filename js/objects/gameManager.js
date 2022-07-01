@@ -25,7 +25,7 @@ class GameManager
 
 	wonTheGame()
 	{
-		return this.#board.destroyedAllBricks();
+		return this.#destroyedAllBricks();
 	}
 
 	lostTheGame()
@@ -36,5 +36,10 @@ class GameManager
 	onBallFall()
 	{
 		this.#board.getPaddle().takeDamage();
+	}
+
+	#destroyedAllBricks()
+	{
+		return this.#board.getBricks().length === 0;
 	}
 }
