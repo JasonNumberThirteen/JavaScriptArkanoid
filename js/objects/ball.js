@@ -1,7 +1,6 @@
 class Ball extends MovableObject
 {
 	#renderer;
-	//#radius;
 	#gameSize;
 	#waitTime;
 	
@@ -10,7 +9,6 @@ class Ball extends MovableObject
 		super();
 		
 		this.#renderer = new BallRenderer(this);
-		//this.#radius = radius;
 		this.#gameSize = gameSize;
 		
 		this.#setInitialState();
