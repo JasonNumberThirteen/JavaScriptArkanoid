@@ -20,7 +20,7 @@ class GameManager
 
 	getPaddleLives()
 	{
-		return this.#board.getPaddle().getLives();
+		return this.#board.getPaddle().getHealth();
 	}
 
 	wonTheGame()
@@ -30,11 +30,11 @@ class GameManager
 
 	lostTheGame()
 	{
-		return this.#board.getPaddle().lostAllLives();
+		return !this.#board.getPaddle().isAlive();
 	}
 	
 	onBallFall()
 	{
-		this.#board.getPaddle().loseLife();
+		this.#board.getPaddle().takeDamage();
 	}
 }

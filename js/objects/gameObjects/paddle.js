@@ -1,7 +1,7 @@
 class Paddle extends MovableObject
 {
 	#renderer;
-	#lives = GAME_PADDLE_LIVES;
+	#health = GAME_PADDLE_LIVES;
 
 	constructor()
 	{
@@ -56,19 +56,19 @@ class Paddle extends MovableObject
 		this.setMovementDirectionX((value) ? 1 : 0);
 	}
 
-	getLives()
+	getHealth()
 	{
-		return this.#lives;
+		return this.#health;
 	}
 
-	loseLife()
+	takeDamage()
 	{
-		--this.#lives;
+		--this.#health;
 	}
 
-	lostAllLives()
+	isAlive()
 	{
-		return this.#lives <= 0;
+		return this.#health > 0;
 	}
 
 	#rightEdgeX()
