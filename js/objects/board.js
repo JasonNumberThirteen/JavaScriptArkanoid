@@ -44,7 +44,7 @@ class Board
 	#createObjects()
 	{
 		this.#paddle = new Paddle(this.#game.getSize());
-		this.#ball = new Ball(this.#game.getSize());
+		this.#ball = new Ball();
 
 		this.#createBricks();
 	}
