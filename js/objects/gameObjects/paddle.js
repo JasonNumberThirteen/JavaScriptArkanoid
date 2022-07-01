@@ -1,6 +1,7 @@
 class Paddle extends MovableObject
 {
 	#renderer;
+	#collider;
 	#health = GAME_PADDLE_LIVES;
 
 	constructor()
@@ -12,6 +13,7 @@ class Paddle extends MovableObject
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
 
 		this.#renderer = new PaddleRenderer(this);
+		this.#collider = new PaddleCollider(this);
 
 		const input = new PlayerInput(this);
 	}
@@ -19,26 +21,7 @@ class Paddle extends MovableObject
 	update()
 	{
 		this.move();
-	}
-
-	isTouchingLeftEdge()
-	{
-		return this.getPosition().x < 0;
-	}
-
-	isTouchingRightEdge()
-	{
-		return this.getPosition().x > this.#rightEdgeX();
-	}
-
-	onLeftEdgeTouch()
-	{
-		this.getPosition().x = 0;
-	}
-
-	onRightEdgeTouch()
-	{
-		this.getPosition().x = this.#rightEdgeX();
+		this.#collider.checkCollision();
 	}
 
 	draw(context)
@@ -71,7 +54,7 @@ class Paddle extends MovableObject
 		return this.#health > 0;
 	}
 
-	#rightEdgeX()
+	rightEdgeX()
 	{
 		return GAME_WIDTH - GAME_PADDLE_WIDTH;
 	}
