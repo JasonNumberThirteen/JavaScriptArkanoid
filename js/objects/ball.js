@@ -1,5 +1,6 @@
 class Ball extends MovableObject
 {
+	#renderer;
 	#radius;
 	#gameSize;
 	#waitTime;
@@ -8,6 +9,7 @@ class Ball extends MovableObject
 	{
 		super();
 		
+		this.#renderer = new BallRenderer(this);
 		this.#radius = radius;
 		this.#gameSize = gameSize;
 		
@@ -54,8 +56,7 @@ class Ball extends MovableObject
 
 	draw(context)
 	{
-		this.#drawArc(context);
-		this.#drawStroke(context);
+		this.#renderer.draw(context);
 	}
 
 	deflectFromPaddle()
@@ -113,30 +114,5 @@ class Ball extends MovableObject
 		const clampedSpeed = clamp(GAME_BALL_MOVEMENT_SPEED, increasedSpeed, GAME_BALL_MAX_MOVEMENT_SPEED);
 
 		this.setMovementSpeed(clampedSpeed);
-	}
-
-	#drawArc(context)
-	{
-		context.fillStyle = GAME_BALL_FILL_STYLE;
-		
-		this.#createArc(context);
-		context.fill();
-	}
-
-	#drawStroke(context)
-	{
-		context.strokeStyle = GAME_BALL_STROKE_FILL_STYLE;
-
-		this.#createArc(context);
-		context.stroke();
-	}
-
-	#createArc(context)
-	{
-		const position = this.getPosition();
-		
-		context.beginPath();
-		context.arc(position.x, position.y, this.#radius, 0, Math.PI << 1);
-		context.closePath();
 	}
 }
