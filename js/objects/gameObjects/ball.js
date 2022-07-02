@@ -22,11 +22,7 @@ class Ball extends MovableObject
 		{
 			this.move();
 			this.#collider.checkCollision();
-			
-			if(this.#hasFallen())
-			{
-				this.#trigger.onBallFall(timeStamp);
-			}
+			this.#trigger.checkTrigger(timeStamp);
 		}
 	}
 
@@ -72,11 +68,6 @@ class Ball extends MovableObject
 	#canMove(timeStamp)
 	{
 		return timeStamp > this.#waitTime;
-	}
-
-	#hasFallen()
-	{
-		return this.getPosition().y > GAME_HEIGHT + GAME_BALL_RADIUS;
 	}
 
 	#accelerate()
