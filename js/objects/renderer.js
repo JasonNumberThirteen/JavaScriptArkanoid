@@ -5,12 +5,12 @@ class Renderer
 	#ball;
 	#ui;
 
-	constructor(game, board, context)
+	constructor(game, board)
 	{
 		this.#board = board;
 		this.#paddle = this.#board.getPaddle();
 		this.#ball = this.#board.getBall();
-		this.#ui = new UI(game, context);
+		this.#ui = new UI(game);
 	}
 
 	draw(context)
@@ -20,7 +20,7 @@ class Renderer
 		this.#paddle.draw(context);
 		this.#ball.draw(context);
 		this.#board.getBricks().forEach(e => e.draw(context));
-		this.#ui.draw();
+		this.#ui.draw(context);
 	}
 
 	#drawBG(context, y, height, fillStyle)

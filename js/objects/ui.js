@@ -1,58 +1,56 @@
 class UI
 {
 	#game;
-	#context;
 	#hud;
 
-	constructor(game, context)
+	constructor(game)
 	{
 		this.#game = game;
-		this.#context = context;
 		this.#hud = new HUD(game);
 	}
 	
-	draw()
+	draw(context)
 	{
-		this.#hud.draw(this);
-		this.#drawTextsWhenGameIsOver();
+		this.#hud.draw(this, context);
+		this.#drawTextsWhenGameIsOver(context);
 	}
 
-	drawText(text, position, fillStyle, textAlign)
+	drawText(context, text, position, fillStyle, textAlign)
 	{
-		this.#context.fillStyle = fillStyle;
-		this.#context.textAlign = textAlign;
+		context.fillStyle = fillStyle;
+		context.textAlign = textAlign;
 
-		this.#context.fillText(text, position.x, position.y);
+		context.fillText(text, position.x, position.y);
 	}
 
-	#drawTextsWhenGameIsOver()
+	#drawTextsWhenGameIsOver(context)
 	{
 		if(!this.#game.isRunning())
 		{
-			this.#drawGameEndText();
-			this.#drawRefreshTipText();
+			this.#drawGameEndText(context);
+			this.#drawRefreshTipText(context);
 		}
 	}
 
-	#drawGameEndText()
+	#drawGameEndText(context)
 	{
 		const wonTheGame = this.#game.getGameManager().wonTheGame();
 		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
 		const endTextY = (GAME_HEIGHT + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
 		
-		this.#drawCenteredText(endText, endTextY, endTextFillStyle);
+		this.#drawCenteredText(context, endText, endTextY, endTextFillStyle);
 	}
 
-	#drawRefreshTipText()
+	#drawRefreshTipText(context)
 	{
-		this.#drawCenteredText(GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - 16, GAME_REFRESH_TIP_FILL_STYLE);
+		this.#drawCenteredText(context, GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - 16, GAME_REFRESH_TIP_FILL_STYLE);
 	}
 
-	#drawCenteredText(text, y, fillStyle)
+	#drawCenteredText(context, text, y, fillStyle)
 	{
 		const position = new Point(GAME_WIDTH >> 1, y);
 		
-		this.drawText(text, position, fillStyle, "center");
+		this.drawText(context, text, position, fillStyle, "center");
 	}
 }

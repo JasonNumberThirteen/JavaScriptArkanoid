@@ -6,7 +6,7 @@ class CanvasContext
 	constructor(game, board)
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
-		this.#renderer = new Renderer(game, board, this.#context);
+		this.#renderer = new Renderer(game, board);
 
 		this.#setCanvasSize();
 		this.#setContextValues();
