@@ -14,12 +14,7 @@ class UI
 	draw()
 	{
 		this.#hud.draw();
-		
-		if(!this.#game.isRunning())
-		{
-			this.#drawGameEndText();
-			this.#drawRefreshTipText();
-		}
+		this.#drawTextsWhenGameIsOver();
 	}
 
 	drawText(text, position, fillStyle, textAlign)
@@ -28,6 +23,15 @@ class UI
 		this.#context.textAlign = textAlign;
 
 		this.#context.fillText(text, position.x, position.y);
+	}
+
+	#drawTextsWhenGameIsOver()
+	{
+		if(!this.#game.isRunning())
+		{
+			this.#drawGameEndText();
+			this.#drawRefreshTipText();
+		}
 	}
 
 	#drawGameEndText()
