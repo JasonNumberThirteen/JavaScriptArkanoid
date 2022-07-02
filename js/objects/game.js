@@ -34,17 +34,12 @@ class Game
 
 	#loop(timeStamp)
 	{
-		this.#update(timeStamp);
+		this.#board.update(timeStamp);
 		this.#context.draw();
 
 		if(this.isRunning())
 		{
 			this.#requestAnimationFrame();
 		}
-	}
-
-	#update(timeStamp)
-	{
-		this.#board.update(timeStamp);
 	}
 }
