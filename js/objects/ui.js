@@ -8,12 +8,12 @@ class UI
 	{
 		this.#game = game;
 		this.#context = context;
-		this.#hud = new HUD(game, this);
+		this.#hud = new HUD(game);
 	}
 	
 	draw()
 	{
-		this.#hud.draw();
+		this.#hud.draw(this);
 		this.#drawTextsWhenGameIsOver();
 	}
 
