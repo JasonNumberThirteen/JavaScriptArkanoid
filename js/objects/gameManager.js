@@ -1,21 +1,22 @@
 class GameManager
 {
 	#board;
-	#score = 0;
+	#score;
 	
 	constructor(board)
 	{
 		this.#board = board;
+		this.#score = new Counter(0);
 	}
 
 	addScore(points)
 	{
-		this.#score += points;
+		this.#score.increaseBy(points);
 	}
 
 	getScore()
 	{
-		return this.#score;
+		return this.#score.getValue();
 	}
 
 	getPaddleLives()

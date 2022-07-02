@@ -11,8 +11,8 @@ class Brick extends GameObject
 
 		this.#renderer = new BrickRenderer(this);
 		this.#fillStyle = values.fillStyle || "#000";
-		this.#health = values.health || 1;
-		this.#points = values.points || 0;
+		this.#health = new Counter(values.health || 1);
+		this.#points = new Counter(values.points || 0);
 	}
 
 	draw(context)
@@ -22,12 +22,12 @@ class Brick extends GameObject
 
 	takeDamage()
 	{
-		--this.#health;
+		this.#health.decreaseBy(1);
 	}
 
 	isAlive()
 	{
-		return this.#health > 0;
+		return this.#health.getValue() > 0;
 	}
 
 	getFillStyle()
@@ -37,6 +37,6 @@ class Brick extends GameObject
 
 	getPoints()
 	{
-		return this.#points;
+		return this.#points.getValue();
 	}
 }

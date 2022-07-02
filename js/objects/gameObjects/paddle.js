@@ -2,7 +2,7 @@ class Paddle extends MovableObject
 {
 	#renderer;
 	#collider;
-	#health = GAME_PADDLE_LIVES;
+	#health;
 
 	constructor()
 	{
@@ -14,6 +14,7 @@ class Paddle extends MovableObject
 
 		this.#renderer = new PaddleRenderer(this);
 		this.#collider = new PaddleCollider(this);
+		this.#health = new Counter(GAME_PADDLE_LIVES);
 
 		const input = new PlayerInput(this);
 	}
@@ -41,17 +42,17 @@ class Paddle extends MovableObject
 
 	getHealth()
 	{
-		return this.#health;
+		return this.#health.getValue();
 	}
 
 	takeDamage()
 	{
-		--this.#health;
+		this.#health.decreaseBy(1);
 	}
 
 	isAlive()
 	{
-		return this.#health > 0;
+		return this.getHealth() > 0;
 	}
 
 	rightEdgeX()
