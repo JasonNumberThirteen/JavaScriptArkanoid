@@ -26,7 +26,7 @@ class BallRenderer
 
 	#drawStroke(context)
 	{
-		context.strokeStyle = GAME_BALL_STROKE_FILL_STYLE;
+		context.strokeStyle = GAME_BALL_STROKE_STYLE;
 
 		this.#createArc(context);
 		context.stroke();
