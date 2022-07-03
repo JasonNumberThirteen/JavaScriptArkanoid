@@ -53,9 +53,4 @@ class Paddle extends MovableObject
 	{
 		return this.getHealth() > 0;
 	}
-
-	rightEdgeX()
-	{
-		return GAME_WIDTH - GAME_PADDLE_WIDTH;
-	}
 }

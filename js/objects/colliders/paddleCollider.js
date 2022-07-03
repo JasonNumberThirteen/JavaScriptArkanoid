@@ -26,7 +26,7 @@ class PaddleCollider
 
 	#isTouchingRightEdge()
 	{
-		return this.#paddle.getPosition().x > this.#paddle.rightEdgeX();
+		return this.#paddle.getPosition().x > this.#rightEdgeX();
 	}
 
 	#onLeftEdgeTouch()
@@ -36,6 +36,11 @@ class PaddleCollider
 
 	#onRightEdgeTouch()
 	{
-		this.#paddle.getPosition().x = this.#paddle.rightEdgeX();
+		this.#paddle.getPosition().x = this.#rightEdgeX();
+	}
+
+	#rightEdgeX()
+	{
+		return GAME_WIDTH - GAME_PADDLE_WIDTH;
 	}
 }
