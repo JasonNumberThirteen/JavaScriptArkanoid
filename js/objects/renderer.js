@@ -3,9 +3,9 @@ class Renderer
 	#board;
 	#ui;
 
-	constructor(game, board)
+	constructor(board)
 	{
-		this.#init(game, board);
+		this.#init(board);
 	}
 
 	draw(context)
@@ -15,10 +15,10 @@ class Renderer
 		this.#getDrawables().forEach(e => e.draw(context));
 	}
 
-	#init(game, board)
+	#init(board)
 	{
 		this.#board = board;
-		this.#ui = new UI(game);
+		this.#ui = new UI();
 	}
 
 	#drawBG(context, y, height, fillStyle)

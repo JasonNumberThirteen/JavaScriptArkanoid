@@ -1,11 +1,10 @@
 class UI
 {
-	#game;
 	#hud;
 
-	constructor(game)
+	constructor()
 	{
-		this.#init(game);
+		this.#init();
 	}
 	
 	draw(context)
@@ -22,15 +21,14 @@ class UI
 		context.fillText(text, position.x, position.y);
 	}
 
-	#init(game)
+	#init()
 	{
-		this.#game = game;
 		this.#hud = new HUD();
 	}
 
 	#drawTextsWhenGameIsOver(context)
 	{
-		if(!this.#game.isRunning())
+		if(!GameInstance.isRunning())
 		{
 			this.#drawGameEndText(context);
 			this.#drawRefreshTipText(context);
@@ -39,7 +37,7 @@ class UI
 
 	#drawGameEndText(context)
 	{
-		const wonTheGame = this.#game.getGameManager().wonTheGame();
+		const wonTheGame = GameInstance.getGameManager().wonTheGame();
 		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
 		const endTextY = (GAME_HEIGHT + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
