@@ -9,12 +9,7 @@ class Brick extends GameObject
 	constructor(position, values)
 	{
 		super(position);
-
-		this.#renderer = new BrickRenderer(this);
-		this.#collider = new BrickCollider(this);
-		this.#fillStyle = values.fillStyle || "#000";
-		this.#health = new Counter(values.health || 1);
-		this.#points = new Counter(values.points || 0);
+		this.#init(values);
 	}
 
 	draw(context)
@@ -50,6 +45,15 @@ class Brick extends GameObject
 	getPoints()
 	{
 		return this.#points.getValue();
+	}
+
+	#init(values)
+	{
+		this.#renderer = new BrickRenderer(this);
+		this.#collider = new BrickCollider(this);
+		this.#fillStyle = values.fillStyle || "#000";
+		this.#health = new Counter(values.health || 1);
+		this.#points = new Counter(values.points || 0);
 	}
 
 	#onDestroy()
