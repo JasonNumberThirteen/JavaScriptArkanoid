@@ -1,12 +1,5 @@
 class HUD
 {
-	#game;
-
-	constructor(game)
-	{
-		this.#game = game;
-	}
-	
 	draw(ui, context)
 	{
 		this.#drawScoreCounter(ui, context);
@@ -23,7 +16,7 @@ class HUD
 		const align = "left";
 		
 		ui.drawText(context, GAME_SCORE_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
-		ui.drawText(context, this.#game.getGameManager().getScore(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
+		ui.drawText(context, GameInstance.getGameManager().getScore(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 
 	#drawLivesCounter(ui, context)
@@ -36,6 +29,6 @@ class HUD
 		const align = "right";
 		
 		ui.drawText(context, GAME_LIVES_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
-		ui.drawText(context, this.#game.getGameManager().getPaddleHealth(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
+		ui.drawText(context, GameInstance.getGameManager().getPaddleHealth(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 }

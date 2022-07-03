@@ -25,7 +25,7 @@ class UI
 	#init(game)
 	{
 		this.#game = game;
-		this.#hud = new HUD(game);
+		this.#hud = new HUD();
 	}
 
 	#drawTextsWhenGameIsOver(context)
