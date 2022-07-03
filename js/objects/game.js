@@ -1,8 +1,8 @@
 class Game
 {
-	#context;
 	#board;
 	#gameManager;
+	#context;
 
 	constructor()
 	{
