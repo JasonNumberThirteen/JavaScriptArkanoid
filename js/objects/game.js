@@ -31,17 +31,16 @@ class Game
 	
 	#requestAnimationFrame()
 	{
-		window.requestAnimationFrame(this.#loop.bind(this));
+		if(this.isRunning())
+		{
+			window.requestAnimationFrame(this.#loop.bind(this));
+		}
 	}
 
 	#loop(timeStamp)
 	{
 		this.#board.update(timeStamp);
 		this.#context.draw();
-
-		if(this.isRunning())
-		{
-			this.#requestAnimationFrame();
-		}
+		this.#requestAnimationFrame();
 	}
 }
