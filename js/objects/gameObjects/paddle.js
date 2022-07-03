@@ -10,12 +10,7 @@ class Paddle extends MovableObject
 		const y = GAME_HEIGHT - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
-
-		this.#renderer = new PaddleRenderer(this);
-		this.#collider = new PaddleCollider(this);
-		this.#health = new Counter(GAME_PADDLE_LIVES);
-
-		const input = new PlayerInput(this);
+		this.#init();
 	}
 	
 	update()
@@ -52,5 +47,14 @@ class Paddle extends MovableObject
 	isAlive()
 	{
 		return this.getHealth() > 0;
+	}
+
+	#init()
+	{
+		this.#renderer = new PaddleRenderer(this);
+		this.#collider = new PaddleCollider(this);
+		this.#health = new Counter(GAME_PADDLE_LIVES);
+
+		const input = new PlayerInput(this);
 	}
 }
