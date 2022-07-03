@@ -28,21 +28,31 @@ class PlayerInput
 
 	#setPaddleMovingStates(key, value)
 	{
-		GAME_PADDLE_LEFT_MOVEMENT_INPUT.forEach(e =>
+		if(this.#pressedAnyKeyFromInputArray(GAME_PADDLE_LEFT_MOVEMENT_INPUT, key))
+		{
+			this.#paddle.setMovingLeftState(value);
+		}
+		else if(this.#pressedAnyKeyFromInputArray(GAME_PADDLE_RIGHT_MOVEMENT_INPUT, key))
+		{
+			this.#paddle.setMovingRightState(value);
+		}
+	}
+
+	#pressedAnyKeyFromInputArray(input, key)
+	{
+		let pressed = false;
+		
+		input.forEach(e =>
 		{
 			if(key === e)
 			{
-				this.#paddle.setMovingLeftState(value);
+				pressed = true;
+
+				return;
 			}
 		});
 
-		GAME_PADDLE_RIGHT_MOVEMENT_INPUT.forEach(e =>
-		{
-			if(key === e)
-			{
-				this.#paddle.setMovingRightState(value);
-			}
-		});
+		return pressed;
 	}
 
 	#restartGame(key)
