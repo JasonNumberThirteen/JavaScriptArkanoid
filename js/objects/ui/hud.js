@@ -36,6 +36,6 @@ class HUD
 		const align = "right";
 		
 		ui.drawText(context, GAME_LIVES_TEXT, textPosition, GAME_HUD_TEXTS_FILL_STYLE, align);
-		ui.drawText(context, this.#game.getGameManager().getPaddleLives(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
+		ui.drawText(context, this.#game.getGameManager().getPaddleHealth(), counterPosition, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 }

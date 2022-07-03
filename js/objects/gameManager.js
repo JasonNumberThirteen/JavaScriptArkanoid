@@ -19,7 +19,7 @@ class GameManager
 		return this.#score.getValue();
 	}
 
-	getPaddleLives()
+	getPaddleHealth()
 	{
 		return this.#board.getPaddle().getHealth();
 	}
