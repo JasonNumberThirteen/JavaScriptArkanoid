@@ -10,7 +10,7 @@
 
 ## General information
 - This is a simple clone of "Arkanoid" game originally made by Taito in 1986. It was written in pure JavaScript with a little help of HTML5 and CSS code. It uses HTML canvas for drawing graphics and JavaScript code for mechanics.
-- The project presents my programming skills how I do write code taking care of several optimisations.
+- The project presents my programming skills how I do write code taking care of several optimisations. I did my best to make code follow the SRP, the first rule of SOLID.
 - Player controls the paddle placed on the bottom of the screen and he must not let the ball to fall to the bottom.
 - Win condition: all bricks are destroyed and player has at least one life
 - Lose condition: all player lives are lost and there are still several bricks to destroy
@@ -23,7 +23,7 @@
 
 ## Features
 - Base resolution is 256x144
-- Scalable game window by a constant value
+- Fully scalable game window by a constant value including graphics and font
 - Adjustable plenty of values in single script
 
 ## Usage
