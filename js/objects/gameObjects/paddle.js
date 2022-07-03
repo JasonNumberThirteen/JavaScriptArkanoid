@@ -54,7 +54,5 @@ class Paddle extends MovableObject
 		this.#renderer = new PaddleRenderer(this);
 		this.#collider = new PaddleCollider(this);
 		this.#health = new Counter(GAME_PADDLE_LIVES);
-
-		const input = new PlayerInput(this);
 	}
 }

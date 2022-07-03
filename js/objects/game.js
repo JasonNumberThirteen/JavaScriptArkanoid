@@ -3,6 +3,7 @@ class Game
 	#board;
 	#gameManager;
 	#context;
+	#input;
 
 	constructor()
 	{
@@ -25,6 +26,7 @@ class Game
 		this.#board = new Board();
 		this.#gameManager = new GameManager(this.#board);
 		this.#context = new CanvasContext(this, this.#board);
+		this.#input = new PlayerInput(this.#board.getPaddle());
 	}
 	
 	#requestAnimationFrame()
