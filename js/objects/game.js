@@ -22,7 +22,7 @@ class Game
 
 	#init()
 	{
-		this.#board = new Board(this);
+		this.#board = new Board();
 		this.#gameManager = new GameManager(this.#board);
 		this.#context = new CanvasContext(this, this.#board);
 	}

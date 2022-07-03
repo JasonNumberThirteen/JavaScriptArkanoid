@@ -1,6 +1,7 @@
 class Brick extends GameObject
 {
 	#renderer;
+	#collider;
 	#fillStyle;
 	#health;
 	#points;
@@ -10,6 +11,7 @@ class Brick extends GameObject
 		super(position);
 
 		this.#renderer = new BrickRenderer(this);
+		this.#collider = new BrickCollider(this);
 		this.#fillStyle = values.fillStyle || "#000";
 		this.#health = new Counter(values.health || 1);
 		this.#points = new Counter(values.points || 0);
@@ -20,9 +22,20 @@ class Brick extends GameObject
 		this.#renderer.draw(context);
 	}
 
+	onBallHit(ball)
+	{
+		this.#collider.onBallHit(ball);
+	}
+
 	takeDamage()
 	{
 		this.#health.decreaseBy(1);
+
+		if(!this.isAlive())
+		{
+			GameInstance.getGameManager().addScore(this.getPoints());
+			GameInstance.getGameManager().onBrickDestroy();
+		}
 	}
 
 	isAlive()

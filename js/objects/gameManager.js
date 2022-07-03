@@ -39,6 +39,11 @@ class GameManager
 		this.#board.getPaddle().takeDamage();
 	}
 
+	onBrickDestroy()
+	{
+		this.#board.filterAliveBricks();
+	}
+
 	#destroyedAllBricks()
 	{
 		return this.#board.getBricks().length === 0;

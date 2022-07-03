@@ -1,15 +1,11 @@
 class Board
 {
-	#game;
 	#paddle;
 	#ball;
 	#bricks;
-	#destroyedAnyBrick = false;
 
-	constructor(game)
+	constructor()
 	{
-		this.#game = game;
-
 		this.#createObjects();
 	}
 
@@ -18,7 +14,6 @@ class Board
 		this.#paddle.update();
 		this.#ball.update(timeStamp);
 		this.#checkCollisions();
-		this.#filterAliveBricks();
 	}
 
 	getPaddle()
@@ -34,6 +29,11 @@ class Board
 	getBricks()
 	{
 		return this.#bricks;
+	}
+
+	filterAliveBricks()
+	{
+		this.#bricks = this.#bricks.filter(e => e.isAlive());
 	}
 
 	#createObjects()
@@ -77,15 +77,7 @@ class Board
 	{
 		if(this.#rectangularObjectCollidesWithBall(brick, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT)))
 		{
-			this.#ball.deflectInYAxis();
-			brick.takeDamage();
-
-			if(!brick.isAlive())
-			{
-				this.#game.getGameManager().addScore(brick.getPoints());
-
-				this.#destroyedAnyBrick = true;
-			}
+			brick.onBallHit(this.#ball);
 		}
 	}
 
@@ -108,15 +100,5 @@ class Board
 		const dy = yn - ballPosition.y;
 
 		return dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
-	}
-
-	#filterAliveBricks()
-	{
-		if(this.#destroyedAnyBrick)
-		{
-			this.#bricks = this.#bricks.filter(e => e.isAlive());
-
-			this.#destroyedAnyBrick = false;
-		}
 	}
 }
