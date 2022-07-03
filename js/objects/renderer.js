@@ -1,8 +1,6 @@
 class Renderer
 {
 	#board;
-	#paddle;
-	#ball;
 	#ui;
 
 	constructor(game, board)
@@ -14,17 +12,12 @@ class Renderer
 	{
 		this.#drawBG(context, 0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
 		this.#drawBG(context, GAME_HUD_HEIGHT, GAME_HEIGHT - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
-		this.#paddle.draw(context);
-		this.#ball.draw(context);
-		this.#board.getBricks().forEach(e => e.draw(context));
-		this.#ui.draw(context);
+		this.#getDrawables().forEach(e => e.draw(context));
 	}
 
 	#init(game, board)
 	{
 		this.#board = board;
-		this.#paddle = this.#board.getPaddle();
-		this.#ball = this.#board.getBall();
 		this.#ui = new UI(game);
 	}
 
@@ -33,5 +26,14 @@ class Renderer
 		context.fillStyle = fillStyle;
 
 		context.fillRect(0, y, GAME_WIDTH, height);
+	}
+
+	#getDrawables()
+	{
+		const drawables = [this.#board.getPaddle(), this.#board.getBall(), this.#ui];
+
+		this.#board.getBricks().forEach(e => drawables.push(e));
+
+		return drawables;
 	}
 }
