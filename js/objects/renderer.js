@@ -7,10 +7,7 @@ class Renderer
 
 	constructor(game, board)
 	{
-		this.#board = board;
-		this.#paddle = this.#board.getPaddle();
-		this.#ball = this.#board.getBall();
-		this.#ui = new UI(game);
+		this.#init(game, board);
 	}
 
 	draw(context)
@@ -21,6 +18,14 @@ class Renderer
 		this.#ball.draw(context);
 		this.#board.getBricks().forEach(e => e.draw(context));
 		this.#ui.draw(context);
+	}
+
+	#init(game, board)
+	{
+		this.#board = board;
+		this.#paddle = this.#board.getPaddle();
+		this.#ball = this.#board.getBall();
+		this.#ui = new UI(game);
 	}
 
 	#drawBG(context, y, height, fillStyle)
