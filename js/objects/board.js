@@ -6,7 +6,8 @@ class Board
 
 	constructor()
 	{
-		this.#createObjects();
+		this.#init();
+		this.#createBricks();
 	}
 
 	update(timeStamp)
@@ -36,18 +37,15 @@ class Board
 		this.#bricks = this.#bricks.filter(e => e.isAlive());
 	}
 
-	#createObjects()
+	#init()
 	{
 		this.#paddle = new Paddle();
 		this.#ball = new Ball();
-
-		this.#createBricks();
+		this.#bricks = [];
 	}
 
 	#createBricks()
 	{
-		this.#bricks = [];
-		
 		for (let y = 0; y <= GAME_BRICKS.length - 1; ++y)
 		{
 			for (let x = 1; x <= GAME_BRICKS_IN_ROW; ++x)
