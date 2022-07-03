@@ -16,7 +16,7 @@ class HUD
 	#drawScoreCounter(ui, context)
 	{
 		const metrics = context.measureText(GAME_SCORE_TEXT);
-		const counterOffsetFromText = metrics.actualBoundingBoxAscent;
+		const counterOffsetFromText = metrics.actualBoundingBoxAscent + GAME_WINDOW_SCALE;
 		const textPosition = new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 		const counterPosition = new Point(textPosition.x + GAME_HUD_COUNTERS_OFFSET, textPosition.y + counterOffsetFromText);
 		const align = "left";
@@ -28,7 +28,7 @@ class HUD
 	#drawLivesCounter(ui, context)
 	{
 		const metrics = context.measureText(GAME_LIVES_TEXT);
-		const counterOffsetFromText = metrics.actualBoundingBoxAscent;
+		const counterOffsetFromText = metrics.actualBoundingBoxAscent + GAME_WINDOW_SCALE;
 		const textPosition = new Point(GAME_WIDTH - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 		const counterPosition = new Point(textPosition.x - GAME_HUD_COUNTERS_OFFSET, textPosition.y + counterOffsetFromText);
 		const align = "right";
