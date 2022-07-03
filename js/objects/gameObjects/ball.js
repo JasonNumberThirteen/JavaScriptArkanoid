@@ -8,11 +8,7 @@ class Ball extends MovableObject
 	constructor()
 	{
 		super();
-		
-		this.#renderer = new BallRenderer(this);
-		this.#collider = new BallCollider(this);
-		this.#trigger = new BallTrigger(this);
-		
+		this.#init();
 		this.setInitialState();
 	}
 
@@ -58,6 +54,13 @@ class Ball extends MovableObject
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
 
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
+	}
+
+	#init()
+	{
+		this.#renderer = new BallRenderer(this);
+		this.#collider = new BallCollider(this);
+		this.#trigger = new BallTrigger(this);
 	}
 
 	#randomInitialDirectionX()
