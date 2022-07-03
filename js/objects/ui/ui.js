@@ -5,8 +5,7 @@ class UI
 
 	constructor(game)
 	{
-		this.#game = game;
-		this.#hud = new HUD(game);
+		this.#init(game);
 	}
 	
 	draw(context)
@@ -21,6 +20,12 @@ class UI
 		context.textAlign = textAlign;
 
 		context.fillText(text, position.x, position.y);
+	}
+
+	#init(game)
+	{
+		this.#game = game;
+		this.#hud = new HUD(game);
 	}
 
 	#drawTextsWhenGameIsOver(context)
