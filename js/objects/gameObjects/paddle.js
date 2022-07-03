@@ -6,9 +6,8 @@ class Paddle extends MovableObject
 
 	constructor()
 	{
-		const size = new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT);
-		const x = (GAME_WIDTH - size.x) >> 1;
-		const y = GAME_HEIGHT - size.y - GAME_PADDLE_OFFSET_FROM_BOTTOM;
+		const x = (GAME_WIDTH - GAME_PADDLE_WIDTH) >> 1;
+		const y = GAME_HEIGHT - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM;
 
 		super(new Point(x, y), GAME_PADDLE_MOVEMENT_SPEED);
 
