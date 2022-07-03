@@ -44,7 +44,10 @@ class UI
 
 	#drawRefreshTipText(context)
 	{
-		this.#drawCenteredText(context, GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - 16, GAME_REFRESH_TIP_FILL_STYLE);
+		const metrics = context.measureText(GAME_REFRESH_TIP_TEXT);
+		const offsetFromBottom = metrics.actualBoundingBoxAscent >> 1;
+		
+		this.#drawCenteredText(context, GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - offsetFromBottom, GAME_REFRESH_TIP_FILL_STYLE);
 	}
 
 	#drawCenteredText(context, text, y, fillStyle)
