@@ -5,7 +5,7 @@ const GAME_BG_FILL_STYLE = "#cccccc";
 
 const GAME_FONT_SIZE = 8*GAME_WINDOW_SCALE;
 const GAME_FONT_UNIT = "px";
-const GAME_FONT = "Times New Roman";
+const GAME_FONT = "Trebuchet MS";
 
 const GAME_PADDLE_WIDTH = 32*GAME_WINDOW_SCALE;
 const GAME_PADDLE_HEIGHT = 4*GAME_WINDOW_SCALE;
