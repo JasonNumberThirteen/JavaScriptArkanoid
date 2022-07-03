@@ -33,8 +33,7 @@ class Brick extends GameObject
 
 		if(!this.isAlive())
 		{
-			GameInstance.getGameManager().addScore(this.getPoints());
-			GameInstance.getGameManager().onBrickDestroy();
+			this.#onDestroy();
 		}
 	}
 
@@ -51,5 +50,13 @@ class Brick extends GameObject
 	getPoints()
 	{
 		return this.#points.getValue();
+	}
+
+	#onDestroy()
+	{
+		const gameManager = GameInstance.getGameManager();
+
+		gameManager.addScore(this.getPoints());
+		gameManager.onBrickDestroy();
 	}
 }
