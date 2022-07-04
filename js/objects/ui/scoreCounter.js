@@ -1,4 +1,4 @@
-class ScoreCounter
+class ScoreCounter extends HUDCounter
 {
 	
 }

@@ -1,4 +1,4 @@
-class LivesCounter
+class LivesCounter extends HUDCounter
 {
 	
 }
