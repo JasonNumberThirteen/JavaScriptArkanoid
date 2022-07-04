@@ -2,27 +2,25 @@ class ScoreCounter extends HUDCounter
 {
 	constructor(context)
 	{
-		super(context, GAME_SCORE_TEXT);
+		super(context, GAME_SCORE_TEXT, "left");
 	}
 
-	draw(ui)
-	{
-		const align = "left";
-		
-		ui.drawText(this.getText(), this.#textPosition(), GAME_HUD_TEXTS_FILL_STYLE, align);
-		ui.drawText(GameInstance.getGameManager().getScore(), this.#counterPosition(), GAME_HUD_COUNTERS_FILL_STYLE, align);
-	}
-
-	#counterPosition()
-	{
-		const textPosition = this.#textPosition();
-		const counterOffsetYFromText = this.counterOffsetYFromText(GAME_SCORE_TEXT);
-		
-		return new Point(textPosition.x + this.slicedTextWidth(0, GAME_HUD_COUNTERS_OFFSET_IN_LETTERS), textPosition.y + counterOffsetYFromText);
-	}
-
-	#textPosition()
+	textPosition()
 	{
 		return new Point(GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
+	}
+
+	counterPosition()
+	{
+		const textPosition = this.textPosition();
+		const counterOffsetYFromText = this.counterOffsetYFromText(GAME_SCORE_TEXT);
+		const slicedTextWidth = this.slicedTextWidth(0, GAME_HUD_COUNTERS_OFFSET_IN_LETTERS);
+		
+		return new Point(textPosition.x + slicedTextWidth, textPosition.y + counterOffsetYFromText);
+	}
+
+	getValue()
+	{
+		return GameInstance.getGameManager().getScore();
 	}
 }
