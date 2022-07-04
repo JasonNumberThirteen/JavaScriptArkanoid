@@ -19,7 +19,7 @@ class CanvasContext
 	#init(board)
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
-		this.#renderer = new Renderer(board, this.#context);
+		this.#renderer = new Renderer(this.#context, board);
 	}
 
 	#setCanvasSize()
