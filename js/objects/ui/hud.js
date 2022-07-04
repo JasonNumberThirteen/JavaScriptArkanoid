@@ -1,45 +1,54 @@
 class HUD
 {
-	draw(ui, context)
+	#ui;
+	#context;
+
+	constructor(ui, context)
 	{
-		this.#drawScore(ui, context);
-		this.#drawLives(ui, context);
+		this.#ui = ui;
+		this.#context = context;
+	}
+	
+	draw()
+	{
+		this.#drawScore();
+		this.#drawLives();
 	}
 
-	#drawScore(ui, context)
+	#drawScore()
 	{
 		const text = {value: GAME_SCORE_TEXT, position: this.#scoreTextPosition()};
-		const counter = {value: GameInstance.getGameManager().getScore(), position: this.#scoreCounterPosition(context)};
+		const counter = {value: GameInstance.getGameManager().getScore(), position: this.#scoreCounterPosition()};
 		
-		this.#drawTextWithCounter(ui, context, text, counter, "left");
+		this.#drawTextWithCounter(text, counter, "left");
 	}
 
-	#drawLives(ui, context)
+	#drawLives()
 	{
 		const text = {value: GAME_LIVES_TEXT, position: this.#livesTextPosition()};
-		const counter = {value: GameInstance.getGameManager().getPaddleHealth(), position: this.#livesCounterPosition(context)};
+		const counter = {value: GameInstance.getGameManager().getPaddleHealth(), position: this.#livesCounterPosition()};
 		
-		this.#drawTextWithCounter(ui, context, text, counter, "right");
+		this.#drawTextWithCounter(text, counter, "right");
 	}
 
-	#drawTextWithCounter(ui, context, text, counter, align)
+	#drawTextWithCounter(text, counter, align)
 	{
-		ui.drawText(context, text.value, text.position, GAME_HUD_TEXTS_FILL_STYLE, align);
-		ui.drawText(context, counter.value, counter.position, GAME_HUD_COUNTERS_FILL_STYLE, align);
+		this.#ui.drawText(text.value, text.position, GAME_HUD_TEXTS_FILL_STYLE, align);
+		this.#ui.drawText(counter.value, counter.position, GAME_HUD_COUNTERS_FILL_STYLE, align);
 	}
 
-	#scoreCounterPosition(context)
+	#scoreCounterPosition()
 	{
 		const textPosition = this.#scoreTextPosition();
-		const counterOffsetYFromText = this.#counterOffsetYFromText(context, GAME_SCORE_TEXT);
+		const counterOffsetYFromText = this.#counterOffsetYFromText(GAME_SCORE_TEXT);
 		
 		return new Point(textPosition.x + this.#scoreSlicedTextWidth(), textPosition.y + counterOffsetYFromText);
 	}
 
-	#livesCounterPosition(context)
+	#livesCounterPosition()
 	{
 		const textPosition = this.#livesTextPosition();
-		const counterOffsetYFromText = this.#counterOffsetYFromText(context, GAME_LIVES_TEXT);
+		const counterOffsetYFromText = this.#counterOffsetYFromText(GAME_LIVES_TEXT);
 		
 		return new Point(textPosition.x - this.#livesSlicedTextWidth(), textPosition.y + counterOffsetYFromText);
 	}
@@ -54,19 +63,19 @@ class HUD
 		return new Point(GAME_WIDTH - GAME_HUD_TEXTS_OFFSET_X, GAME_HUD_TEXTS_Y);
 	}
 
-	#counterOffsetYFromText(context, text)
+	#counterOffsetYFromText(text)
 	{
-		return context.measureText(text).actualBoundingBoxAscent + GAME_WINDOW_SCALE;
+		return this.#context.measureText(text).actualBoundingBoxAscent + GAME_WINDOW_SCALE;
 	}
 
-	#scoreSlicedTextWidth(context)
+	#scoreSlicedTextWidth()
 	{
-		return context.measureText(this.#scoreSlicedText()).width;
+		return this.#context.measureText(this.#scoreSlicedText()).width;
 	}
 
-	#livesSlicedTextWidth(context)
+	#livesSlicedTextWidth()
 	{
-		return context.measureText(this.#livesSlicedText()).width;
+		return this.#context.measureText(this.#livesSlicedText()).width;
 	}
 
 	#scoreSlicedText()

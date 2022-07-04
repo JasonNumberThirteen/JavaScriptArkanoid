@@ -1,62 +1,64 @@
 class UI
 {
+	#context;
 	#hud;
 
-	constructor()
+	constructor(context)
 	{
-		this.#init();
+		this.#init(context);
 	}
 	
-	draw(context)
+	draw()
 	{
-		this.#hud.draw(this, context);
-		this.#drawTextsWhenGameIsOver(context);
+		this.#hud.draw();
+		this.#drawTextsWhenGameIsOver();
 	}
 
-	drawText(context, text, position, fillStyle, textAlign)
+	drawText(text, position, fillStyle, textAlign)
 	{
-		context.fillStyle = fillStyle;
-		context.textAlign = textAlign;
+		this.#context.fillStyle = fillStyle;
+		this.#context.textAlign = textAlign;
 
-		context.fillText(text, position.x, position.y);
+		this.#context.fillText(text, position.x, position.y);
 	}
 
-	#init()
+	#init(context)
 	{
-		this.#hud = new HUD();
+		this.#context = context;
+		this.#hud = new HUD(this, this.#context);
 	}
 
-	#drawTextsWhenGameIsOver(context)
+	#drawTextsWhenGameIsOver()
 	{
 		if(!GameInstance.isRunning())
 		{
-			this.#drawGameEndText(context);
-			this.#drawRefreshTipText(context);
+			this.#drawGameEndText();
+			this.#drawRefreshTipText();
 		}
 	}
 
-	#drawGameEndText(context)
+	#drawGameEndText()
 	{
 		const wonTheGame = GameInstance.getGameManager().wonTheGame();
 		const endText = (wonTheGame) ? GAME_YOU_WIN_TEXT : GAME_GAME_OVER_TEXT;
 		const endTextY = (GAME_HEIGHT + GAME_HUD_HEIGHT) >> 1;
 		const endTextFillStyle = (wonTheGame) ? GAME_YOU_WIN_TEXT_FILL_STYLE : GAME_GAME_OVER_FILL_STYLE;
 		
-		this.#drawCenteredText(context, endText, endTextY, endTextFillStyle);
+		this.#drawCenteredText(endText, endTextY, endTextFillStyle);
 	}
 
-	#drawRefreshTipText(context)
+	#drawRefreshTipText()
 	{
-		const metrics = context.measureText(GAME_REFRESH_TIP_TEXT);
+		const metrics = this.#context.measureText(GAME_REFRESH_TIP_TEXT);
 		const offsetFromBottom = metrics.actualBoundingBoxAscent >> 1;
 		
-		this.#drawCenteredText(context, GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - offsetFromBottom, GAME_REFRESH_TIP_FILL_STYLE);
+		this.#drawCenteredText(GAME_REFRESH_TIP_TEXT, GAME_HEIGHT - offsetFromBottom, GAME_REFRESH_TIP_FILL_STYLE);
 	}
 
-	#drawCenteredText(context, text, y, fillStyle)
+	#drawCenteredText(text, y, fillStyle)
 	{
 		const position = new Point(GAME_WIDTH >> 1, y);
 		
-		this.drawText(context, text, position, fillStyle, "center");
+		this.drawText(text, position, fillStyle, "center");
 	}
 }

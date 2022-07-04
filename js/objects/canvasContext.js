@@ -13,13 +13,13 @@ class CanvasContext
 	draw()
 	{
 		this.#context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		this.#renderer.draw(this.#context);
+		this.#renderer.draw();
 	}
 
 	#init(board)
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
-		this.#renderer = new Renderer(board);
+		this.#renderer = new Renderer(board, this.#context);
 	}
 
 	#setCanvasSize()
