@@ -5,14 +5,19 @@ class HUD
 
 	constructor(ui, context)
 	{
-		this.#ui = ui;
-		this.#context = context;
+		this.#init(ui, context);
 	}
 	
 	draw()
 	{
 		this.#drawScore();
 		this.#drawLives();
+	}
+
+	#init(ui, context)
+	{
+		this.#ui = ui;
+		this.#context = context;
 	}
 
 	#drawScore()
