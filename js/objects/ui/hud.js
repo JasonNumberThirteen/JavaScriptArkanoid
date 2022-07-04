@@ -85,6 +85,8 @@ class HUD
 
 	#livesSlicedText()
 	{
-		return GAME_LIVES_TEXT.slice(GAME_LIVES_TEXT.length - GAME_HUD_COUNTERS_OFFSET_IN_LETTERS - 1, GAME_LIVES_TEXT.length - 1);
+		const textLength = GAME_LIVES_TEXT.length;
+		
+		return GAME_LIVES_TEXT.slice(textLength - GAME_HUD_COUNTERS_OFFSET_IN_LETTERS - 1, textLength - 1);
 	}
 }
