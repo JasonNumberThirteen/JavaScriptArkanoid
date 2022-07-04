@@ -10,7 +10,7 @@ class UI
 	
 	draw()
 	{
-		this.#hud.draw();
+		this.#hud.draw(this);
 		this.#drawTextsWhenGameIsOver();
 	}
 
@@ -25,7 +25,7 @@ class UI
 	#init(context)
 	{
 		this.#context = context;
-		this.#hud = new HUD(this, this.#context);
+		this.#hud = new HUD(this.#context);
 	}
 
 	#drawTextsWhenGameIsOver()
