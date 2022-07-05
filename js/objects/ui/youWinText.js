@@ -1,4 +1,4 @@
-class YouWinText
+class YouWinText extends UIText
 {
 	
 }

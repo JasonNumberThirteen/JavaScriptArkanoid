@@ -1,4 +1,4 @@
-class RefreshTipText
+class RefreshTipText extends UIText
 {
 	
 }

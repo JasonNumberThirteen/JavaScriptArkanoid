@@ -1,4 +1,4 @@
-class GameOverText
+class GameOverText extends UIText
 {
 	
 }
