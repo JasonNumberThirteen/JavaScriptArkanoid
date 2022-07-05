@@ -13,7 +13,7 @@ class UI
 	draw()
 	{
 		this.#hud.draw(this);
-		this.#drawTextsWhenGameIsOver();
+		this.#texts.forEach(e => e.draw(this));
 	}
 
 	drawText(text, position, fillStyle, textAlign)
@@ -36,13 +36,5 @@ class UI
 		this.#texts.push(new GameOverText());
 		this.#texts.push(new YouWinText());
 		this.#texts.push(new RefreshTipText(context));
-	}
-
-	#drawTextsWhenGameIsOver()
-	{
-		if(!GameInstance.isRunning())
-		{
-			this.#texts.forEach(e => e.draw(this));
-		}
 	}
 }
