@@ -7,7 +7,7 @@ class GameOverText extends UIText
 
 	isVisible()
 	{
-		return !GameInstance.getGameManager().wonTheGame();
+		return GameInstance.getGameManager().lostTheGame();
 	}
 
 	textPosition()
