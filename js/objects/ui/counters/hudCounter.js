@@ -34,12 +34,7 @@ class HUDCounter
 
 	slicedTextWidth(start, end)
 	{
-		return this.#textMetrics(this.slicedText(start, end)).width;
-	}
-
-	slicedText(start, end)
-	{
-		return this.#text.slice(start, end);
+		return this.#textMetrics(this.#slicedText(start, end)).width;
 	}
 
 	getText()
@@ -50,6 +45,11 @@ class HUDCounter
 	getValue()
 	{
 		return 0;
+	}
+
+	#slicedText(start, end)
+	{
+		return this.#text.slice(start, end);
 	}
 
 	#textMetrics(text)
