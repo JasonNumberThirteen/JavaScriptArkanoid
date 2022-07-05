@@ -50,14 +50,19 @@ class Board
 		{
 			for (let x = 1; x <= GAME_BRICKS_IN_ROW; ++x)
 			{
-				const basePosition = new Point(GAME_BRICK_WIDTH + GAME_BRICK_GAP_X, GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y);
-				const offset = new Point(15*GAME_WINDOW_SCALE, GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y);
-				const finalPosition = new Point(basePosition.x*x - offset.x, basePosition.y*y + offset.y);
-				const brick = new Brick(finalPosition, GAME_BRICKS[y]);
+				const brick = new Brick(this.#brickPosition(x, y), GAME_BRICKS[y]);
 				
 				this.#bricks.push(brick);
 			}
 		}
+	}
+
+	#brickPosition(row, column)
+	{
+		const basePosition = new Point(GAME_BRICK_WIDTH + GAME_BRICK_GAP_X, GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y);
+		const offset = new Point(15*GAME_WINDOW_SCALE, GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y);
+		
+		return new Point(basePosition.x*row - offset.x, basePosition.y*column + offset.y);
 	}
 
 	#checkCollisions()
