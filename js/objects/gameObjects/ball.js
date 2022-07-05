@@ -27,6 +27,11 @@ class Ball extends MovableObject
 		this.#renderer.draw(context);
 	}
 
+	checkCollisionWith(object, size, event)
+	{
+		this.#collider.checkCollisionWith(object, size, event);
+	}
+
 	deflectFromPaddle()
 	{
 		this.deflectInYAxis();

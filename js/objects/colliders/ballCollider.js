@@ -23,6 +23,32 @@ class BallCollider
 		}
 	}
 
+	checkCollisionWith(object, size, event)
+	{
+		if(this.#isCollidingWith(object, size))
+		{
+			event();
+		}
+	}
+
+	#isCollidingWith(object, size)
+	{
+		return this.#rectangularObjectCollidesWithBall(object, size);
+	}
+
+	#rectangularObjectCollidesWithBall(object, size)
+	{
+		const rectangularObjectPosition = object.getPosition();
+		const ballPosition = this.#ball.getPosition();
+		const rectangularObjectCollisionBox = new Point(rectangularObjectPosition.x + size.x, rectangularObjectPosition.y + size.y);
+		const xn = Math.max(rectangularObjectPosition.x, Math.min(ballPosition.x, rectangularObjectCollisionBox.x));
+		const yn = Math.max(rectangularObjectPosition.y, Math.min(ballPosition.y, rectangularObjectCollisionBox.y));
+		const dx = xn - ballPosition.x;
+		const dy = yn - ballPosition.y;
+
+		return dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
+	}
+
 	#isTouchingTopEdge()
 	{
 		return this.#ball.getPosition().y < GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
