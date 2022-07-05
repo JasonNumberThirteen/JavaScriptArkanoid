@@ -50,15 +50,10 @@ class Board
 		{
 			for (let x = 1; x <= GAME_BRICKS_IN_ROW; ++x)
 			{
-				const values = GAME_BRICKS[y];
-				const baseX = GAME_BRICK_WIDTH + GAME_BRICK_GAP_X;
-				const baseY = GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y;
-				const offsetX = 15*GAME_WINDOW_SCALE;
-				const offsetY = GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y;
-				const brickX = baseX*x - offsetX;
-				const brickY = baseY*y + offsetY;
-				const position = new Point(brickX, brickY);
-				const brick = new Brick(position, values);
+				const basePosition = new Point(GAME_BRICK_WIDTH + GAME_BRICK_GAP_X, GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y);
+				const offset = new Point(15*GAME_WINDOW_SCALE, GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y);
+				const finalPosition = new Point(basePosition.x*x - offset.x, basePosition.y*y + offset.y);
+				const brick = new Brick(finalPosition, GAME_BRICKS[y]);
 				
 				this.#bricks.push(brick);
 			}
