@@ -7,11 +7,11 @@ class BallTrigger
 		this.#ball = ball;
 	}
 
-	checkTrigger(timeStamp)
+	checkTrigger()
 	{
 		if(this.#hasFallen())
 		{
-			this.#onBallFall(timeStamp);
+			this.#onBallFall();
 		}
 	}
 
@@ -20,9 +20,9 @@ class BallTrigger
 		return this.#ball.getPosition().y > GAME_HEIGHT + GAME_BALL_RADIUS;
 	}
 
-	#onBallFall(timeStamp)
+	#onBallFall()
 	{
-		this.#ball.setInitialState(timeStamp);
+		this.#ball.setInitialState();
 		GameInstance.getGameManager().onBallFall();
 	}
 }

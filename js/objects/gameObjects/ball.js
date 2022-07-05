@@ -12,13 +12,13 @@ class Ball extends MovableObject
 		this.setInitialState();
 	}
 
-	update(timeStamp)
+	update()
 	{
-		if(this.#canMove(timeStamp))
+		if(this.#canMove())
 		{
 			this.move();
 			this.#collider.checkCollision();
-			this.#trigger.checkTrigger(timeStamp);
+			this.#trigger.checkTrigger();
 		}
 	}
 
@@ -43,11 +43,11 @@ class Ball extends MovableObject
 		this.setMovementDirectionY(-this.getMovementDirectionY());
 	}
 
-	setInitialState(timeStamp)
+	setInitialState()
 	{
 		const x = GAME_WIDTH >> 1;
 		const y = GAME_HEIGHT - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
-		const waitTimeOffset = timeStamp || 0;
+		const waitTimeOffset = (typeof GameInstance !== "undefined") ? GameInstance.time() : 0;
 
 		this.setPosition(new Point(x, y));
 		this.setMovementDirection(new Point(this.#randomInitialDirectionX(), GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y));
@@ -68,9 +68,9 @@ class Ball extends MovableObject
 		return (Math.random() > 0.5) ? -1 : 1;
 	}
 
-	#canMove(timeStamp)
+	#canMove()
 	{
-		return timeStamp > this.#waitTime;
+		return GameInstance.time() > this.#waitTime;
 	}
 
 	#accelerate()

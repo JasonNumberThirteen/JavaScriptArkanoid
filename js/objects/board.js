@@ -10,10 +10,10 @@ class Board
 		this.#createBricks();
 	}
 
-	update(timeStamp)
+	update()
 	{
 		this.#paddle.update();
-		this.#ball.update(timeStamp);
+		this.#ball.update();
 		this.#checkCollisions();
 	}
 

@@ -4,6 +4,7 @@ class Game
 	#gameManager;
 	#context;
 	#input;
+	#time;
 
 	constructor()
 	{
@@ -19,6 +20,11 @@ class Game
 	isRunning()
 	{
 		return !(this.#gameManager.wonTheGame() || this.#gameManager.lostTheGame());
+	}
+
+	time()
+	{
+		return this.#time;
 	}
 
 	#init()
@@ -39,8 +45,14 @@ class Game
 
 	#loop(timeStamp)
 	{
+		this.#updateTime(timeStamp);
 		this.#board.update(timeStamp);
 		this.#context.draw();
 		this.#requestAnimationFrame();
+	}
+
+	#updateTime(timeStamp)
+	{
+		this.#time = timeStamp;
 	}
 }
