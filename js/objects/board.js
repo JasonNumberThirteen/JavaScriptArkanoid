@@ -67,7 +67,7 @@ class Board
 
 	#checkCollisions()
 	{
-		this.#ball.checkCollisionWith(this.#paddle, new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#ball.deflectFromPaddle.bind(this.#ball));
+		this.#ball.checkCollisionWith(this.#paddle, new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT), this.#paddle.onBallHit.bind(this.#paddle, this.#ball));
 		this.#bricks.forEach(e => this.#ball.checkCollisionWith(e, new Point(GAME_BRICK_WIDTH, GAME_BRICK_HEIGHT), e.onBallHit.bind(e, this.#ball)));
 	}
 }

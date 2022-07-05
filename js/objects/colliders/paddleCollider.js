@@ -19,6 +19,11 @@ class PaddleCollider
 		}
 	}
 
+	onBallHit(ball)
+	{
+		ball.deflectFromPaddle();
+	}
+
 	#isTouchingLeftEdge()
 	{
 		return this.#paddle.getPosition().x < 0;

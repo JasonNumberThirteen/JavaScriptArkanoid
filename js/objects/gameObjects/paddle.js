@@ -24,6 +24,11 @@ class Paddle extends MovableObject
 		this.#renderer.draw(context);
 	}
 
+	onBallHit(ball)
+	{
+		this.#collider.onBallHit(ball);
+	}
+
 	setMovingLeftState(value)
 	{
 		this.setMovementDirectionX((value) ? -1 : 0);
