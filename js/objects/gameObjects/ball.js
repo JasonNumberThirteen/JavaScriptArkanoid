@@ -55,7 +55,8 @@ class Ball extends MovableObject
 		const waitTimeOffset = (typeof GameInstance !== "undefined") ? GameInstance.time() : 0;
 
 		this.setPosition(new Point(x, y));
-		this.setMovementDirection(new Point(this.#randomInitialDirectionX(), GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y));
+		this.setMovementDirectionX(this.#randomInitialDirectionX());
+		this.setMovementDirectionY(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
 
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;

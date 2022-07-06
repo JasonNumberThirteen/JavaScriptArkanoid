@@ -25,18 +25,6 @@ class MovableObject extends GameObject
 		this.#speed = speed || 0;
 	}
 
-	setMovementDirection(direction)
-	{
-		if(!this.#direction)
-		{
-			this.#direction = new Point(0, 0);
-			direction = this.#direction;
-		}
-		
-		this.setMovementDirectionX(direction.x);
-		this.setMovementDirectionY(direction.y);
-	}
-
 	setMovementDirectionX(x)
 	{
 		this.#direction.x = x || 0; 
