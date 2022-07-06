@@ -38,13 +38,10 @@ class BallCollider
 
 	#rectangularObjectIsCollidingWithBall(object)
 	{
-		const objectPosition = object.getPosition();
 		const ballPosition = this.#ball.getPosition();
-		const objectCollisionBox = object.collisionBox();
-		const xn = Math.max(objectPosition.x, Math.min(ballPosition.x, objectCollisionBox.x));
-		const yn = Math.max(objectPosition.y, Math.min(ballPosition.y, objectCollisionBox.y));
+		const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(object.getPosition(), object.collisionBox(), ballPosition);
 		
-		return distanceBetweenPoints(ballPosition, new Point(xn, yn)) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
+		return distanceBetweenPoints(ballPosition, nearestPointOnObjectToTheCenterOfTheBall) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
 	}
 
 	#isTouchingTopEdge()
