@@ -2,18 +2,19 @@ class UI
 {
 	#context;
 	#texts;
-	#hud;
+	#counters;
 
 	constructor(context)
 	{
 		this.#init(context);
 		this.#initTexts(context);
+		this.#initCounters(context);
 	}
 	
 	draw()
 	{
-		this.#hud.draw(this);
 		this.#texts.forEach(e => e.draw(this));
+		this.#counters.forEach(e => e.draw(this));
 	}
 
 	drawText(text, position, fillStyle, textAlign)
@@ -28,7 +29,7 @@ class UI
 	{
 		this.#context = context;
 		this.#texts = [];
-		this.#hud = new HUD(this.#context);
+		this.#counters = [];
 	}
 
 	#initTexts(context)
@@ -36,5 +37,11 @@ class UI
 		this.#texts.push(new GameOverText());
 		this.#texts.push(new YouWinText());
 		this.#texts.push(new RefreshTipText(context));
+	}
+
+	#initCounters(context)
+	{
+		this.#counters.push(new ScoreCounter(context));
+		this.#counters.push(new LivesCounter(context));
 	}
 }
