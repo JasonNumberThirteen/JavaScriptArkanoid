@@ -33,10 +33,10 @@ class BallCollider
 
 	#isCollidingWith(object)
 	{
-		return this.#rectangularObjectCollidesWithBall(object);
+		return this.#rectangularObjectIsCollidingWithBall(object);
 	}
 
-	#rectangularObjectCollidesWithBall(object)
+	#rectangularObjectIsCollidingWithBall(object)
 	{
 		const rectangularObjectPosition = object.getPosition();
 		const rectangularObjectSize = object.getSize();
