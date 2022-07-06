@@ -3,7 +3,7 @@ class ScoreCounter extends HUDCounter
 	constructor(context)
 	{
 		super(context, new UIText(GAME_SCORE_TEXT, GAME_HUD_TEXTS_FILL_STYLE, "left"), "left");
-		this.getText().setPosition(this.#textPosition());
+		this.setTextPosition(this.#textPosition());
 	}
 
 	counterPosition()

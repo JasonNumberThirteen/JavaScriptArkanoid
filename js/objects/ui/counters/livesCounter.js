@@ -3,7 +3,7 @@ class LivesCounter extends HUDCounter
 	constructor(context)
 	{
 		super(context, new UIText(GAME_LIVES_TEXT, GAME_HUD_TEXTS_FILL_STYLE, "right"), "right");
-		this.getText().setPosition(this.#textPosition());
+		this.setTextPosition(this.#textPosition());
 	}
 
 	counterPosition()
