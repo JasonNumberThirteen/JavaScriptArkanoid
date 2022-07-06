@@ -50,15 +50,11 @@ class Ball extends MovableObject
 
 	setInitialState()
 	{
-		const x = GAME_WIDTH >> 1;
-		const y = GAME_HEIGHT - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
-		const waitTimeOffset = (typeof GameInstance !== "undefined") ? GameInstance.time() : 0;
-
-		this.setPosition(new Point(x, y));
-		this.setMovementDirection(new Point(this.#randomInitialDirectionX(), GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y));
+		this.#resetPosition();
+		this.#resetWaitTime();
+		this.setMovementDirectionX(this.#randomInitialDirectionX());
+		this.setMovementDirectionY(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
-
-		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
 	}
 
 	#init()
@@ -66,6 +62,21 @@ class Ball extends MovableObject
 		this.#renderer = new BallRenderer(this);
 		this.#collider = new BallCollider(this);
 		this.#trigger = new BallTrigger(this);
+	}
+
+	#resetPosition()
+	{
+		const x = GAME_WIDTH >> 1;
+		const y = GAME_HEIGHT - GAME_PADDLE_HEIGHT - GAME_PADDLE_OFFSET_FROM_BOTTOM - GAME_BALL_OFFSET_FROM_PADDLE;
+		
+		this.setPosition(new Point(x, y));
+	}
+
+	#resetWaitTime()
+	{
+		const waitTimeOffset = (typeof GameInstance !== "undefined") ? GameInstance.time() : 0;
+
+		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
 	}
 
 	#randomInitialDirectionX()
