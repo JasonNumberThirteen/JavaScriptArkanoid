@@ -32,16 +32,16 @@ class UI
 		this.#counters = [];
 	}
 
-	#initTexts(context)
+	#initTexts()
 	{
 		this.#texts.push(new GameOverText());
 		this.#texts.push(new YouWinText());
-		this.#texts.push(new RefreshTipText(context));
+		this.#texts.push(new RefreshTipText(this.#context));
 	}
 
-	#initCounters(context)
+	#initCounters()
 	{
-		this.#counters.push(new ScoreCounter(context));
-		this.#counters.push(new LivesCounter(context));
+		this.#counters.push(new ScoreCounter(this.#context));
+		this.#counters.push(new LivesCounter(this.#context));
 	}
 }
