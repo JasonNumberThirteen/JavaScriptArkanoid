@@ -34,4 +34,9 @@ class UIText
 	{
 		return true;
 	}
+
+	getText()
+	{
+		return this.#text;
+	}
 }

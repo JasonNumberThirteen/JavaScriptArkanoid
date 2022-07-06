@@ -13,13 +13,8 @@ class HUDCounter
 
 	draw(ui)
 	{
-		ui.drawText(this.getText(), this.textPosition(), GAME_HUD_TEXTS_FILL_STYLE, this.#align);
+		this.#text.draw(ui);
 		ui.drawText(this.getValue(), this.counterPosition(), GAME_HUD_COUNTERS_FILL_STYLE, this.#align);
-	}
-
-	textPosition()
-	{
-		return new Point(0, 0);
 	}
 
 	counterPosition()
@@ -49,7 +44,7 @@ class HUDCounter
 
 	#slicedText(start, end)
 	{
-		return this.#text.slice(start, end);
+		return this.#text.getText().slice(start, end);
 	}
 
 	#textMetrics(text)
