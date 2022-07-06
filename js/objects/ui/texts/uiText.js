@@ -3,6 +3,7 @@ class UIText
 	#text;
 	#fillStyle;
 	#align;
+	#position;
 
 	constructor(text, fillStyle, align)
 	{
@@ -20,17 +21,17 @@ class UIText
 	{
 		if(this.isVisible())
 		{
-			ui.drawText(this.#text, this.textPosition(), this.#fillStyle, this.#align);
+			ui.drawText(this.#text, this.#position, this.#fillStyle, this.#align);
 		}
+	}
+
+	setPosition(position)
+	{
+		this.#position = position;
 	}
 
 	isVisible()
 	{
 		return true;
-	}
-
-	textPosition()
-	{
-		return new Point(0, 0);
 	}
 }
