@@ -52,7 +52,7 @@ class Ball extends MovableObject
 	{
 		this.#resetPosition();
 		this.#resetWaitTime();
-		this.setMovementDirectionX(this.#randomInitialDirectionX());
+		this.setMovementDirectionX(randomSign());
 		this.setMovementDirectionY(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
 	}
@@ -79,10 +79,12 @@ class Ball extends MovableObject
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
 	}
 
+	/*
 	#randomInitialDirectionX()
 	{
 		return (Math.random() > 0.5) ? -1 : 1;
 	}
+	*/
 
 	#canMove()
 	{

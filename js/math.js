@@ -1,4 +1,5 @@
 const clamp = (min, n, max) => Math.min(Math.max(n, min), max);
+const randomSign = () => Math.random() > 0.5 ? -1 : 1;
 
 const nearestPointOnRectangleToTheCenterOfCircle = function(rectanglePosition, rectangleCollisionBox, circlePosition)
 {
