@@ -8,6 +8,7 @@ class CanvasContext
 		this.#init(board);
 		this.#setCanvasSize();
 		this.#setContextValues();
+		this.#initRenderer(board);
 	}
 
 	draw()
@@ -16,10 +17,9 @@ class CanvasContext
 		this.#renderer.draw();
 	}
 
-	#init(board)
+	#init()
 	{
 		this.#context = document.getElementById("gameWindow").getContext("2d");
-		this.#renderer = new Renderer(this.#context, board);
 	}
 
 	#setCanvasSize()
@@ -32,5 +32,10 @@ class CanvasContext
 	{
 		this.#context.font = GAME_FONT_SIZE + GAME_FONT_UNIT + " " + GAME_FONT;
 		this.#context.lineWidth = GAME_WINDOW_SCALE;
+	}
+
+	#initRenderer(board)
+	{
+		this.#renderer = new Renderer(this.#context, board);
 	}
 }
