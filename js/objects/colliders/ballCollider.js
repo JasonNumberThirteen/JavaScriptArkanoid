@@ -38,16 +38,13 @@ class BallCollider
 
 	#rectangularObjectIsCollidingWithBall(object)
 	{
-		const rectangularObjectPosition = object.getPosition();
-		const rectangularObjectSize = object.getSize();
+		const objectPosition = object.getPosition();
 		const ballPosition = this.#ball.getPosition();
-		const rectangularObjectCollisionBox = new Point(rectangularObjectPosition.x + rectangularObjectSize.x, rectangularObjectPosition.y + rectangularObjectSize.y);
-		const xn = Math.max(rectangularObjectPosition.x, Math.min(ballPosition.x, rectangularObjectCollisionBox.x));
-		const yn = Math.max(rectangularObjectPosition.y, Math.min(ballPosition.y, rectangularObjectCollisionBox.y));
-		const dx = xn - ballPosition.x;
-		const dy = yn - ballPosition.y;
-
-		return dx*dx + dy*dy <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
+		const objectCollisionBox = object.collisionBox();
+		const xn = Math.max(objectPosition.x, Math.min(ballPosition.x, objectCollisionBox.x));
+		const yn = Math.max(objectPosition.y, Math.min(ballPosition.y, objectCollisionBox.y));
+		
+		return distanceBetweenPoints(ballPosition, new Point(xn, yn)) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
 	}
 
 	#isTouchingTopEdge()
