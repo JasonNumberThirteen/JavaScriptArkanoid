@@ -54,6 +54,11 @@ class Paddle extends MovableObject
 		return this.getHealth() > 0;
 	}
 
+	getSize()
+	{
+		return this.#collider.getSize();
+	}
+
 	#init()
 	{
 		this.#renderer = new PaddleRenderer(this);

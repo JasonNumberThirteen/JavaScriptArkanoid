@@ -1,10 +1,12 @@
 class PaddleCollider
 {
 	#paddle;
+	#size;
 
 	constructor(paddle)
 	{
 		this.#paddle = paddle;
+		this.#size = new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT);
 	}
 
 	checkCollision()
@@ -22,6 +24,11 @@ class PaddleCollider
 	onBallHit(ball)
 	{
 		ball.deflectFromPaddle();
+	}
+
+	getSize()
+	{
+		return this.#size;
 	}
 
 	#isTouchingLeftEdge()

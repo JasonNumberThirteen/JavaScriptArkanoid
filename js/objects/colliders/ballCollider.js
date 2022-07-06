@@ -23,24 +23,25 @@ class BallCollider
 		}
 	}
 
-	checkCollisionWith(object, size, event)
+	checkCollisionWith(object, event)
 	{
-		if(this.#isCollidingWith(object, size))
+		if(this.#isCollidingWith(object))
 		{
 			event();
 		}
 	}
 
-	#isCollidingWith(object, size)
+	#isCollidingWith(object)
 	{
-		return this.#rectangularObjectCollidesWithBall(object, size);
+		return this.#rectangularObjectCollidesWithBall(object);
 	}
 
-	#rectangularObjectCollidesWithBall(object, size)
+	#rectangularObjectCollidesWithBall(object)
 	{
 		const rectangularObjectPosition = object.getPosition();
+		const rectangularObjectSize = object.getSize();
 		const ballPosition = this.#ball.getPosition();
-		const rectangularObjectCollisionBox = new Point(rectangularObjectPosition.x + size.x, rectangularObjectPosition.y + size.y);
+		const rectangularObjectCollisionBox = new Point(rectangularObjectPosition.x + rectangularObjectSize.x, rectangularObjectPosition.y + rectangularObjectSize.y);
 		const xn = Math.max(rectangularObjectPosition.x, Math.min(ballPosition.x, rectangularObjectCollisionBox.x));
 		const yn = Math.max(rectangularObjectPosition.y, Math.min(ballPosition.y, rectangularObjectCollisionBox.y));
 		const dx = xn - ballPosition.x;
