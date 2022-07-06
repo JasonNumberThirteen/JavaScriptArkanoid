@@ -50,11 +50,16 @@ class Board
 		{
 			for (let x = 1; x <= GAME_BRICKS_IN_ROW; ++x)
 			{
-				const brick = new Brick(this.#brickPosition(x, y), GAME_BRICKS[y]);
-				
-				this.#bricks.push(brick);
+				this.#createBrick(x, y);
 			}
 		}
+	}
+
+	#createBrick(row, column)
+	{
+		const brick = new Brick(this.#brickPosition(row, column), GAME_BRICKS[column]);
+		
+		this.#bricks.push(brick);
 	}
 
 	#brickPosition(row, column)
