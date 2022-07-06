@@ -52,6 +52,11 @@ class Brick extends GameObject
 		return this.#collider.getSize();
 	}
 
+	collisionBox()
+	{
+		return this.#collider.collisionBox();
+	}
+
 	#init(values)
 	{
 		this.#renderer = new BrickRenderer(this);

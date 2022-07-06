@@ -18,4 +18,11 @@ class BoxCollider
 	{
 		return this.#size;
 	}
+
+	collisionBox()
+	{
+		const position = this.#object.getPosition();
+		
+		return new Point(position.x + this.#size.x, position.y + this.#size.y);
+	}
 }
