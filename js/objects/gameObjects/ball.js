@@ -79,13 +79,6 @@ class Ball extends MovableObject
 		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
 	}
 
-	/*
-	#randomInitialDirectionX()
-	{
-		return (Math.random() > 0.5) ? -1 : 1;
-	}
-	*/
-
 	#canMove()
 	{
 		return GameInstance.time() > this.#waitTime;
