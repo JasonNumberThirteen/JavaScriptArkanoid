@@ -1,12 +1,8 @@
-class PaddleCollider
+class PaddleCollider extends BoxCollider
 {
-	#paddle;
-	#size;
-
 	constructor(paddle)
 	{
-		this.#paddle = paddle;
-		this.#size = new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT);
+		super(paddle, new Point(GAME_PADDLE_WIDTH, GAME_PADDLE_HEIGHT));
 	}
 
 	checkCollision()
@@ -26,29 +22,24 @@ class PaddleCollider
 		ball.deflectFromPaddle();
 	}
 
-	getSize()
-	{
-		return this.#size;
-	}
-
 	#isTouchingLeftEdge()
 	{
-		return this.#paddle.getPosition().x < 0;
+		return this.getObject().getPosition().x < 0;
 	}
 
 	#isTouchingRightEdge()
 	{
-		return this.#paddle.getPosition().x > this.#rightEdgeX();
+		return this.getObject().getPosition().x > this.#rightEdgeX();
 	}
 
 	#onLeftEdgeTouch()
 	{
-		this.#paddle.getPosition().x = 0;
+		this.getObject().getPosition().x = 0;
 	}
 
 	#onRightEdgeTouch()
 	{
-		this.#paddle.getPosition().x = this.#rightEdgeX();
+		this.getObject().getPosition().x = this.#rightEdgeX();
 	}
 
 	#rightEdgeX()
