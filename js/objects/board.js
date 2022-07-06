@@ -55,19 +55,19 @@ class Board
 		}
 	}
 
-	#createBrick(row, column)
+	#createBrick(column, row)
 	{
-		const brick = new Brick(this.#brickPosition(row, column), GAME_BRICKS[column]);
+		const brick = new Brick(this.#brickPosition(column, row), GAME_BRICKS[row]);
 		
 		this.#bricks.push(brick);
 	}
 
-	#brickPosition(row, column)
+	#brickPosition(column, row)
 	{
 		const basePosition = new Point(GAME_BRICK_WIDTH + GAME_BRICK_GAP_X, GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y);
 		const offset = new Point(15*GAME_WINDOW_SCALE, GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y);
 		
-		return new Point(basePosition.x*row - offset.x, basePosition.y*column + offset.y);
+		return new Point(basePosition.x*column - offset.x, basePosition.y*row + offset.y);
 	}
 
 	#checkCollisions()
