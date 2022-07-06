@@ -39,8 +39,9 @@ class GameManager
 		this.#board.getPaddle().takeDamage();
 	}
 
-	onBrickDestroy()
+	onBrickDestroy(brick)
 	{
+		this.addScore(brick.getPoints());
 		this.#board.filterAliveBricks();
 	}
 

@@ -63,9 +63,6 @@ class Brick extends GameObject
 
 	#onDestroy()
 	{
-		const gameManager = GameInstance.getGameManager();
-
-		gameManager.addScore(this.getPoints());
-		gameManager.onBrickDestroy();
+		GameInstance.getGameManager().onBrickDestroy(this);
 	}
 }
