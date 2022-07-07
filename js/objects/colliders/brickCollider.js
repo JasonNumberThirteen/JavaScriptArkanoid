@@ -7,7 +7,7 @@ class BrickCollider extends BoxCollider
 
 	onBallHit(ball)
 	{
-		ball.deflectInYAxis();
+		ball.deflect(this.getObject());
 		this.getObject().takeDamage();
 	}
 }

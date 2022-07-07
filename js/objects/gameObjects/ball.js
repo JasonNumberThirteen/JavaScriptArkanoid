@@ -34,9 +34,31 @@ class Ball extends MovableObject
 
 	deflectFromPaddle(paddle)
 	{
+		this.deflect(paddle);
 		this.#changeDirectionX(paddle);
-		this.deflectInYAxis();
 		this.#accelerate();
+	}
+
+	deflect(object)
+	{
+		const ballPosition = this.getPosition();
+		const objectPosition = object.getPosition();
+		const objectCollisionBox = object.collisionBox();
+
+		if(ballPosition.x < objectPosition.x || ballPosition.x > objectCollisionBox.x)
+		{
+			if(ballPosition.y > objectPosition.y && ballPosition.y < objectCollisionBox.y)
+			{
+				this.deflectInXAxis();
+			}
+		}
+		else if(ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y)
+		{
+			if(ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x)
+			{
+				this.deflectInYAxis();
+			}
+		}
 	}
 
 	deflectInXAxis()
