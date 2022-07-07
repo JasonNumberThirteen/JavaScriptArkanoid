@@ -59,9 +59,9 @@ class Paddle extends MovableObject
 		return this.#collider.getSize();
 	}
 
-	collisionBox()
+	getCollisionBox()
 	{
-		return this.#collider.collisionBox();
+		return this.#collider.getCollisionBox();
 	}
 
 	#init()

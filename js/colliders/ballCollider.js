@@ -35,7 +35,7 @@ class BallCollider
 	{
 		const ballPosition = this.#ball.getPosition();
 		const objectPosition = object.getPosition();
-		const objectCollisionBox = object.collisionBox();
+		const objectCollisionBox = object.getCollisionBox();
 		
 		return ballPosition.x < objectPosition.x || ballPosition.x > objectCollisionBox.x && (ballPosition.y > objectPosition.y && ballPosition.y < objectCollisionBox.y);
 	}
@@ -44,7 +44,7 @@ class BallCollider
 	{
 		const ballPosition = this.#ball.getPosition();
 		const objectPosition = object.getPosition();
-		const objectCollisionBox = object.collisionBox();
+		const objectCollisionBox = object.getCollisionBox();
 		
 		return ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y && (ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x);
 	}
@@ -57,7 +57,7 @@ class BallCollider
 	#rectangularObjectIsCollidingWithBall(object)
 	{
 		const ballPosition = this.#ball.getPosition();
-		const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(object.getPosition(), object.collisionBox(), ballPosition);
+		const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(object.getPosition(), object.getCollisionBox(), ballPosition);
 		
 		return distanceBetweenPoints(ballPosition, nearestPointOnObjectToTheCenterOfTheBall) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
 	}

@@ -52,9 +52,9 @@ class Brick extends GameObject
 		return this.#collider.getSize();
 	}
 
-	collisionBox()
+	getCollisionBox()
 	{
-		return this.#collider.collisionBox();
+		return this.#collider.getCollisionBox();
 	}
 
 	#init(values)

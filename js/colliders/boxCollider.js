@@ -19,7 +19,7 @@ class BoxCollider
 		return this.#size;
 	}
 
-	collisionBox()
+	getCollisionBox()
 	{
 		const position = this.#object.getPosition();
 		
