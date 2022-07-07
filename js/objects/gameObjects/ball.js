@@ -41,23 +41,13 @@ class Ball extends MovableObject
 
 	deflect(object)
 	{
-		const ballPosition = this.getPosition();
-		const objectPosition = object.getPosition();
-		const objectCollisionBox = object.collisionBox();
-
-		if(ballPosition.x < objectPosition.x || ballPosition.x > objectCollisionBox.x)
+		if(this.#hasHitARectangularObjectFromHorizontalSide(object))
 		{
-			if(ballPosition.y > objectPosition.y && ballPosition.y < objectCollisionBox.y)
-			{
-				this.deflectInXAxis();
-			}
+			this.deflectInXAxis();
 		}
-		else if(ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y)
+		else if(this.#hasHitARectangularObjectFromVerticalSide(object))
 		{
-			if(ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x)
-			{
-				this.deflectInYAxis();
-			}
+			this.deflectInYAxis();
 		}
 	}
 
@@ -78,6 +68,24 @@ class Ball extends MovableObject
 		this.setMovementDirectionX(randomSign());
 		this.setMovementDirectionY(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
+	}
+
+	#hasHitARectangularObjectFromHorizontalSide(object)
+	{
+		const ballPosition = this.getPosition();
+		const objectPosition = object.getPosition();
+		const objectCollisionBox = object.collisionBox();
+		
+		return ballPosition.x < objectPosition.x || ballPosition.x > objectCollisionBox.x && (ballPosition.y > objectPosition.y && ballPosition.y < objectCollisionBox.y);
+	}
+
+	#hasHitARectangularObjectFromVerticalSide(object)
+	{
+		const ballPosition = this.getPosition();
+		const objectPosition = object.getPosition();
+		const objectCollisionBox = object.collisionBox();
+		
+		return ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y && (ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x);
 	}
 
 	#changeDirectionX(paddle)
