@@ -9,14 +9,7 @@ class UIText
 	{
 		this.#init(text, fillStyle, align);
 	}
-
-	#init(text, fillStyle, align)
-	{
-		this.#text = text;
-		this.#fillStyle = fillStyle;
-		this.#align = align;
-	}
-
+	
 	draw(ui)
 	{
 		if(this.isVisible())
@@ -38,5 +31,12 @@ class UIText
 	getText()
 	{
 		return this.#text;
+	}
+
+	#init(text, fillStyle, align)
+	{
+		this.#text = text;
+		this.#fillStyle = fillStyle;
+		this.#align = align;
 	}
 }
