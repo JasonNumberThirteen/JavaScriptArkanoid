@@ -46,34 +46,52 @@ class BallCollider
 
 	#isTouchingTopEdge()
 	{
-		return this.#ball.getPosition().y < GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
+		return this.#ball.getPosition().y < this.#topEdgeY();
 	}
 
 	#isTouchingLeftEdge()
 	{
-		return this.#ball.getPosition().x < GAME_BALL_RADIUS;
+		return this.#ball.getPosition().x < this.#leftEdgeX();
 	}
 
 	#isTouchingRightEdge()
 	{
-		return this.#ball.getPosition().x > GAME_WIDTH - GAME_BALL_RADIUS;
+		return this.#ball.getPosition().x > this.#rightEdgeX();
 	}
 
 	#onTopEdgeTouch()
 	{
 		this.#ball.deflectInYAxis();
-		this.#ball.getPosition().y = GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
+
+		this.#ball.getPosition().y = this.#topEdgeY();
 	}
 
 	#onLeftEdgeTouch()
 	{
 		this.#ball.deflectInXAxis();
-		this.#ball.getPosition().x = GAME_BALL_RADIUS;
+
+		this.#ball.getPosition().x = this.#leftEdgeX();
 	}
 
 	#onRightEdgeTouch()
 	{
 		this.#ball.deflectInXAxis();
-		this.#ball.getPosition().x = GAME_WIDTH - GAME_BALL_RADIUS;
+		
+		this.#ball.getPosition().x = this.#rightEdgeX();
+	}
+
+	#topEdgeY()
+	{
+		return GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
+	}
+
+	#leftEdgeX()
+	{
+		return GAME_BALL_RADIUS;
+	}
+
+	#rightEdgeX()
+	{
+		return GAME_WIDTH - GAME_BALL_RADIUS;
 	}
 }
