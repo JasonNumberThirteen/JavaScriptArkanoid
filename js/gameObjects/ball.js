@@ -100,9 +100,9 @@ class Ball extends MovableObject
 
 	#resetWaitTime()
 	{
-		const waitTimeOffset = (typeof GameInstance !== "undefined") ? GameInstance.time() : 0;
+		const offset = (typeof GameInstance !== "undefined") ? GameInstance.time() : 0;
 
-		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + waitTimeOffset;
+		this.#waitTime = GAME_BALL_WAIT_TIME_IN_MS + offset;
 	}
 
 	#canMove()
