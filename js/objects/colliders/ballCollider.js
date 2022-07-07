@@ -68,16 +68,19 @@ class BallCollider
 
 	#onLeftEdgeTouch()
 	{
-		this.#ball.deflectInXAxis();
-
-		this.#ball.getPosition().x = this.#leftEdgeX();
+		this.#onHorizontalEdgeTouch(this.#leftEdgeX());
 	}
 
 	#onRightEdgeTouch()
 	{
+		this.#onHorizontalEdgeTouch(this.#rightEdgeX());
+	}
+
+	#onHorizontalEdgeTouch(edgePosition)
+	{
 		this.#ball.deflectInXAxis();
-		
-		this.#ball.getPosition().x = this.#rightEdgeX();
+
+		this.#ball.getPosition().x = edgePosition;
 	}
 
 	#topEdgeY()
