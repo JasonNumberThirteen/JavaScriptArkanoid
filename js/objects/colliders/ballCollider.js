@@ -62,15 +62,18 @@ class BallCollider
 	#onTopEdgeTouch()
 	{
 		this.#ball.deflectInYAxis();
+		this.#ball.getPosition().y = GAME_BALL_RADIUS + GAME_HUD_HEIGHT;
 	}
 
 	#onLeftEdgeTouch()
 	{
 		this.#ball.deflectInXAxis();
+		this.#ball.getPosition().x = GAME_BALL_RADIUS;
 	}
 
 	#onRightEdgeTouch()
 	{
 		this.#ball.deflectInXAxis();
+		this.#ball.getPosition().x = GAME_WIDTH - GAME_BALL_RADIUS;
 	}
 }
