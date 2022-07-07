@@ -5,47 +5,46 @@
 		<title>Arkanoid</title>
 		<link rel="stylesheet" href="style.css">
 		<script src="js/math.js"></script>
+		<script src="js/point.js"></script>
+		<script src="js/counter.js"></script>
 		<script src="js/gameInit.js"></script>
 		<script src="js/constants.js"></script>
+
+		<script src="js/ui/texts/uiText.js"></script>
+		<script src="js/ui/texts/youWinText.js"></script>
+		<script src="js/ui/texts/gameOverText.js"></script>		
+		<script src="js/ui/texts/refreshTipText.js"></script>
 		
-		<script src="js/objects/game.js"></script>
-		<script src="js/objects/board.js"></script>
-		<script src="js/objects/point.js"></script>
-		<script src="js/objects/renderer.js"></script>
-		<script src="js/objects/brickFactory.js"></script>
+		<script src="js/ui/counters/hudCounter.js"></script>
+		<script src="js/ui/counters/livesCounter.js"></script>
+		<script src="js/ui/counters/scoreCounter.js"></script>
+
+		<script src="js/core/ui.js"></script>
+		<script src="js/core/game.js"></script>
+		<script src="js/core/renderer.js"></script>
+		<script src="js/core/playerInput.js"></script>
+		<script src="js/core/canvasContext.js"></script>
 		
-		<script src="js/objects/gameManager.js"></script>
-		<script src="js/objects/playerInput.js"></script>
-		<script src="js/objects/canvasContext.js"></script>
+		<script src="js/managers/board.js"></script>
+		<script src="js/managers/gameManager.js"></script>
+		<script src="js/managers/brickFactory.js"></script>
 
-		<script src="js/objects/ui/ui.js"></script>
+		<script src="js/triggers/ballTrigger.js"></script>
+
+		<script src="js/colliders/boxCollider.js"></script>
+		<script src="js/colliders/ballCollider.js"></script>
+		<script src="js/colliders/brickCollider.js"></script>
+		<script src="js/colliders/paddleCollider.js"></script>
+
+		<script src="js/renderers/ballRenderer.js"></script>
+		<script src="js/renderers/brickRenderer.js"></script>
+		<script src="js/renderers/paddleRenderer.js"></script>
 		
-		<script src="js/objects/ui/texts/uiText.js"></script>
-		<script src="js/objects/ui/texts/youWinText.js"></script>
-		<script src="js/objects/ui/texts/gameOverText.js"></script>		
-		<script src="js/objects/ui/texts/refreshTipText.js"></script>
-		
-		<script src="js/objects/ui/counters/hudCounter.js"></script>
-		<script src="js/objects/ui/counters/livesCounter.js"></script>
-		<script src="js/objects/ui/counters/scoreCounter.js"></script>
-
-		<script src="js/objects/colliders/boxCollider.js"></script>
-		<script src="js/objects/colliders/ballCollider.js"></script>
-		<script src="js/objects/colliders/brickCollider.js"></script>
-		<script src="js/objects/colliders/paddleCollider.js"></script>
-
-		<script src="js/objects/renderers/ballRenderer.js"></script>
-		<script src="js/objects/renderers/brickRenderer.js"></script>
-		<script src="js/objects/renderers/paddleRenderer.js"></script>
-
-		<script src="js/objects/triggers/ballTrigger.js"></script>
-
-		<script src="js/objects/gameObjects/counter.js"></script>
-		<script src="js/objects/gameObjects/gameObject.js"></script>
-		<script src="js/objects/gameObjects/movableObject.js"></script>
-		<script src="js/objects/gameObjects/ball.js"></script>
-		<script src="js/objects/gameObjects/brick.js"></script>
-		<script src="js/objects/gameObjects/paddle.js"></script>
+		<script src="js/gameObjects/gameObject.js"></script>
+		<script src="js/gameObjects/movableObject.js"></script>
+		<script src="js/gameObjects/ball.js"></script>
+		<script src="js/gameObjects/brick.js"></script>
+		<script src="js/gameObjects/paddle.js"></script>
 	</head>
 	<body onload="initGame()">
 		<canvas id="gameWindow"></canvas>
