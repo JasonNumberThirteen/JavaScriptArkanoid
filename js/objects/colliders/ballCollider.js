@@ -31,6 +31,24 @@ class BallCollider
 		}
 	}
 
+	hasHitARectangularObjectFromHorizontalSide(object)
+	{
+		const ballPosition = this.#ball.getPosition();
+		const objectPosition = object.getPosition();
+		const objectCollisionBox = object.collisionBox();
+		
+		return ballPosition.x < objectPosition.x || ballPosition.x > objectCollisionBox.x && (ballPosition.y > objectPosition.y && ballPosition.y < objectCollisionBox.y);
+	}
+
+	hasHitARectangularObjectFromVerticalSide(object)
+	{
+		const ballPosition = this.#ball.getPosition();
+		const objectPosition = object.getPosition();
+		const objectCollisionBox = object.collisionBox();
+		
+		return ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y && (ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x);
+	}
+
 	#isCollidingWith(object)
 	{
 		return this.#rectangularObjectIsCollidingWithBall(object);
