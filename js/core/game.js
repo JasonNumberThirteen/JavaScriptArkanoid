@@ -32,7 +32,7 @@ class Game
 		this.#board = new Board();
 		this.#gameManager = new GameManager(this.#board);
 		this.#context = new CanvasContext(this.#board);
-		this.#input = new PlayerInput(this.#board.getPaddle());
+		this.#input = new Input(this.#board.getPaddle());
 	}
 	
 	#requestAnimationFrame()
