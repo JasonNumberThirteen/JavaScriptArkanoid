@@ -22,9 +22,15 @@ class BrickFactory
 
 	#brickPosition(column, row)
 	{
-		const basePosition = new Point(GAME_BRICK_WIDTH + GAME_BRICK_GAP_X, GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y);
-		const offset = new Point(15*GAME_WINDOW_SCALE, GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y);
+		const sizeWithGap = new Point(GAME_BRICK_WIDTH + GAME_BRICK_GAP_X, GAME_BRICK_HEIGHT + GAME_BRICK_GAP_Y);
+		const halfOfBricksInRow = GAME_BRICKS_IN_ROW*0.5;
+		const widthWithGap = GAME_WIDTH + GAME_BRICK_GAP_X;
+		const centerX = widthWithGap >> 1;
+		const columnOffset = column - halfOfBricksInRow;
+		const offsetX = sizeWithGap.x*columnOffset;
+		const x = centerX - offsetX;
+		const y = sizeWithGap.y*row + GAME_HUD_HEIGHT + GAME_BRICK_GAP_Y;
 		
-		return new Point(basePosition.x*column - offset.x, basePosition.y*row + offset.y);
+		return new Point(x, y);
 	}
 }
