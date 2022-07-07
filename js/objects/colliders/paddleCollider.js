@@ -19,7 +19,7 @@ class PaddleCollider extends BoxCollider
 
 	onBallHit(ball)
 	{
-		ball.deflectFromPaddle();
+		ball.deflectFromPaddle(this.getObject());
 	}
 
 	#isTouchingLeftEdge()

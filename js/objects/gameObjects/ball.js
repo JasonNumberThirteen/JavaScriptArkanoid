@@ -32,8 +32,9 @@ class Ball extends MovableObject
 		this.#collider.checkCollisionWith(object, event);
 	}
 
-	deflectFromPaddle()
+	deflectFromPaddle(paddle)
 	{
+		this.#changeDirectionX(paddle);
 		this.deflectInYAxis();
 		this.#accelerate();
 	}
@@ -55,6 +56,24 @@ class Ball extends MovableObject
 		this.setMovementDirectionX(randomSign());
 		this.setMovementDirectionY(GAME_BALL_INITIAL_MOVEMENT_DIRECTION_Y);
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
+	}
+
+	#changeDirectionX(paddle)
+	{
+		const paddleCenterX = paddle.getPosition().x + (GAME_PADDLE_WIDTH >> 1);
+		let x = (this.getPosition().x - paddleCenterX) / GAME_PADDLE_WIDTH;
+		const magnitude = Math.sqrt(x*x + 1);
+		
+		if(magnitude > 0.00001)
+		{
+			x /= magnitude;
+		}
+		else
+		{
+			x = 0;
+		}
+
+		this.setMovementDirectionX(x);
 	}
 
 	#init()
