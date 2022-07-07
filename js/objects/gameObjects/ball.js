@@ -35,8 +35,12 @@ class Ball extends MovableObject
 	deflectFromPaddle(paddle)
 	{
 		this.deflect(paddle);
-		this.#changeDirectionX(paddle);
 		this.#accelerate();
+
+		if(this.#collider.hasHitARectangularObjectFromVerticalSide(paddle))
+		{
+			this.#changeDirectionX(paddle);
+		}
 	}
 
 	deflect(object)
