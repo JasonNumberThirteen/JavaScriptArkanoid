@@ -39,7 +39,7 @@ class Ball extends MovableObject
 
 		if(this.#collider.hasHitARectangularObjectFromVerticalSide(paddle))
 		{
-			this.#changeDirectionX(paddle);
+			this.#changeDirectionAfterPaddleHit(paddle);
 		}
 	}
 
@@ -74,7 +74,7 @@ class Ball extends MovableObject
 		this.setMovementSpeed(GAME_BALL_MOVEMENT_SPEED);
 	}
 
-	#changeDirectionX(paddle)
+	#changeDirectionAfterPaddleHit(paddle)
 	{
 		const paddleCenterX = paddle.getPosition().x + (GAME_PADDLE_WIDTH >> 1);
 		let x = (this.getPosition().x - paddleCenterX) / GAME_PADDLE_WIDTH;
