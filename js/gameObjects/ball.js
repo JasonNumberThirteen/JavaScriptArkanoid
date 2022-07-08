@@ -76,8 +76,9 @@ class Ball extends MovableObject
 
 	#changeDirectionAfterPaddleHit(paddle)
 	{
-		const paddleCenterX = paddle.getPosition().x + (GAME_PADDLE_WIDTH >> 1);
-		const x = (this.getPosition().x - paddleCenterX) / GAME_PADDLE_WIDTH;
+		const halfOfPaddleWidth = GAME_PADDLE_WIDTH >> 1;
+		const paddleCenterX = paddle.getPosition().x + halfOfPaddleWidth;
+		const x = (this.getPosition().x - paddleCenterX) / halfOfPaddleWidth;
 		const magnitude = Math.sqrt(x*x + 1);
 
 		this.setMovementDirectionX(magnitude > Number.EPSILON ? x / magnitude : 0);
