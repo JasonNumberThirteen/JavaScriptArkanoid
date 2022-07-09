@@ -23,7 +23,7 @@ const nearestPointOnRectangleToTheCenterOfCircle = function(rectanglePosition, r
 	return new Point(xn, yn);
 };
 
-const distanceBetweenPoints = function(pointA, pointB)
+const squaredDistanceBetweenPoints = function(pointA, pointB)
 {
 	const dx = pointB.x - pointA.x;
 	const dy = pointB.y - pointA.y;

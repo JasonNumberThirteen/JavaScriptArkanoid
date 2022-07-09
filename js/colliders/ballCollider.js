@@ -54,7 +54,7 @@ class BallCollider
 		const ballPosition = this.#ball.getPosition();
 		const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(object.getPosition(), object.getCollisionBox(), ballPosition);
 		
-		return distanceBetweenPoints(ballPosition, nearestPointOnObjectToTheCenterOfTheBall) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
+		return squaredDistanceBetweenPoints(ballPosition, nearestPointOnObjectToTheCenterOfTheBall) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
 	}
 
 	#isTouchingTopEdge()
