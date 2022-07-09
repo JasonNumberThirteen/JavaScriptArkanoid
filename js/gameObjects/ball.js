@@ -79,9 +79,9 @@ class Ball extends MovableObject
 		const halfOfPaddleWidth = paddle.getSize().x >> 1;
 		const paddleCenterX = paddle.getPosition().x + halfOfPaddleWidth;
 		const x = (this.getPosition().x - paddleCenterX) / halfOfPaddleWidth;
-		const magnitude = Math.sqrt(x*x + 1);
+		const direction = normalisedVector(new Point(x, 1));
 
-		this.setMovementDirectionX(magnitude > Number.EPSILON ? x / magnitude : 0);
+		this.setMovementDirectionX(direction.x);
 	}
 
 	#init()
