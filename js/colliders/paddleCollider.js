@@ -32,7 +32,7 @@ class PaddleCollider extends BoxCollider
 
 	#isTouchingRightEdge()
 	{
-		return this.getObject().getPosition().x > this.#rightEdgeX();
+		return this.getObject().getPosition().x > GAME_PADDLE_RIGHT_EDGE_X;
 	}
 
 	#onLeftEdgeTouch()
@@ -42,11 +42,6 @@ class PaddleCollider extends BoxCollider
 
 	#onRightEdgeTouch()
 	{
-		this.getObject().getPosition().x = this.#rightEdgeX();
-	}
-
-	#rightEdgeX()
-	{
-		return GAME_WIDTH - GAME_PADDLE_WIDTH;
+		this.getObject().getPosition().x = GAME_PADDLE_RIGHT_EDGE_X;
 	}
 }
