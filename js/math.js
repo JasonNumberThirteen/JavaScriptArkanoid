@@ -36,4 +36,4 @@ const rectangleIsInCircle = function(rectanglePosition, rectangleCollisionBox, c
 	const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(rectanglePosition, rectangleCollisionBox, circlePosition);
 
 	return squaredDistanceBetweenPoints(circlePosition, nearestPointOnObjectToTheCenterOfTheBall) <= circleRadius*circleRadius;
-}
+};
