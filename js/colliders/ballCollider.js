@@ -25,7 +25,7 @@ class BallCollider
 
 	checkCollisionWith(object, event)
 	{
-		if(this.#rectangularObjectIsCollidingWithBall(object))
+		if(rectangleIsInCircle(object.getPosition(), object.getCollisionBox(), this.#ball.getPosition(), GAME_BALL_RADIUS))
 		{
 			event();
 		}
@@ -47,14 +47,6 @@ class BallCollider
 		const objectCollisionBox = object.getCollisionBox();
 		
 		return ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y && (ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x);
-	}
-
-	#rectangularObjectIsCollidingWithBall(object)
-	{
-		const ballPosition = this.#ball.getPosition();
-		const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(object.getPosition(), object.getCollisionBox(), ballPosition);
-		
-		return squaredDistanceBetweenPoints(ballPosition, nearestPointOnObjectToTheCenterOfTheBall) <= GAME_BALL_RADIUS*GAME_BALL_RADIUS;
 	}
 
 	#isTouchingTopEdge()

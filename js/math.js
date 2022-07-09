@@ -30,3 +30,10 @@ const squaredDistanceBetweenPoints = function(pointA, pointB)
 
 	return dx*dx + dy*dy;
 };
+
+const rectangleIsInCircle = function(rectanglePosition, rectangleCollisionBox, circlePosition, circleRadius)
+{
+	const nearestPointOnObjectToTheCenterOfTheBall = nearestPointOnRectangleToTheCenterOfCircle(rectanglePosition, rectangleCollisionBox, circlePosition);
+
+	return squaredDistanceBetweenPoints(circlePosition, nearestPointOnObjectToTheCenterOfTheBall) <= circleRadius*circleRadius;
+}
