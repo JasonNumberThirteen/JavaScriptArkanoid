@@ -36,11 +36,7 @@ class Ball extends MovableObject
 	{
 		this.deflect(paddle);
 		this.accelerate(GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT, GAME_BALL_MAX_MOVEMENT_SPEED);
-
-		if(this.#collider.hasHitARectangularObjectFromVerticalSide(paddle))
-		{
-			this.#changeDirectionAfterPaddleHit(paddle);
-		}
+		this.#changeDirectionAfterPaddleHit(paddle);
 	}
 
 	deflect(object)
@@ -66,12 +62,15 @@ class Ball extends MovableObject
 
 	#changeDirectionAfterPaddleHit(paddle)
 	{
-		const halfOfPaddleWidth = paddle.getSize().x >> 1;
-		const paddleCenterX = paddle.getPosition().x + halfOfPaddleWidth;
-		const x = (this.getPosition().x - paddleCenterX) / halfOfPaddleWidth;
-		const direction = normalisedVector(new Point(x, 1));
-
-		this.setMovementDirectionX(direction.x);
+		if(this.#collider.hasHitARectangularObjectFromVerticalSide(paddle))
+		{
+			const halfOfPaddleWidth = paddle.getSize().x >> 1;
+			const paddleCenterX = paddle.getPosition().x + halfOfPaddleWidth;
+			const x = (this.getPosition().x - paddleCenterX) / halfOfPaddleWidth;
+			const direction = normalisedVector(new Point(x, 1));
+	
+			this.setMovementDirectionX(direction.x);
+		}
 	}
 
 	#init()
