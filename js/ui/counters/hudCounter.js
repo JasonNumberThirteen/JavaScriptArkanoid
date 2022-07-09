@@ -2,19 +2,17 @@ class HUDCounter
 {
 	#context;
 	#text;
-	#align;
 
-	constructor(context, text, align)
+	constructor(context, text)
 	{
 		this.#context = context;
 		this.#text = text;
-		this.#align = align;
 	}
 
 	draw(ui)
 	{
 		this.#text.draw(ui);
-		ui.drawText(this.getValue(), this.counterPosition(), GAME_HUD_COUNTERS_FILL_STYLE, this.#align);
+		ui.drawText(this.getValue(), this.counterPosition(), GAME_HUD_COUNTERS_FILL_STYLE, this.#text.getAlign());
 	}
 
 	setTextPosition(position)

@@ -33,6 +33,11 @@ class UIText
 		return this.#text;
 	}
 
+	getAlign()
+	{
+		return this.#align;
+	}
+
 	#init(text, fillStyle, align)
 	{
 		this.#text = text;
