@@ -30,5 +30,10 @@
 - Press left / right arrow keys or A / D keys to move the paddle.
 - Press R to restart the game when is over.
 
+## Screenshots
+!["Arkanoid"](./screenshots/1.png?raw=true)
+!["Arkanoid"](./screenshots/2.png?raw=true)
+!["Arkanoid"](./screenshots/3.png?raw=true)
+
 ## Credits
 - This project was made by [Jason](https://jasonxiii.pl "Jason. Gry, muzyka, kursy, artykuły, programy i filmy!")
