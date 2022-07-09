@@ -6,6 +6,7 @@
 * [Used technologies](#used-technologies)
 * [Features](#features)
 * [Usage](#usage)
+* [Screenshots](#screenshots)
 * [Credits](#credits)
 
 ## General information
