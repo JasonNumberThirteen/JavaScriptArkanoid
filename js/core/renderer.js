@@ -11,8 +11,8 @@ class Renderer
 
 	draw()
 	{
-		this.#drawBG(this.#context, 0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
-		this.#drawBG(this.#context, GAME_HUD_HEIGHT, GAME_HEIGHT - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
+		this.#drawBG(0, GAME_HUD_HEIGHT, GAME_HUD_FILL_STYLE);
+		this.#drawBG(GAME_HUD_HEIGHT, GAME_HEIGHT - GAME_HUD_HEIGHT, GAME_BG_FILL_STYLE);
 		this.#getDrawables().forEach(e => e.draw(this.#context));
 	}
 
@@ -23,11 +23,11 @@ class Renderer
 		this.#ui = new UI(this.#context);
 	}
 
-	#drawBG(context, y, height, fillStyle)
+	#drawBG(y, height, fillStyle)
 	{
-		context.fillStyle = fillStyle;
+		this.#context.fillStyle = fillStyle;
 
-		context.fillRect(0, y, GAME_WIDTH, height);
+		this.#context.fillRect(0, y, GAME_WIDTH, height);
 	}
 
 	#getDrawables()
