@@ -25,7 +25,7 @@ class BallCollider
 
 	checkCollisionWith(object, event)
 	{
-		if(this.#isCollidingWith(object))
+		if(this.#rectangularObjectIsCollidingWithBall(object))
 		{
 			event();
 		}
@@ -47,11 +47,6 @@ class BallCollider
 		const objectCollisionBox = object.getCollisionBox();
 		
 		return ballPosition.y > objectPosition.y || ballPosition.y < objectCollisionBox.y && (ballPosition.x > objectPosition.x && ballPosition.x < objectCollisionBox.x);
-	}
-
-	#isCollidingWith(object)
-	{
-		return this.#rectangularObjectIsCollidingWithBall(object);
 	}
 
 	#rectangularObjectIsCollidingWithBall(object)
