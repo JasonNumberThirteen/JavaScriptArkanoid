@@ -35,7 +35,7 @@ class Ball extends MovableObject
 	deflectFromPaddle(paddle)
 	{
 		this.deflect(paddle);
-		this.#accelerate();
+		this.accelerate(GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT, GAME_BALL_MAX_MOVEMENT_SPEED);
 
 		if(this.#collider.hasHitARectangularObjectFromVerticalSide(paddle))
 		{
@@ -47,22 +47,12 @@ class Ball extends MovableObject
 	{
 		if(this.#collider.hasHitARectangularObjectFromHorizontalSide(object))
 		{
-			this.deflectInXAxis();
+			this.inverseDirectionX();
 		}
 		else if(this.#collider.hasHitARectangularObjectFromVerticalSide(object))
 		{
-			this.deflectInYAxis();
+			this.inverseDirectionY();
 		}
-	}
-
-	deflectInXAxis()
-	{
-		this.setMovementDirectionX(-this.getMovementDirectionX());
-	}
-
-	deflectInYAxis()
-	{
-		this.setMovementDirectionY(-this.getMovementDirectionY());
 	}
 
 	setInitialState()
@@ -109,13 +99,5 @@ class Ball extends MovableObject
 	#canMove()
 	{
 		return GameInstance.time() > this.#waitTime;
-	}
-
-	#accelerate()
-	{
-		const increasedSpeed = this.getMovementSpeed() + GAME_BALL_MOVEMENT_SPEED_GROWTH_PER_PADDLE_DEFLECT;
-		const clampedSpeed = clamp(GAME_BALL_MOVEMENT_SPEED, increasedSpeed, GAME_BALL_MAX_MOVEMENT_SPEED);
-
-		this.setMovementSpeed(clampedSpeed);
 	}
 }

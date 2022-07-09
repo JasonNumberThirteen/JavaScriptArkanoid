@@ -20,6 +20,14 @@ class MovableObject extends GameObject
 		this.setPosition(newPosition);
 	}
 
+	accelerate(speed, limit)
+	{
+		const increasedSpeed = this.#speed + speed;
+		const clampedSpeed = clamp(0, increasedSpeed, limit);
+
+		this.setMovementSpeed(clampedSpeed);
+	}
+
 	setMovementSpeed(speed)
 	{
 		this.#speed = speed || 0;
@@ -45,6 +53,16 @@ class MovableObject extends GameObject
 	setMovementDirectionY(y)
 	{
 		this.#direction.y = y || 0;
+	}
+
+	inverseDirectionX()
+	{
+		this.#direction.x = -this.#direction.x;
+	}
+
+	inverseDirectionY()
+	{
+		this.#direction.y = -this.#direction.y;
 	}
 
 	getMovementSpeed()

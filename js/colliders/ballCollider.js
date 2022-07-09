@@ -74,7 +74,7 @@ class BallCollider
 
 	#onTopEdgeTouch()
 	{
-		this.#ball.deflectInYAxis();
+		this.#ball.inverseDirectionY();
 
 		this.#ball.getPosition().y = this.#topEdgeY();
 	}
@@ -91,7 +91,7 @@ class BallCollider
 
 	#onHorizontalEdgeTouch(edgePosition)
 	{
-		this.#ball.deflectInXAxis();
+		this.#ball.inverseDirectionX();
 
 		this.#ball.getPosition().x = edgePosition;
 	}
