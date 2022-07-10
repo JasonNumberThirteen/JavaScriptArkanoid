@@ -67,24 +67,22 @@ class BallCollider
 	#onTopEdgeTouch()
 	{
 		this.#ball.inverseDirectionY();
-
-		this.#ball.getPosition().y = GAME_BALL_TOP_EDGE_Y;
+		this.#ball.update();
 	}
 
 	#onLeftEdgeTouch()
 	{
-		this.#onHorizontalEdgeTouch(GAME_BALL_LEFT_EDGE_X);
+		this.#onHorizontalEdgeTouch();
 	}
 
 	#onRightEdgeTouch()
 	{
-		this.#onHorizontalEdgeTouch(GAME_BALL_RIGHT_EDGE_X);
+		this.#onHorizontalEdgeTouch();
 	}
 
-	#onHorizontalEdgeTouch(edgePosition)
+	#onHorizontalEdgeTouch()
 	{
 		this.#ball.inverseDirectionX();
-
-		this.#ball.getPosition().x = edgePosition;
+		this.#ball.update();
 	}
 }
